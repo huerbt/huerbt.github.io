@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="不及不急，跬步千里">
 <meta property="og:description" content="一、Mac电脑环境准备参考 https://hexo.io/zh-cn/docs/ 另外我使用的命令行是zsh  下载Xcode 安装Command Line Tools（或者尝试在命令行中运行xcode-select –install） 安装Git   1brew install git  ​    如果brew没有安装，需要先在Mac上安装Homebrew，相关内容参见我的另一篇博客《在Mac">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-14T09:26:25.930Z">
+<meta property="og:updated_time" content="2019-08-14T09:32:00.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub、Hexo制作博客">
 <meta name="twitter:description" content="一、Mac电脑环境准备参考 https://hexo.io/zh-cn/docs/ 另外我使用的命令行是zsh  下载Xcode 安装Command Line Tools（或者尝试在命令行中运行xcode-select –install） 安装Git   1brew install git  ​    如果brew没有安装，需要先在Mac上安装Homebrew，相关内容参见我的另一篇博客《在Mac">
@@ -454,6 +454,14 @@
 <li><p>然后部署到GitHub Page上，输入如下命令</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 
+<p>如果出现</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR Deployer not found: git</span><br></pre></td></tr></table></figure>
+
+<p>在命令行中运行</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>然后在重新运行 hexo d</p>
+<p>在过程中需要输入GitHub的用户名密码</p>
 </li>
 </ol>
 <h2 id="六、博客美化"><a href="#六、博客美化" class="headerlink" title="六、博客美化"></a>六、博客美化</h2><p>我选择的是next主题，更多主题可以在Hexo官网：<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a>  里查看</p>
@@ -630,7 +638,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -641,7 +649,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
