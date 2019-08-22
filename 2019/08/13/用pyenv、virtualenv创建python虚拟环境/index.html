@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="不及不急，跬步千里">
 <meta property="og:description" content="虚拟环境的作用虚拟环境可以在本机电脑中隔离出不同的开发环境，即指定不同环境使用不同版本的软件，这对于在同一台电脑上开发不同项目非常方便。 这里面有两个工具介绍，将其组合使用，实现虚拟环境的要求。  pyenv：可以在同一台电脑上不同的目录里分别运行不同版本的Python， 并且互不影响 pyenv-virtualenv插件：虚拟出同一版本的python但是不同依赖库版本的开发环境，python官方">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-14T03:28:57.234Z">
+<meta property="og:updated_time" content="2019-08-22T06:00:48.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用pyenv、virtualenv创建python虚拟环境">
 <meta name="twitter:description" content="虚拟环境的作用虚拟环境可以在本机电脑中隔离出不同的开发环境，即指定不同环境使用不同版本的软件，这对于在同一台电脑上开发不同项目非常方便。 这里面有两个工具介绍，将其组合使用，实现虚拟环境的要求。  pyenv：可以在同一台电脑上不同的目录里分别运行不同版本的Python， 并且互不影响 pyenv-virtualenv插件：虚拟出同一版本的python但是不同依赖库版本的开发环境，python官方">
@@ -401,7 +401,7 @@
 <li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ <span class="built_in">echo</span> <span class="string">'eval "$(pyenv init -)"'</span> &gt;&gt; ~/.bash_profile</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>修改.zshrc</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ---pyenv---</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$HOME</span>/.pyenv/bin:<span class="variable">$PATH</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ---pyenv---</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$HOME</span>/.pyenv/versions/:<span class="variable">$PATH</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></span><br></pre></td></tr></table></figure>
 
 <p><em>如果zsh和bash切换着用，那么./zshrc和./bashrc都要改，不然会出现找不到命令的报错</em></p>
 </li>
