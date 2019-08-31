@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="不及不急，跬步千里">
 <meta property="og:description" content="Docker操作指南Docker概览Docker中包括三个基本的概念:  Image(镜像) Container(容器) Repository(仓库)  镜像是 Docker 运行容器的前提，仓库是存放镜像的场所，可见镜像更是 Docker 的核心。 容器 = 镜像 + 读写层。一个容器可以被构建成镜像。 镜像有多种生成方法  从无到有开始创建镜像  下载并使用别人创建好的现成的镜像  在现有镜像">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-31T02:16:18.769Z">
+<meta property="og:updated_time" content="2019-08-31T02:38:40.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker操作指南">
 <meta name="twitter:description" content="Docker操作指南Docker概览Docker中包括三个基本的概念:  Image(镜像) Container(容器) Repository(仓库)  镜像是 Docker 运行容器的前提，仓库是存放镜像的场所，可见镜像更是 Docker 的核心。 容器 = 镜像 + 读写层。一个容器可以被构建成镜像。 镜像有多种生成方法  从无到有开始创建镜像  下载并使用别人创建好的现成的镜像  在现有镜像">
@@ -443,15 +443,29 @@
 </li>
 </ol>
 <ol start="6">
-<li>提交容器为新的镜像<ol>
-<li>退出 ：先按 CTRL+p，再按 CTRL+q（这样退出系统不会被关闭）</li>
-<li>查看容器 id ： docker ps -a</li>
-<li>提交生成新的镜像： docker commit &lt;容器 id&gt; 新的镜像名字</li>
+<li><p>提交容器为新的镜像</p>
+<ol>
+<li><p>退出 ：先按 CTRL+p，再按 CTRL+q（这样退出系统不会被关闭）</p>
+</li>
+<li><p>查看容器 id ： </p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ol>
 </li>
 </ol>
-<h3 id="从requirements-txt-中安装其他需要的库"><a href="#从requirements-txt-中安装其他需要的库" class="headerlink" title="从requirements.txt 中安装其他需要的库"></a>从requirements.txt 中安装其他需要的库</h3><p>进入容器</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -t -i ubuntu:18.04 /bin/bash</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>提交生成新的镜像： </p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit &lt;容器 id&gt; 新的镜像名字</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="从requirements-txt-中安装其他需要的库"><a href="#从requirements-txt-中安装其他需要的库" class="headerlink" title="从requirements.txt 中安装其他需要的库"></a>从requirements.txt 中安装其他需要的库</h3><p>运行新提交的镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -t -i bujiubuntu /bin/bash</span><br></pre></td></tr></table></figure>
 
 <p>在home目录下，生成requirements.txt文件，并编辑该文件。在requirement.txt文件中撰写如下形式内容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">alabaster==0.7.12</span><br><span class="line">atomicwrites==1.3.0</span><br><span class="line">attrs==19.1.0</span><br><span class="line">Babel==2.6.0</span><br><span class="line">certifi==2019.3.9</span><br><span class="line">chardet==3.0.4</span><br><span class="line">coverage==4.5.3</span><br><span class="line">cycler==0.10.0</span><br><span class="line">docutils==0.14</span><br><span class="line">future==0.17.1</span><br><span class="line">greenlet==0.4.15</span><br><span class="line">idna==2.8</span><br><span class="line">imagesize==1.1.0</span><br><span class="line">Jinja2==2.10</span><br><span class="line">joblib==0.13.2</span><br><span class="line">kiwisolver==1.0.1</span><br><span class="line">Markdown==3.1</span><br><span class="line">Markups==3.0.0</span><br><span class="line">MarkupSafe==1.1.1</span><br><span class="line">matplotlib==3.0.2</span><br><span class="line">mock==3.0.5</span><br><span class="line">more-itertools==7.0.0</span><br><span class="line">mpl-finance==0.10.0</span><br><span class="line">msgpack==0.6.1</span><br><span class="line">neovim==0.3.1</span><br><span class="line">nose==1.3.7</span><br><span class="line">numexpr==2.6.9</span><br><span class="line">numpy==1.16.1</span><br><span class="line">packaging==19.0</span><br><span class="line">pandas==0.24.1</span><br><span class="line">patsy==0.5.1</span><br><span class="line">pluggy==0.9.0</span><br><span class="line">psutil==5.6.3</span><br><span class="line">py==1.8.0</span><br><span class="line">Pygments==2.3.1</span><br><span class="line">pynvim==0.3.2</span><br><span class="line">pyparsing==2.3.1</span><br><span class="line">PyQt5==5.12.1</span><br><span class="line">PyQt5-sip==4.19.15</span><br><span class="line">PySnooper==0.2.2</span><br><span class="line">pytest==4.4.1</span><br><span class="line">pytest-cov==2.6.1</span><br><span class="line">pytest-doctestplus==0.3.0</span><br><span class="line">pytest-ordering==0.6</span><br><span class="line">python-dateutil==2.8.0</span><br><span class="line">python-markdown-math==0.6</span><br><span class="line">pytz==2018.9</span><br><span class="line">requests==2.21.0</span><br><span class="line">ReText==7.0.4</span><br><span class="line">scikit-learn==0.21.2</span><br><span class="line">scipy==1.2.1</span><br><span class="line">seaborn==0.9.0</span><br><span class="line">selenium==3.141.0</span><br><span class="line">six==1.12.0</span><br><span class="line">snowballstemmer==1.2.1</span><br><span class="line">Sphinx==1.8.5</span><br><span class="line">sphinxcontrib-websupport==1.1.0</span><br><span class="line">statsmodels==0.10.0</span><br><span class="line">tables==3.5.2</span><br><span class="line">urllib3==1.24.1</span><br></pre></td></tr></table></figure>
@@ -460,6 +474,20 @@
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
 
 <p>完成安装。</p>
+<p>再次重复执行提交容器为镜像的操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="docker-run、exec和attach使用和区别"><a href="#docker-run、exec和attach使用和区别" class="headerlink" title="docker run、exec和attach使用和区别"></a>docker run、exec和attach使用和区别</h3><ul>
+<li>docker run；创建和启动一个新的容器实例，操作对象是镜像，选项较多，如果你要创建和启动一个容器，只能用run；</li>
+<li>docker exec: 在已运行的容器中，执行命令，操作对象是容器，如果你要进入已运行的容器，并且执行命令，用exec；比attach强大，可以像使用SSH登录服务器一样操作容器，一遍进入容器的命令都是使用docker exec 而不是docker attach。</li>
+<li>docker attach: 同样操作的是已运行的容器，可以将本机标准输入（键盘输入）输到容器中，也可以将容器的输出显示在本机的屏幕上，如果你想查看容器运行过程中产生的标准输入输出，用attach</li>
+</ul>
+<p>进入容器</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it &lt;容器id&gt; /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.cnblogs.com/xhyan/p/6593075.html" target="_blank" rel="noopener">更详细的内容可以参见</a></p>
+<h3 id="关闭容器"><a href="#关闭容器" class="headerlink" title="关闭容器"></a>关闭容器</h3><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop &lt;容器id&gt;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -648,7 +676,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker操作指南"><span class="nav-number">1.</span> <span class="nav-text">Docker操作指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker概览"><span class="nav-number">1.1.</span> <span class="nav-text">Docker概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-在Mac下的安装"><span class="nav-number">1.2.</span> <span class="nav-text">Docker 在Mac下的安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#制作一个基于Ubuntu的镜像"><span class="nav-number">1.3.</span> <span class="nav-text">制作一个基于Ubuntu的镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从requirements-txt-中安装其他需要的库"><span class="nav-number">1.4.</span> <span class="nav-text">从requirements.txt 中安装其他需要的库</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker操作指南"><span class="nav-number">1.</span> <span class="nav-text">Docker操作指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker概览"><span class="nav-number">1.1.</span> <span class="nav-text">Docker概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-在Mac下的安装"><span class="nav-number">1.2.</span> <span class="nav-text">Docker 在Mac下的安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#制作一个基于Ubuntu的镜像"><span class="nav-number">1.3.</span> <span class="nav-text">制作一个基于Ubuntu的镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从requirements-txt-中安装其他需要的库"><span class="nav-number">1.4.</span> <span class="nav-text">从requirements.txt 中安装其他需要的库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-run、exec和attach使用和区别"><span class="nav-number">1.5.</span> <span class="nav-text">docker run、exec和attach使用和区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭容器"><span class="nav-number">1.6.</span> <span class="nav-text">关闭容器</span></a></li></ol></li></ol></div>
             
 
           </div>
