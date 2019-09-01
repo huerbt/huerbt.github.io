@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="不及不急，跬步千里">
 <meta property="og:description" content="Docker 在刚装好Ubuntu后有中文乱码的问题，按如下步骤可解决 (0).查看容器语言环境     $ locale      LANG=     LANGUAGE=     LC_CTYPE=&amp;quot;POSIX&amp;quot;      ......  (1).查看容器支持的语言      $ locale -a       C      C.UTF-8      POSIX  (2).修">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-01T01:33:44.218Z">
+<meta property="og:updated_time" content="2019-09-01T02:15:38.336Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Docker的Ubuntu容器中解决中文的问题">
 <meta name="twitter:description" content="Docker 在刚装好Ubuntu后有中文乱码的问题，按如下步骤可解决 (0).查看容器语言环境     $ locale      LANG=     LANGUAGE=     LC_CTYPE=&amp;quot;POSIX&amp;quot;      ......  (1).查看容器支持的语言      $ locale -a       C      C.UTF-8      POSIX  (2).修">
@@ -408,7 +408,10 @@
 
     LANG=C.UTF-8
     LANGUAGE=
-    LC_CTYPE=&quot;C.UTF-8&quot;</code></pre>
+    LC_CTYPE=&quot;C.UTF-8&quot;</code></pre><p><strong>如果是 docker 容器，重启会无效</strong>,所以执行以下代码</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"export LC_ALL=C.UTF-8"</span> &gt;&gt; /root/.bashrc</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     
