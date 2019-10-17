@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="从整体了解一个量化平台功能模块的划分，并初步了解各模块之间的配合关系。 一个量化平台的主要功能概述创建或使用一个较好用的量化平台至少需要如下的功能模块，推荐阿布的 ABu 量化系统，我也是在这个系统中学习以及使用，在此感谢阿布开源了这个系统。  交易数据获取 买入卖出因子 仓位管理 择时回测 实盘操作 测量 机器学习相关 环境变量的设置管理  交易数据获取这是量化系统最容易理解的部分，要获得交易市">
+<meta name="description" content="从整体了解一个量化平台功能模块的划分，并初步了解各模块之间的配合关系。 一个量化平台的主要功能概述创建或使用一个较好用的量化平台至少需要如下的功能模块，推荐阿布的 ABu 量化系统，我也是在这个系统中学习以及使用，在此感谢阿布开源了这个系统。 交易数据获取这是量化系统最容易理解的部分，要获得交易市场的数据，但这一部分却又充满了挑战。因为对于个人用户国家不允许向个人提供数据接口，具体原因我不知道。">
 <meta name="keywords" content="量化平台功能设计">
 <meta property="og:type" content="article">
 <meta property="og:title" content="量化平台的功能构成（L01)">
 <meta property="og:url" content="http://yoursite.com/2019/08/02/量化平台的功能构成（L01/index.html">
 <meta property="og:site_name" content="不及不急，跬步千里">
-<meta property="og:description" content="从整体了解一个量化平台功能模块的划分，并初步了解各模块之间的配合关系。 一个量化平台的主要功能概述创建或使用一个较好用的量化平台至少需要如下的功能模块，推荐阿布的 ABu 量化系统，我也是在这个系统中学习以及使用，在此感谢阿布开源了这个系统。  交易数据获取 买入卖出因子 仓位管理 择时回测 实盘操作 测量 机器学习相关 环境变量的设置管理  交易数据获取这是量化系统最容易理解的部分，要获得交易市">
+<meta property="og:description" content="从整体了解一个量化平台功能模块的划分，并初步了解各模块之间的配合关系。 一个量化平台的主要功能概述创建或使用一个较好用的量化平台至少需要如下的功能模块，推荐阿布的 ABu 量化系统，我也是在这个系统中学习以及使用，在此感谢阿布开源了这个系统。 交易数据获取这是量化系统最容易理解的部分，要获得交易市场的数据，但这一部分却又充满了挑战。因为对于个人用户国家不允许向个人提供数据接口，具体原因我不知道。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-13T07:20:39.645Z">
+<meta property="og:updated_time" content="2019-10-17T07:44:44.825Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="量化平台的功能构成（L01)">
-<meta name="twitter:description" content="从整体了解一个量化平台功能模块的划分，并初步了解各模块之间的配合关系。 一个量化平台的主要功能概述创建或使用一个较好用的量化平台至少需要如下的功能模块，推荐阿布的 ABu 量化系统，我也是在这个系统中学习以及使用，在此感谢阿布开源了这个系统。  交易数据获取 买入卖出因子 仓位管理 择时回测 实盘操作 测量 机器学习相关 环境变量的设置管理  交易数据获取这是量化系统最容易理解的部分，要获得交易市">
+<meta name="twitter:description" content="从整体了解一个量化平台功能模块的划分，并初步了解各模块之间的配合关系。 一个量化平台的主要功能概述创建或使用一个较好用的量化平台至少需要如下的功能模块，推荐阿布的 ABu 量化系统，我也是在这个系统中学习以及使用，在此感谢阿布开源了这个系统。 交易数据获取这是量化系统最容易理解的部分，要获得交易市场的数据，但这一部分却又充满了挑战。因为对于个人用户国家不允许向个人提供数据接口，具体原因我不知道。">
 
 
 
@@ -376,16 +376,6 @@
       
         <p>从整体了解一个量化平台功能模块的划分，并初步了解各模块之间的配合关系。</p>
 <h1 id="一个量化平台的主要功能"><a href="#一个量化平台的主要功能" class="headerlink" title="一个量化平台的主要功能"></a>一个量化平台的主要功能</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>创建或使用一个较好用的量化平台至少需要如下的功能模块，推荐<a href="https://github.com/bbfamily/abu" target="_blank" rel="noopener">阿布的 ABu 量化系统</a>，我也是在这个系统中学习以及使用，在此感谢阿布开源了这个系统。</p>
-<ul>
-<li><a href="https://huerbt.github.io/2019/08/02/量化平台的功能构成/#交易数据获取" target="_blank" rel="noopener">交易数据获取</a></li>
-<li><a href="https://huerbt.github.io/2019/08/02/量化平台的功能构成/#买入卖出因子" target="_blank" rel="noopener">买入卖出因子</a></li>
-<li><a href="https://huerbt.github.io/2019/08/02/量化平台的功能构成/#仓位管理" target="_blank" rel="noopener">仓位管理</a></li>
-<li><a href="https://huerbt.github.io/2019/08/02/量化平台的功能构成/#择时回测" target="_blank" rel="noopener">择时回测</a></li>
-<li><a href="https://huerbt.github.io/2019/08/02/量化平台的功能构成/#实盘操作" target="_blank" rel="noopener">实盘操作</a></li>
-<li><a href="https://huerbt.github.io/2019/08/02/量化平台的功能构成/#测量" target="_blank" rel="noopener">测量</a></li>
-<li><a href="https://huerbt.github.io/2019/08/02/量化平台的功能构成/#机器学习相关" target="_blank" rel="noopener">机器学习相关</a></li>
-<li><a href="https://huerbt.github.io/2019/08/02/量化平台的功能构成/#环境变量的设置管理" target="_blank" rel="noopener">环境变量的设置管理</a></li>
-</ul>
 <h2 id="交易数据获取"><a href="#交易数据获取" class="headerlink" title="交易数据获取"></a>交易数据获取</h2><p>这是量化系统最容易理解的部分，要获得交易市场的数据，但这一部分却又充满了挑战。因为对于个人用户国家不允许向个人提供数据接口，具体原因我不知道。</p>
 <p>我曾今通过在 windows 的股票软件里每天下载离线数据，然后将二进制的数据文件转成可用的数据，也使用过网上大量介绍过的新浪、雅虎数据。需要知道数据源的缺点，提前有心理准备，各数据源的情况如下：</p>
 <table>
@@ -446,8 +436,9 @@
 <li>买入卖出条件的参数最优化</li>
 </ul>
 <p>在使用 python 编程的过程中，这一部分使用了利用基类扩展因子，使用字典传递自定义买入卖出因子并实例化的技巧。这些技巧值得学习掌握。</p>
-<h2 id="仓位管理"><a href="#仓位管理" class="headerlink" title="仓位管理"></a>仓位管理</h2><p>当你的买入因子发出了买入信号，那么要买多少股？你手中的可用资金</p>
-<h2 id="择时回测"><a href="#择时回测" class="headerlink" title="择时回测"></a>择时回测</h2><h2 id="实盘操作"><a href="#实盘操作" class="headerlink" title="实盘操作"></a>实盘操作</h2><h2 id="测量"><a href="#测量" class="headerlink" title="测量"></a>测量</h2><h2 id="机器学习相关"><a href="#机器学习相关" class="headerlink" title="机器学习相关"></a>机器学习相关</h2><h2 id="环境变量的设置管理"><a href="#环境变量的设置管理" class="headerlink" title="环境变量的设置管理"></a>环境变量的设置管理</h2>
+<h2 id="仓位管理"><a href="#仓位管理" class="headerlink" title="仓位管理"></a>仓位管理</h2><p>当你的买入因子发出了买入信号，那么你手中的可用资金如何分配？要买多少股？</p>
+<h2 id="择时回测"><a href="#择时回测" class="headerlink" title="择时回测"></a>择时回测</h2><h2 id="实盘操作"><a href="#实盘操作" class="headerlink" title="实盘操作"></a>实盘操作</h2><h2 id="测量"><a href="#测量" class="headerlink" title="测量"></a>测量</h2><p>不同的资金对交易的策略是有影响的，所以测量中分为针对资金的测量，也有针对不受资金影响的orders进行测量，测量遇到的最大问题，在于使用哪些指标，有些指标貌似还是矛盾的。这就需要对指标的逻辑、使用范围、风险偏好等有清晰的认识。</p>
+<h2 id="机器学习相关"><a href="#机器学习相关" class="headerlink" title="机器学习相关"></a>机器学习相关</h2><h2 id="环境变量的设置管理"><a href="#环境变量的设置管理" class="headerlink" title="环境变量的设置管理"></a>环境变量的设置管理</h2>
       
     </div>
     
