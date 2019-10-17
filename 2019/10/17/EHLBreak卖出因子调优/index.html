@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="参数,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="关注量化平台、python编程、机器学习">
+<meta name="description" content="IntroduceEHLBreak卖出因子，在两种情况下发出信号，脱离上轨、与下轨合并。该因子的参数有一个，即NDays 在测试使用哪个Ndays之前，需要在每只股票的数据中计算不同NDays的值，并保存到本地的CSV文件里，这样才可以在后续的回测中使用。 Implementation确定参数大致范围[3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27,">
+<meta name="keywords" content="参数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="EHLBreak卖出因子调优">
 <meta property="og:url" content="http://yoursite.com/2019/10/17/EHLBreak卖出因子调优/index.html">
 <meta property="og:site_name" content="不及不急，跬步千里">
-<meta property="og:description" content="关注量化平台、python编程、机器学习">
+<meta property="og:description" content="IntroduceEHLBreak卖出因子，在两种情况下发出信号，脱离上轨、与下轨合并。该因子的参数有一个，即NDays 在测试使用哪个Ndays之前，需要在每只股票的数据中计算不同NDays的值，并保存到本地的CSV文件里，这样才可以在后续的回测中使用。 Implementation确定参数大致范围[3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-17T03:14:37.467Z">
+<meta property="og:updated_time" content="2019-10-17T05:52:57.123Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EHLBreak卖出因子调优">
-<meta name="twitter:description" content="关注量化平台、python编程、机器学习">
+<meta name="twitter:description" content="IntroduceEHLBreak卖出因子，在两种情况下发出信号，脱离上轨、与下轨合并。该因子的参数有一个，即NDays 在测试使用哪个Ndays之前，需要在每只股票的数据中计算不同NDays的值，并保存到本地的CSV文件里，这样才可以在后续的回测中使用。 Implementation确定参数大致范围[3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27,">
 
 
 
@@ -324,6 +325,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/量化平台/" itemprop="url" rel="index">
+                    <span itemprop="name">量化平台</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -351,7 +374,11 @@
       
 
       
-        
+        <h1 id="Introduce"><a href="#Introduce" class="headerlink" title="Introduce"></a>Introduce</h1><p>EHLBreak卖出因子，在两种情况下发出信号，脱离上轨、与下轨合并。该因子的参数有一个，即NDays</p>
+<p>在测试使用哪个Ndays之前，需要在每只股票的数据中计算不同NDays的值，并保存到本地的CSV文件里，这样才可以在后续的回测中使用。</p>
+<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><h2 id="确定参数大致范围"><a href="#确定参数大致范围" class="headerlink" title="确定参数大致范围"></a>确定参数大致范围</h2><p>[3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41,43] ,备选参数线性均匀分布。</p>
+<p>对比原有回测效果，顾增加一个 22，作为对比使用</p>
+<h2 id="获得不同参数的运行结果"><a href="#获得不同参数的运行结果" class="headerlink" title="获得不同参数的运行结果"></a>获得不同参数的运行结果</h2><h2 id="获得结论"><a href="#获得结论" class="headerlink" title="获得结论"></a>获得结论</h2>
       
     </div>
     
@@ -365,6 +392,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/参数/" rel="tag"># 参数</a>
+          
+        </div>
       
 
       
@@ -439,8 +472,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -457,7 +499,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -518,6 +560,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduce"><span class="nav-number">1.</span> <span class="nav-text">Introduce</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Implementation"><span class="nav-number">2.</span> <span class="nav-text">Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#确定参数大致范围"><span class="nav-number">2.1.</span> <span class="nav-text">确定参数大致范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获得不同参数的运行结果"><span class="nav-number">2.2.</span> <span class="nav-text">获得不同参数的运行结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获得结论"><span class="nav-number">2.3.</span> <span class="nav-text">获得结论</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
