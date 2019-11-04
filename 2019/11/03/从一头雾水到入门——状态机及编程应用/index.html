@@ -87,13 +87,13 @@
 <meta property="og:site_name" content="不及不急，跬步千里">
 <meta property="og:description" content="今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。 第一个游戏来自《虎胆龙威3》，我们暂且叫这个游戏为虎胆龙威。游戏是这样的，有两个3L和5L的容器，如何通过这两个容器精确的获得4升的水。 第二个游戏是沿对角线移动的机器人，机器人只能在一个棋盘上沿对角线的格子行走，问机器人能否走到目标位置呢？  在第一个游戏中我们可以看到经历的每一中状态，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/Users/huyi/Documents/blog/source/_posts/从一头雾水到入门——状态机及编程应用.assets/IMG_5813.jpg">
-<meta property="og:image" content="http://yoursite.com/Users/huyi/Documents/blog/source/_posts/从一头雾水到入门——状态机及编程应用.assets/IMG_1139.PNG">
+<meta property="og:image" content="http://yoursite.com/.com//huyi/Documents/blog/source/_posts/从一头雾水到入门——状态机及编程应用.assets/IMG_5813.jpg">
+<meta property="og:image" content="http://yoursite.com/.com//huyi/Documents/blog/source/_posts/从一头雾水到入门——状态机及编程应用.assets/IMG_1139.PNG">
 <meta property="og:updated_time" content="2019-11-04T07:19:25.474Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从一头雾水到入门——状态机及编程应用">
 <meta name="twitter:description" content="今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。 第一个游戏来自《虎胆龙威3》，我们暂且叫这个游戏为虎胆龙威。游戏是这样的，有两个3L和5L的容器，如何通过这两个容器精确的获得4升的水。 第二个游戏是沿对角线移动的机器人，机器人只能在一个棋盘上沿对角线的格子行走，问机器人能否走到目标位置呢？  在第一个游戏中我们可以看到经历的每一中状态，">
-<meta name="twitter:image" content="http://yoursite.com/Users/huyi/Documents/blog/source/_posts/从一头雾水到入门——状态机及编程应用.assets/IMG_5813.jpg">
+<meta name="twitter:image" content="http://yoursite.com/.com//huyi/Documents/blog/source/_posts/从一头雾水到入门——状态机及编程应用.assets/IMG_5813.jpg">
 
 
 
@@ -380,7 +380,7 @@
         <p>今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。</p>
 <p>第一个游戏来自《虎胆龙威3》，我们暂且叫这个游戏为虎胆龙威。游戏是这样的，有两个3L和5L的容器，如何通过这两个容器精确的获得4升的水。</p>
 <p>第二个游戏是沿对角线移动的机器人，机器人只能在一个棋盘上沿对角线的格子行走，问机器人能否走到目标位置呢？</p>
-<p><img src="/Users/huyi/Documents/blog/source/_posts/从一头雾水到入门——状态机及编程应用.assets/IMG_5813.jpg" alt="IMG_5813"></p>
+<p><img src="/.com//huyi/Documents/blog/source/_posts/从一头雾水到入门——状态机及编程应用.assets/IMG_5813.jpg" alt="IMG_5813"></p>
 <p>在第一个游戏中我们可以看到经历的每一中状态，无外乎如下几种：</p>
 <pre><code>1. 装满小壶；2. 装满大壶；3. 清空小壶；4. 清空大壶； 5. 把小壶中的水倒入大壶；6. 把大壶中的水倒入小壶
 </code></pre><p>状态机就是对上面这种逐步过程的一种数学抽象，是从一种状态转移到另一种状态。这就是状态机，但从这一点看不出状态机有啥用处。实际的情况是我们转移状态，总是按照预设的某种规则来操作，那么在确定的规则下，一种状态转移到另一种状态，就会有可能表现出来一种模式，比如我们看第二个游戏，转移机器人状态的规则是延对角线运动，而他同时就具有了一种模式即机器人能到达的位置只有横纵坐标之和是偶数的位置，这就是在规则确定后表现出来的模式。那么这个模式是否真的成立呢？这就需要建立数学假设，并证明，在计算机领域，归纳法（使用证明某一特性对全体非负整数都为真的方法）最重要的应用之一就是证明一个或多个性质在整个过程的各个步骤一直成立。</p>
@@ -422,7 +422,7 @@
 <p>​                                                                                                                                        █</p>
 <hr>
 <p>为了便于理解，我们把3L，5L的容器得到4L水的过程用图表示一下：</p>
-<p><img src="/Users/huyi/Documents/blog/source/_posts/从一头雾水到入门——状态机及编程应用.assets/IMG_1139.PNG" alt="IMG_1139"></p>
+<p><img src="/.com//huyi/Documents/blog/source/_posts/从一头雾水到入门——状态机及编程应用.assets/IMG_1139.PNG" alt="IMG_1139"></p>
 <p>那么，我们现在来考虑一下状态机是如何用在程序开发中的。看过一些人的博客，他们总是在说把状态作为“字典”罗列完整，然后针对每种状态做出独立的代码片段就是状态机在编程中的应用。我认为这是对状态机不完整的使用。状态机被用在编程至少要包含两个部分的工作：</p>
 <p>1、列出所有的状态转移</p>
 <p>2、证明状态机的不变性（即那个表现出来的模式）</p>
