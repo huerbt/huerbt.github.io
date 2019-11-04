@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="安装Homebrew运行如下命令 1/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;  如果报出如下错误，就进入下一步，如果没有错误，就是开始使用brew安装程序了 12fatal: unable to access &apos;https://github.c">
+<meta name="description" content="安装Homebrew运行如下命令 1/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 如果报出如下错误，就进入下一步，如果没有错误，就是开始使用brew安装程序了 12fatal: unable to access &apos;https://github.co">
 <meta name="keywords" content="环境部署">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Mac上安装Homebrew以及遇到的那些坑">
 <meta property="og:url" content="http://yoursite.com/2019/08/13/在Mac上安装Homebrew以及遇到的那些坑/index.html">
 <meta property="og:site_name" content="不及不急，跬步千里">
-<meta property="og:description" content="安装Homebrew运行如下命令 1/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;  如果报出如下错误，就进入下一步，如果没有错误，就是开始使用brew安装程序了 12fatal: unable to access &apos;https://github.c">
+<meta property="og:description" content="安装Homebrew运行如下命令 1/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 如果报出如下错误，就进入下一步，如果没有错误，就是开始使用brew安装程序了 12fatal: unable to access &apos;https://github.co">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-08-13T08:32:44.233Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Mac上安装Homebrew以及遇到的那些坑">
-<meta name="twitter:description" content="安装Homebrew运行如下命令 1/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;  如果报出如下错误，就进入下一步，如果没有错误，就是开始使用brew安装程序了 12fatal: unable to access &apos;https://github.c">
+<meta name="twitter:description" content="安装Homebrew运行如下命令 1/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot; 如果报出如下错误，就进入下一步，如果没有错误，就是开始使用brew安装程序了 12fatal: unable to access &apos;https://github.co">
 
 
 
@@ -376,40 +376,32 @@
       
         <h2 id="安装Homebrew"><a href="#安装Homebrew" class="headerlink" title="安装Homebrew"></a>安装Homebrew</h2><p>运行如下命令</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
-
 <p>如果报出如下错误，就进入下一步，如果没有错误，就是开始使用brew安装程序了</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access <span class="string">'https://github.com/Homebrew/brew/'</span>: Could not resolve host: github.com</span><br><span class="line">Failed during: git fetch origin master:refs/remotes/origin/master --tags --force</span><br></pre></td></tr></table></figure>
-
 <p>解决方法：</p>
 <ol>
 <li>在终端ping github.com 如果出现如下的超时，则看第2步</li>
 </ol>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ping github.com </span><br><span class="line">  PING github.com (13.250.177.223): 56 data bytes</span><br><span class="line">  Request timeout <span class="keyword">for</span> icmp_seq 0</span><br><span class="line">  Request timeout <span class="keyword">for</span> icmp_seq 1</span><br><span class="line">  Request timeout <span class="keyword">for</span> icmp_seq 2</span><br><span class="line">  Request timeout <span class="keyword">for</span> icmp_seq 3</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
+<ol>
 <li>修改hosts配置，我使用vim编辑器。</li>
 </ol>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/hosts <span class="comment">#打开并编辑hosts文件</span></span><br></pre></td></tr></table></figure>
-
 <p>在文件的最下面添加</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.30.253.113 github.com</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
+<ol>
 <li>再次在终端ping github.com，如下所示就可以了</li>
 </ol>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ping github.com</span><br><span class="line">PING github.com (192.30.253.113): 56 data bytes</span><br><span class="line">64 bytes from 192.30.253.113: icmp_seq=0 ttl=49 time=351.766 ms</span><br><span class="line">64 bytes from 192.30.253.113: icmp_seq=1 ttl=49 time=388.017 ms</span><br><span class="line">64 bytes from 192.30.253.113: icmp_seq=2 ttl=49 time=391.047 ms</span><br><span class="line">64 bytes from 192.30.253.113: icmp_seq=3 ttl=49 time=408.031 ms</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
+<ol>
 <li>运行卸载安装命令</li>
 </ol>
 <p>最简单粗暴方式：卸载现有版本brew，重新安装最新版本卸载现有版本，执行</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)</span>"</span></span><br></pre></td></tr></table></figure>
-
-<ol start="5">
+<ol>
 <li>再次运行安装命令</li>
 </ol>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
-
 
       
     </div>

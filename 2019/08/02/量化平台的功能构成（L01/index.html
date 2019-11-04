@@ -378,34 +378,38 @@
 <h1 id="一个量化平台的主要功能"><a href="#一个量化平台的主要功能" class="headerlink" title="一个量化平台的主要功能"></a>一个量化平台的主要功能</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>创建或使用一个较好用的量化平台至少需要如下的功能模块，推荐<a href="https://github.com/bbfamily/abu" target="_blank" rel="noopener">阿布的 ABu 量化系统</a>，我也是在这个系统中学习以及使用，在此感谢阿布开源了这个系统。</p>
 <h2 id="交易数据获取"><a href="#交易数据获取" class="headerlink" title="交易数据获取"></a>交易数据获取</h2><p>这是量化系统最容易理解的部分，要获得交易市场的数据，但这一部分却又充满了挑战。因为对于个人用户国家不允许向个人提供数据接口，具体原因我不知道。</p>
 <p>我曾今通过在 windows 的股票软件里每天下载离线数据，然后将二进制的数据文件转成可用的数据，也使用过网上大量介绍过的新浪、雅虎数据。需要知道数据源的缺点，提前有心理准备，各数据源的情况如下：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">数据文件来源</th>
-<th align="left">缺点</th>
+<th style="text-align:left">数据文件来源</th>
+<th style="text-align:left">缺点</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">新浪数据文件</td>
-<td align="left">只能在 windows 下，依赖股票软件，需要手工操作，要熟悉股票软件的二进制格式。</td>
+<tbody>
+<tr>
+<td style="text-align:left">新浪数据文件</td>
+<td style="text-align:left">只能在 windows 下，依赖股票软件，需要手工操作，要熟悉股票软件的二进制格式。</td>
 </tr>
 <tr>
-<td align="left">新浪数据</td>
-<td align="left">可用</td>
+<td style="text-align:left">新浪数据</td>
+<td style="text-align:left">可用</td>
 </tr>
 <tr>
-<td align="left">雅虎数据</td>
-<td align="left">有空值，历史数据中有小数位数不统一的问题，有部分数据缺失的情况</td>
+<td style="text-align:left">雅虎数据</td>
+<td style="text-align:left">有空值，历史数据中有小数位数不统一的问题，有部分数据缺失的情况</td>
 </tr>
 <tr>
-<td align="left">百度数据</td>
-<td align="left">出现过一过节，就获取不到数据的问题，有历史数据缺失的问题</td>
+<td style="text-align:left">百度数据</td>
+<td style="text-align:left">出现过一过节，就获取不到数据的问题，有历史数据缺失的问题</td>
 </tr>
 <tr>
-<td align="left">网易数据</td>
-<td align="left">可用</td>
+<td style="text-align:left">网易数据</td>
+<td style="text-align:left">可用</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="事先了解一些坑"><a href="#事先了解一些坑" class="headerlink" title="事先了解一些坑"></a>事先了解一些坑</h3><p>知道会遇到哪些坑，才能不被坑，希望读者可以少走些弯路。但也不要被吓到，心想数据基础都存在这么多问题，那后续的量化岂不都是胡扯了，还好这些问题都有解。</p>
 <ol>
 <li><p>在不同的数据源处获得的股票代码的样式是不一样的，常见的有如下的形式</p>

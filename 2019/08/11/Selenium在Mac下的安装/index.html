@@ -382,7 +382,6 @@
 <li>尝试用 Selenium 打开指定的网站，如下代码：</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"></span><br><span class="line">driver = webdriver.Firefox(executable_path=<span class="string">'/Applications/Firefox.app/Contents/MacOS/geckodriver'</span>)</span><br><span class="line"></span><br><span class="line">driver.implicitly_wait(<span class="number">30</span>)</span><br><span class="line"></span><br><span class="line">driver.maximize_window()</span><br><span class="line"></span><br><span class="line">driver.get(<span class="string">"http://www.baidu.com/"</span>)</span><br><span class="line"></span><br><span class="line">driver.quit()</span><br></pre></td></tr></table></figure>
-
 <p>运行上述代码，会自动运行一个 Firefox 浏览器，并打开百度网站，然后关闭退出。如果能完成这一些列动作，即表示 selenium 安装完成，并且 可以操作FireFox浏览器了。</p>
 
       

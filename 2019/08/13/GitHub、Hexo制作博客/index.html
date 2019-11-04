@@ -79,18 +79,24 @@
 
 
 
-<meta name="description" content="一、Mac电脑环境准备参考 https://hexo.io/zh-cn/docs/ 另外我使用的命令行是zsh  下载Xcode 安装Command Line Tools（或者尝试在命令行中运行xcode-select –install） 安装Git   1brew install git  ​    如果brew没有安装，需要先在Mac上安装Homebrew，相关内容参见我的另一篇博客《在Mac">
+<meta name="description" content="一、Mac电脑环境准备参考 https://hexo.io/zh-cn/docs/ 另外我使用的命令行是zsh  下载Xcode 安装Command Line Tools（或者尝试在命令行中运行xcode-select —install） 安装Git   1brew install git ​    如果brew没有安装，需要先在Mac上安装Homebrew，相关内容参见我的另一篇博客《在Mac上">
 <meta name="keywords" content="环境部署,git,Hexo博客,Node.js,npm,hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GitHub、Hexo制作博客">
 <meta property="og:url" content="http://yoursite.com/2019/08/13/GitHub、Hexo制作博客/index.html">
 <meta property="og:site_name" content="不及不急，跬步千里">
-<meta property="og:description" content="一、Mac电脑环境准备参考 https://hexo.io/zh-cn/docs/ 另外我使用的命令行是zsh  下载Xcode 安装Command Line Tools（或者尝试在命令行中运行xcode-select –install） 安装Git   1brew install git  ​    如果brew没有安装，需要先在Mac上安装Homebrew，相关内容参见我的另一篇博客《在Mac">
+<meta property="og:description" content="一、Mac电脑环境准备参考 https://hexo.io/zh-cn/docs/ 另外我使用的命令行是zsh  下载Xcode 安装Command Line Tools（或者尝试在命令行中运行xcode-select —install） 安装Git   1brew install git ​    如果brew没有安装，需要先在Mac上安装Homebrew，相关内容参见我的另一篇博客《在Mac上">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/Users/huyi/Desktop/屏幕快照%202019-08-13%20下午4.02.41.png">
+<meta property="og:image" content="http://yoursite.com/Users/huyi/Desktop/屏幕快照%202019-08-14%20下午1.58.23.png">
+<meta property="og:image" content="http://yoursite.com/Users/huyi/Desktop/屏幕快照%202019-08-14%20下午2.02.00.png">
+<meta property="og:image" content="http://yoursite.com/Users/huyi/Desktop/屏幕快照%202019-08-14%20下午2.13.59.png">
+<meta property="og:image" content="http://yoursite.com/Users/huyi/Desktop/屏幕快照%202019-08-14%20下午5.22.56.png">
 <meta property="og:updated_time" content="2019-08-14T09:32:00.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub、Hexo制作博客">
-<meta name="twitter:description" content="一、Mac电脑环境准备参考 https://hexo.io/zh-cn/docs/ 另外我使用的命令行是zsh  下载Xcode 安装Command Line Tools（或者尝试在命令行中运行xcode-select –install） 安装Git   1brew install git  ​    如果brew没有安装，需要先在Mac上安装Homebrew，相关内容参见我的另一篇博客《在Mac">
+<meta name="twitter:description" content="一、Mac电脑环境准备参考 https://hexo.io/zh-cn/docs/ 另外我使用的命令行是zsh  下载Xcode 安装Command Line Tools（或者尝试在命令行中运行xcode-select —install） 安装Git   1brew install git ​    如果brew没有安装，需要先在Mac上安装Homebrew，相关内容参见我的另一篇博客《在Mac上">
+<meta name="twitter:image" content="http://yoursite.com/Users/huyi/Desktop/屏幕快照%202019-08-13%20下午4.02.41.png">
 
 
 
@@ -377,31 +383,27 @@
         <h2 id="一、Mac电脑环境准备"><a href="#一、Mac电脑环境准备" class="headerlink" title="一、Mac电脑环境准备"></a>一、Mac电脑环境准备</h2><p>参考 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a></p>
 <p>另外我使用的命令行是zsh</p>
 <ol>
-<li>下载Xcode 安装Command Line Tools（或者尝试在命令行中运行xcode-select –install）</li>
+<li>下载Xcode 安装Command Line Tools（或者尝试在命令行中运行xcode-select —install）</li>
 <li>安装Git </li>
 </ol>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install git</span><br></pre></td></tr></table></figure>
-
 <p>​    如果brew没有安装，需要先在Mac上安装Homebrew，相关内容参见我的另一篇博客《在Mac上安装Homebrew以及遇到的那些坑》</p>
-<ol start="3">
+<ol>
 <li>安装Node.js</li>
 </ol>
 <p>在<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js官网</a>下载安装 （安装完成后并不能马上看出是否有问题，在后面执行npm的命令时有可能出错，可以参见具体的解决办法）</p>
-<ol start="3">
+<ol>
 <li>运行命令，确保Git 和 Node.js安装</li>
 </ol>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ node -v</span><br><span class="line">v10.16.2</span><br><span class="line">➜  ~ npm -v</span><br><span class="line">6.9.0</span><br><span class="line">➜  ~ Git --version</span><br><span class="line">git version 2.20.1 (Apple Git-117)</span><br></pre></td></tr></table></figure>
-
 <p>出现版本号即表示安装完成。</p>
 <h2 id="二、安装Hexo"><a href="#二、安装Hexo" class="headerlink" title="二、安装Hexo"></a>二、安装Hexo</h2><p>在命令行中运行</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
 <p>运行上述命令之后如果出现如下报错，需要解决操作权限的问题</p>
 <ul>
 <li>报错形如：</li>
 </ul>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">npm ERR! path /Users/huyi/.npm/_cacache/index-v5/41/11</span><br><span class="line">npm ERR! code EACCES</span><br><span class="line">npm ERR! errno -13</span><br><span class="line">npm ERR! syscall mkdir</span><br><span class="line">npm ERR! Error: EACCES: permission denied, mkdir <span class="string">'/Users/huyi/.npm/_cacache/index-v5/41/11'</span></span><br><span class="line">npm ERR!  &#123; [Error: EACCES: permission denied, mkdir <span class="string">'/Users/huyi/.npm/_cacache/index-v5/41/11'</span>]</span><br><span class="line">npm ERR!   cause:</span><br><span class="line">npm ERR!    &#123; Error: EACCES: permission denied, mkdir <span class="string">'/Users/huyi/.npm/_cacache/index-v5/41/11'</span></span><br><span class="line">npm ERR!      errno: -13,</span><br><span class="line">npm ERR!      code: <span class="string">'EACCES'</span>,</span><br><span class="line">npm ERR!      syscall: <span class="string">'mkdir'</span>,</span><br><span class="line">npm ERR!      path: <span class="string">'/Users/huyi/.npm/_cacache/index-v5/41/11'</span> &#125;,</span><br><span class="line">npm ERR!   isOperational: <span class="literal">true</span>,</span><br><span class="line">npm ERR!   stack:</span><br><span class="line">npm ERR!    <span class="string">'Error: EACCES: permission denied, mkdir \'</span>/Users/huyi/.npm/_cacache/index-v5/41/11\<span class="string">''</span>,</span><br><span class="line">npm ERR!   errno: -13,</span><br><span class="line">npm ERR!   code: <span class="string">'EACCES'</span>,</span><br><span class="line">npm ERR!   syscall: <span class="string">'mkdir'</span>,</span><br><span class="line">npm ERR!   path: <span class="string">'/Users/huyi/.npm/_cacache/index-v5/41/11'</span> &#125;</span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! The operation was rejected by your operating system.</span><br><span class="line">npm ERR! It is likely you <span class="keyword">do</span> not have the permissions to access this file as the current user</span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! If you believe this might be a permissions issue, please double-check the</span><br><span class="line">npm ERR! permissions of the file and its containing directories, or try running</span><br><span class="line">npm ERR! the <span class="built_in">command</span> again as root/Administrator (though this is not recommended).</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>解决方法</li>
 </ul>
@@ -409,36 +411,26 @@
 <p>依次执行，如果返回值不为null，继续执行：</p>
 <p><strong>这一步很重要，一定要保证两个命令的返回值都为null,话说回来，应该出现这个错误这两个返回值有不为null的</strong></p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config get proxy</span><br><span class="line">npm config get https-proxy</span><br></pre></td></tr></table></figure>
-
 <p>然后继续依次执行</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> proxy null</span><br><span class="line">npm config <span class="built_in">set</span> https-proxy null</span><br><span class="line">npm config <span class="built_in">set</span> registry http://registry.cnpmjs.org/</span><br></pre></td></tr></table></figure>
-
 <p>然后就可以了。重新安装hexo</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
 <h2 id="三、初始化博客目录"><a href="#三、初始化博客目录" class="headerlink" title="三、初始化博客目录"></a>三、初始化博客目录</h2><p>建议，尽可能把目录建在Mac的文稿或桌面这样的目录下，之前我建在根目录下，后来电脑出问题重装了系统，忘了备份根目录下的文件。之前写的文档就没有了。放在文稿或桌面的关键是可以更容易发现，另外可以开通iCloud在多台Mac之间同步。</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ <span class="built_in">cd</span> Documents </span><br><span class="line"><span class="comment">#创建一个存放blog的目录</span></span><br><span class="line">➜  mkdir blog</span><br><span class="line">➜  <span class="built_in">cd</span> blog</span><br><span class="line"><span class="comment"># 初始化目录</span></span><br><span class="line">➜  hexo init</span><br></pre></td></tr></table></figure>
-
 <p>完成运行本地服务器，查看是否可以在本地打开默认的欢迎页面</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  hexo s</span><br></pre></td></tr></table></figure>
-
 <p>此时hexo的本地服务器运行，打开浏览器，打开 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 如果有欢迎网页，就初始化完成了。</p>
-<p>![屏幕快照 2019-08-13 下午4.02.41](/Users/huyi/Desktop/屏幕快照 2019-08-13 下午4.02.41.png)</p>
+<p><img src="/Users/huyi/Desktop/屏幕快照 2019-08-13 下午4.02.41.png" alt="屏幕快照 2019-08-13 下午4.02.41"></p>
 <h2 id="四、博客的基本使用"><a href="#四、博客的基本使用" class="headerlink" title="四、博客的基本使用"></a>四、博客的基本使用</h2><h4 id="创建新的文章"><a href="#创建新的文章" class="headerlink" title="创建新的文章"></a>创建新的文章</h4><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">"输入文档的名称"</span></span><br></pre></td></tr></table></figure>
-
 <p>执行上述命令后，会在blog/source/_posts/ 文件夹下生成新建的文档，然后使用Markdown编辑工具编辑即可。</p>
 <h4 id="文章的分类与tag"><a href="#文章的分类与tag" class="headerlink" title="文章的分类与tag"></a>文章的分类与tag</h4><p>一篇新的文章，被创建时默认会出现如下信息</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: 文档的名称</span><br><span class="line">data:2019-09-14 13:40:20</span><br><span class="line">tags:</span><br></pre></td></tr></table></figure>
-
 <p>在tag中输入标签的关键词，多个关键词使用[keyword1,keyword2,keyword3]的形式</p>
 <p>如果想对文档归属不同的分类，在tags：另起一行输入categories:如下，如果涉及二级分类使用categories: java-SpringMVC。其中java是一级，SpringMVC是java下的第二级。</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: 文档的名称</span><br><span class="line">data:2019-09-14 13:40:20</span><br><span class="line">tags:</span><br><span class="line">categories:</span><br></pre></td></tr></table></figure>
-
 <h4 id="文章的生成"><a href="#文章的生成" class="headerlink" title="文章的生成"></a>文章的生成</h4><p>在命令行中输入如下命令</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-
 <h4 id="在本地服务器查看"><a href="#在本地服务器查看" class="headerlink" title="在本地服务器查看"></a>在本地服务器查看</h4><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
 <p>打开浏览器，打开 <a href="http://localhost:4000，进行查看。" target="_blank" rel="noopener">http://localhost:4000，进行查看。</a></p>
 <h2 id="五、关联到GitHub"><a href="#五、关联到GitHub" class="headerlink" title="五、关联到GitHub"></a>五、关联到GitHub</h2><ol>
 <li><p>在Github中创建一个仓库，创建仓库的名字必须为<strong>username.github.io</strong>，我的用户名为huerbt，因此我创建的仓库就是<strong>huerbt.github.io</strong>，这是很关键的一点，很重要。</p>
@@ -446,20 +438,17 @@
 <li><p>cd到blog目录下，编辑_config.yml文件。我用vim编辑器编辑</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ <span class="built_in">cd</span> Documents/blog</span><br><span class="line">➜  blog ls</span><br><span class="line">_config.yml       node_modules      package.json      <span class="built_in">source</span></span><br><span class="line">db.json           package-lock.json scaffolds         themes</span><br><span class="line">➜  blog vim _config.yml</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>打开自己的GitHub仓库，复制自己的仓库地址![屏幕快照 2019-08-14 下午1.58.23](/Users/huyi/Desktop/屏幕快照 2019-08-14 下午1.58.23.png)</p>
+<li><p>打开自己的GitHub仓库，复制自己的仓库地址<img src="/Users/huyi/Desktop/屏幕快照 2019-08-14 下午1.58.23.png" alt="屏幕快照 2019-08-14 下午1.58.23"></p>
 </li>
-<li><p>打开后到文档最后部分，将deploy配置如下![屏幕快照 2019-08-14 下午2.02.00](/Users/huyi/Desktop/屏幕快照 2019-08-14 下午2.02.00.png)</p>
+<li><p>打开后到文档最后部分，将deploy配置如下<img src="/Users/huyi/Desktop/屏幕快照 2019-08-14 下午2.02.00.png" alt="屏幕快照 2019-08-14 下午2.02.00"></p>
 <p>注意，type：之后有个空格。</p>
 </li>
 <li><p>然后部署到GitHub Page上，输入如下命令</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
 <p>如果出现</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR Deployer not found: git</span><br></pre></td></tr></table></figure>
-
 <p>在命令行中运行</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
 <p>然后在重新运行 hexo d</p>
 <p>在过程中需要输入GitHub的用户名密码</p>
 </li>
@@ -471,7 +460,7 @@
 </li>
 <li><p>修改站点配置文件：<code>_config.yml</code>，将里面<code>76行</code>的theme由landscape修改为next</p>
 </li>
-<li><p>修改站点配置文件的的其他部分![屏幕快照 2019-08-14 下午2.13.59](/Users/huyi/Desktop/屏幕快照 2019-08-14 下午2.13.59.png)</p>
+<li><p>修改站点配置文件的的其他部分<img src="/Users/huyi/Desktop/屏幕快照 2019-08-14 下午2.13.59.png" alt="屏幕快照 2019-08-14 下午2.13.59"></p>
 </li>
 <li><p>修改next主题的配置文件，在blog/themes/next/_config.yml文件。建议每做一个修改就在本地服务其中运行查看，一遍找到问题所在。</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">➜  blog ls</span><br><span class="line">_config.yml       node_modules      package.json      <span class="built_in">source</span></span><br><span class="line">db.json           package-lock.json scaffolds         themes</span><br><span class="line">➜  blog <span class="built_in">cd</span> themes</span><br><span class="line">➜  themes ls</span><br><span class="line">landscape next</span><br><span class="line">➜  themes <span class="built_in">cd</span> next</span><br><span class="line">➜  next git:(master) ls</span><br><span class="line">LICENSE         _config.yml     languages       scripts</span><br><span class="line">README.cn.md    bower.json      layout          <span class="built_in">source</span></span><br><span class="line">README.md       gulpfile.coffee package.json    <span class="built_in">test</span></span><br><span class="line">➜  next git:(master)</span><br></pre></td></tr></table></figure>
@@ -482,17 +471,12 @@
 </li>
 <li><p>需要新建一个分类和标签页面</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/blog</span><br><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ol>
-<ol start="8">
+<ol>
 <li><p>编辑刚刚新建的页面，将页面的title 和 type做如下设置</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: 分类</span><br><span class="line">date: 2019-08-14 14:29:37</span><br><span class="line">type: "categories"</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: 标签</span><br><span class="line">date: 2019-08-14 14:29:43</span><br><span class="line">type: "tags"</span><br></pre></td></tr></table></figure>
-
 <p>系统会自动归档分类和标签云</p>
 </li>
 <li><p>设置头像，next主题的配置文件，在blog/themes/next/_config.yml文件。修改avatar，值设置成头像的链接, 将头像放到主题目录下的 source/images/ </p>
@@ -501,8 +485,7 @@
 </li>
 <li><p>设置本地搜索，只需要next主题配置文件将<code>local search</code> 改成<code>true</code>，站点配置文件，在extensions下面，添加内容如下：</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  <span class="built_in">limit</span>: 10000</span><br></pre></td></tr></table></figure>
-
-<p>![屏幕快照 2019-08-14 下午5.22.56](/Users/huyi/Desktop/屏幕快照 2019-08-14 下午5.22.56.png)</p>
+<p><img src="/Users/huyi/Desktop/屏幕快照 2019-08-14 下午5.22.56.png" alt="屏幕快照 2019-08-14 下午5.22.56"></p>
 </li>
 <li><p>设置阅读全文按钮，将next主题的配置文件，在blog/themes/next/_config.yml，主题配置文件中<code>auto_excerpt</code>开启</p>
 </li>
