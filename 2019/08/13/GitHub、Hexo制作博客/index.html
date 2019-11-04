@@ -87,16 +87,16 @@
 <meta property="og:site_name" content="不及不急，跬步千里">
 <meta property="og:description" content="一、Mac电脑环境准备参考 https://hexo.io/zh-cn/docs/ 另外我使用的命令行是zsh  下载Xcode 安装Command Line Tools（或者尝试在命令行中运行xcode-select —install） 安装Git   1brew install git ​    如果brew没有安装，需要先在Mac上安装Homebrew，相关内容参见我的另一篇博客《在Mac上">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/.com//huyi/Desktop/屏幕快照%202019-08-13%20下午4.02.41.png">
-<meta property="og:image" content="http://yoursite.com/.com//huyi/Desktop/屏幕快照%202019-08-14%20下午1.58.23.png">
-<meta property="og:image" content="http://yoursite.com/.com//huyi/Desktop/屏幕快照%202019-08-14%20下午2.02.00.png">
-<meta property="og:image" content="http://yoursite.com/.com//huyi/Desktop/屏幕快照%202019-08-14%20下午2.13.59.png">
-<meta property="og:image" content="http://yoursite.com/.com//huyi/Desktop/屏幕快照%202019-08-14%20下午5.22.56.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/GitHub、Hexo制作博客/huyi/Desktop/屏幕快照%202019-08-13%20下午4.02.41.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/GitHub、Hexo制作博客/huyi/Desktop/屏幕快照%202019-08-14%20下午1.58.23.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/GitHub、Hexo制作博客/huyi/Desktop/屏幕快照%202019-08-14%20下午2.02.00.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/GitHub、Hexo制作博客/huyi/Desktop/屏幕快照%202019-08-14%20下午2.13.59.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/13/GitHub、Hexo制作博客/huyi/Desktop/屏幕快照%202019-08-14%20下午5.22.56.png">
 <meta property="og:updated_time" content="2019-08-14T09:32:00.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub、Hexo制作博客">
 <meta name="twitter:description" content="一、Mac电脑环境准备参考 https://hexo.io/zh-cn/docs/ 另外我使用的命令行是zsh  下载Xcode 安装Command Line Tools（或者尝试在命令行中运行xcode-select —install） 安装Git   1brew install git ​    如果brew没有安装，需要先在Mac上安装Homebrew，相关内容参见我的另一篇博客《在Mac上">
-<meta name="twitter:image" content="http://yoursite.com/.com//huyi/Desktop/屏幕快照%202019-08-13%20下午4.02.41.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/13/GitHub、Hexo制作博客/huyi/Desktop/屏幕快照%202019-08-13%20下午4.02.41.png">
 
 
 
@@ -420,7 +420,7 @@
 <p>完成运行本地服务器，查看是否可以在本地打开默认的欢迎页面</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  hexo s</span><br></pre></td></tr></table></figure>
 <p>此时hexo的本地服务器运行，打开浏览器，打开 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 如果有欢迎网页，就初始化完成了。</p>
-<p><img src="/.com//huyi/Desktop/屏幕快照 2019-08-13 下午4.02.41.png" alt="屏幕快照 2019-08-13 下午4.02.41"></p>
+<p><img src="/2019/08/13/GitHub、Hexo制作博客/huyi/Desktop/屏幕快照 2019-08-13 下午4.02.41.png" alt="屏幕快照 2019-08-13 下午4.02.41"></p>
 <h2 id="四、博客的基本使用"><a href="#四、博客的基本使用" class="headerlink" title="四、博客的基本使用"></a>四、博客的基本使用</h2><h4 id="创建新的文章"><a href="#创建新的文章" class="headerlink" title="创建新的文章"></a>创建新的文章</h4><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">"输入文档的名称"</span></span><br></pre></td></tr></table></figure>
 <p>执行上述命令后，会在blog/source/_posts/ 文件夹下生成新建的文档，然后使用Markdown编辑工具编辑即可。</p>
 <h4 id="文章的分类与tag"><a href="#文章的分类与tag" class="headerlink" title="文章的分类与tag"></a>文章的分类与tag</h4><p>一篇新的文章，被创建时默认会出现如下信息</p>
@@ -438,9 +438,9 @@
 <li><p>cd到blog目录下，编辑_config.yml文件。我用vim编辑器编辑</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ <span class="built_in">cd</span> Documents/blog</span><br><span class="line">➜  blog ls</span><br><span class="line">_config.yml       node_modules      package.json      <span class="built_in">source</span></span><br><span class="line">db.json           package-lock.json scaffolds         themes</span><br><span class="line">➜  blog vim _config.yml</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>打开自己的GitHub仓库，复制自己的仓库地址<img src="/.com//huyi/Desktop/屏幕快照 2019-08-14 下午1.58.23.png" alt="屏幕快照 2019-08-14 下午1.58.23"></p>
+<li><p>打开自己的GitHub仓库，复制自己的仓库地址<img src="/2019/08/13/GitHub、Hexo制作博客/huyi/Desktop/屏幕快照 2019-08-14 下午1.58.23.png" alt="屏幕快照 2019-08-14 下午1.58.23"></p>
 </li>
-<li><p>打开后到文档最后部分，将deploy配置如下<img src="/.com//huyi/Desktop/屏幕快照 2019-08-14 下午2.02.00.png" alt="屏幕快照 2019-08-14 下午2.02.00"></p>
+<li><p>打开后到文档最后部分，将deploy配置如下<img src="/2019/08/13/GitHub、Hexo制作博客/huyi/Desktop/屏幕快照 2019-08-14 下午2.02.00.png" alt="屏幕快照 2019-08-14 下午2.02.00"></p>
 <p>注意，type：之后有个空格。</p>
 </li>
 <li><p>然后部署到GitHub Page上，输入如下命令</p>
@@ -460,7 +460,7 @@
 </li>
 <li><p>修改站点配置文件：<code>_config.yml</code>，将里面<code>76行</code>的theme由landscape修改为next</p>
 </li>
-<li><p>修改站点配置文件的的其他部分<img src="/.com//huyi/Desktop/屏幕快照 2019-08-14 下午2.13.59.png" alt="屏幕快照 2019-08-14 下午2.13.59"></p>
+<li><p>修改站点配置文件的的其他部分<img src="/2019/08/13/GitHub、Hexo制作博客/huyi/Desktop/屏幕快照 2019-08-14 下午2.13.59.png" alt="屏幕快照 2019-08-14 下午2.13.59"></p>
 </li>
 <li><p>修改next主题的配置文件，在blog/themes/next/_config.yml文件。建议每做一个修改就在本地服务其中运行查看，一遍找到问题所在。</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">➜  blog ls</span><br><span class="line">_config.yml       node_modules      package.json      <span class="built_in">source</span></span><br><span class="line">db.json           package-lock.json scaffolds         themes</span><br><span class="line">➜  blog <span class="built_in">cd</span> themes</span><br><span class="line">➜  themes ls</span><br><span class="line">landscape next</span><br><span class="line">➜  themes <span class="built_in">cd</span> next</span><br><span class="line">➜  next git:(master) ls</span><br><span class="line">LICENSE         _config.yml     languages       scripts</span><br><span class="line">README.cn.md    bower.json      layout          <span class="built_in">source</span></span><br><span class="line">README.md       gulpfile.coffee package.json    <span class="built_in">test</span></span><br><span class="line">➜  next git:(master)</span><br></pre></td></tr></table></figure>
@@ -485,7 +485,7 @@
 </li>
 <li><p>设置本地搜索，只需要next主题配置文件将<code>local search</code> 改成<code>true</code>，站点配置文件，在extensions下面，添加内容如下：</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  <span class="built_in">limit</span>: 10000</span><br></pre></td></tr></table></figure>
-<p><img src="/.com//huyi/Desktop/屏幕快照 2019-08-14 下午5.22.56.png" alt="屏幕快照 2019-08-14 下午5.22.56"></p>
+<p><img src="/2019/08/13/GitHub、Hexo制作博客/huyi/Desktop/屏幕快照 2019-08-14 下午5.22.56.png" alt="屏幕快照 2019-08-14 下午5.22.56"></p>
 </li>
 <li><p>设置阅读全文按钮，将next主题的配置文件，在blog/themes/next/_config.yml，主题配置文件中<code>auto_excerpt</code>开启</p>
 </li>
