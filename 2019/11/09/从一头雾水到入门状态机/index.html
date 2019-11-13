@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="状态机它是对过程(step-by-step)的简单抽象。用不变性原理作程序验证。 用状态机表达状态转移场景一：0到99的有界计数器，它会在100时溢出，其状态机表述如下： 状态::= {0,1,……99，溢出} 初始状态::= 0 转移::= {n→ n+1 | 0 &amp;lt;= n &amp;lt; 99} U {99→溢出，溢出→溢出} 像这种每个状态至多存在一种转移的状态机，称为确定性状态机 场景二：">
+<meta name="description" content="今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。 第一个游戏来自《虎胆龙威3》，我们暂且叫这个游戏为虎胆龙威。游戏是这样的，有两个3L和5L的容器，如何通过这两个容器精确的获得4升的水。 第二个游戏是沿对角线移动的机器人，机器人只能在一个棋盘上沿对角线的格子行走，问机器人能否走到目标位置呢？  在第一个游戏中我们可以看到经历的每一中状态，">
 <meta name="keywords" content="归纳证明,状态机,保持不变性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从一头雾水到入门状态机">
 <meta property="og:url" content="http://yoursite.com/2019/11/09/从一头雾水到入门状态机/index.html">
 <meta property="og:site_name" content="不及不急，跬步千里">
-<meta property="og:description" content="状态机它是对过程(step-by-step)的简单抽象。用不变性原理作程序验证。 用状态机表达状态转移场景一：0到99的有界计数器，它会在100时溢出，其状态机表述如下： 状态::= {0,1,……99，溢出} 初始状态::= 0 转移::= {n→ n+1 | 0 &amp;lt;= n &amp;lt; 99} U {99→溢出，溢出→溢出} 像这种每个状态至多存在一种转移的状态机，称为确定性状态机 场景二：">
+<meta property="og:description" content="今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。 第一个游戏来自《虎胆龙威3》，我们暂且叫这个游戏为虎胆龙威。游戏是这样的，有两个3L和5L的容器，如何通过这两个容器精确的获得4升的水。 第二个游戏是沿对角线移动的机器人，机器人只能在一个棋盘上沿对角线的格子行走，问机器人能否走到目标位置呢？  在第一个游戏中我们可以看到经历的每一中状态，">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/11/09/从一头雾水到入门状态机/IMG_5813.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/11/09/从一头雾水到入门状态机/IMG_1139.PNG">
-<meta property="og:updated_time" content="2019-11-13T02:08:25.677Z">
+<meta property="og:updated_time" content="2019-11-13T02:18:11.062Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从一头雾水到入门状态机">
-<meta name="twitter:description" content="状态机它是对过程(step-by-step)的简单抽象。用不变性原理作程序验证。 用状态机表达状态转移场景一：0到99的有界计数器，它会在100时溢出，其状态机表述如下： 状态::= {0,1,……99，溢出} 初始状态::= 0 转移::= {n→ n+1 | 0 &amp;lt;= n &amp;lt; 99} U {99→溢出，溢出→溢出} 像这种每个状态至多存在一种转移的状态机，称为确定性状态机 场景二：">
+<meta name="twitter:description" content="今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。 第一个游戏来自《虎胆龙威3》，我们暂且叫这个游戏为虎胆龙威。游戏是这样的，有两个3L和5L的容器，如何通过这两个容器精确的获得4升的水。 第二个游戏是沿对角线移动的机器人，机器人只能在一个棋盘上沿对角线的格子行走，问机器人能否走到目标位置呢？  在第一个游戏中我们可以看到经历的每一中状态，">
 <meta name="twitter:image" content="http://yoursite.com/2019/11/09/从一头雾水到入门状态机/IMG_5813.jpg">
 
 
@@ -388,50 +388,7 @@
       
 
       
-        <h1 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h1><p>它是对过程(step-by-step)的简单抽象。用不变性原理作程序验证。</p>
-<h1 id="用状态机表达状态转移"><a href="#用状态机表达状态转移" class="headerlink" title="用状态机表达状态转移"></a>用状态机表达状态转移</h1><p>场景一：0到99的有界计数器，它会在100时溢出，其状态机表述如下：</p>
-<p>状态::= {0,1,……99，溢出}</p>
-<p>初始状态::= 0</p>
-<p>转移::= {n→ n+1 | 0 &lt;= n &lt; 99} U {99→溢出，溢出→溢出}</p>
-<p>像这种每个状态至多存在一种转移的状态机，称为确定性状态机</p>
-<p>场景二：它来自《虎胆龙威3》。游戏中，有两个分别为3L和5L的容器，问这两个容器能精确量取4升水吗。</p>
-<p>状态机表述如下：</p>
-<p>令5L大壶为b，3L小壶为s（b, s)表示壶中水量状态，其中 ：</p>
-<script type="math/tex; mode=display">
-0 \leqslant b \leqslant 5, \quad 0 \leqslant s \leqslant 3</script><p>则，存在以下几种状态转移：</p>
-<ol>
-<li>装满小壶， 当前小壶s &lt; 3: (b, s)→(b, 3)</li>
-<li>装满大壶， 当前大壶b &lt; 5: (b, s)→(5, s)</li>
-<li>清空小壶， 当前小壶s &gt; 0: (b, s)→(b, 0)</li>
-<li>清空大壶， 当前大壶b &gt; 0: (b, s)→(0, s)</li>
-<li>把小壶中的水倒入到大壶，当前小壶s&gt;0: </li>
-</ol>
-<script type="math/tex; mode=display">
-(b, s) \rightarrow\left\{\begin{array}{ll}{(b+s, 0)} & 若{b+s \leqslant 5} \\ {(5, s-(5-b))} & {其他}\end{array}\right.</script><ol>
-<li>把大壶中的水倒入小壶， 当前大壶b&gt;0:</li>
-</ol>
-<script type="math/tex; mode=display">
-(b, s) \rightarrow\left\{\begin{array}{ll}{(0, b+s)} & {若 b+s \geqslant 3} \\ {(b-(3-s), 3)} &  {其他} \end{array}\right.</script><p>想这个状态存在多个状态转移，称为非确定性状态机。</p>
-<p>场景三：一个游戏让棋盘上的机器人只能延对角线移动一步，其初始位置为（0，0），它的状态转移可以表示为：</p>
-<script type="math/tex; mode=display">
-\{(m, n) \rightarrow(m \pm 1, n \pm 1) | m, n \in \mathbb{Z}\}</script><p>可见状态机在不同场景下描述形式可以不同，当然也可以用图示表示。只要能描述每种状态、转移规则、初始状态即可。</p>
-<h1 id="用状态机验证程序"><a href="#用状态机验证程序" class="headerlink" title="用状态机验证程序"></a>用状态机验证程序</h1><p>场景一：3L和5L的容器，这两个容器能精确量取4升水吗？</p>
-<p>换句话说就是想知道4L这个状态是否可到达</p>
-<p>……</p>
-<p>场景二：3L和9L的容器，这两个容器能精确量取4升水吗？</p>
-<p>……</p>
-<p>场景三：快速求幂的程序验证</p>
-<p>……比较一下pow函数的时间</p>
-<p>不变性、偏序正确性和终止性</p>
-<p>不变性是指，一般用归纳法证明。</p>
-<p>偏序性是指，一般用不变性证明。</p>
-<p>终止性是指，一般用良序原理证明。</p>
-<h1 id="用状态机开发"><a href="#用状态机开发" class="headerlink" title="用状态机开发"></a>用状态机开发</h1><p>场景一：用状态机开发</p>
-<p>……</p>
-<p>场景二：用状态机扩展功能</p>
-<p>……</p>
-<p>场景三：用状态机完备测试</p>
-<p>今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。</p>
+        <p>今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。</p>
 <p>第一个游戏来自《虎胆龙威3》，我们暂且叫这个游戏为虎胆龙威。游戏是这样的，有两个3L和5L的容器，如何通过这两个容器精确的获得4升的水。</p>
 <p>第二个游戏是沿对角线移动的机器人，机器人只能在一个棋盘上沿对角线的格子行走，问机器人能否走到目标位置呢？</p>
 <p><img src="/2019/11/09/从一头雾水到入门状态机/IMG_5813.jpg" alt="IMG_5813"></p>
@@ -545,8 +502,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/11/13/line-profiler的安装/" rel="prev" title="line_profiler的安装">
-                line_profiler的安装 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/12/使用cProfile和gprof2dot找出性能瓶颈/" rel="prev" title="使用cProfile和gprof2dot找出性能瓶颈">
+                使用cProfile和gprof2dot找出性能瓶颈 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -599,17 +556,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -626,7 +574,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -648,7 +596,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -687,22 +635,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#状态机"><span class="nav-number">1.</span> <span class="nav-text">状态机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用状态机表达状态转移"><span class="nav-number">2.</span> <span class="nav-text">用状态机表达状态转移</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用状态机验证程序"><span class="nav-number">3.</span> <span class="nav-text">用状态机验证程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用状态机开发"><span class="nav-number">4.</span> <span class="nav-text">用状态机开发</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
