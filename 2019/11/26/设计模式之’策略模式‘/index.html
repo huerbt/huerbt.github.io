@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="性能分析,cProfile,gprof2dot,Graphviz,">
+  <meta name="keywords" content="设计模式,">
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="使用cProfile找出性能瓶颈cProfile 无需安装 用gprof2dot，和Graphviz可视化性能安装Graphviz前提已经安装了Homebrew 执行如下命名 1brew install graphviz 测试Graphviz查看版本： 12$ dot -Vdot - graphviz version 2.43.0 (0) 用vim 创建并编辑一个文件，例如hello.dot 12">
-<meta name="keywords" content="性能分析,cProfile,gprof2dot,Graphviz">
+<meta name="description" content="策略模式策略模式作为一种软件设计模式，指对象有某个行为，但是在不同的场景中，该行为有不同的实现算法，把这些不同的算法作为一个个独立的策略对象，进行调用和切换。 为什么要使用策略模式为了解释，我们假想有这么一个游戏，它有四种角色，分别是骑士、侏儒、仙女、敌人，他们可以拥有移动、跳跃、攻击这样的技能。但是每个角色在移动、跳跃、攻击上都有自己的不同方法。程序最初有一个角色父类，父类定义了移动、跳跃、攻击">
+<meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用cProfile和gprof2dot找出性能瓶颈">
-<meta property="og:url" content="http://yoursite.com/2019/11/12/使用cProfile和gprof2dot找出性能瓶颈/index.html">
+<meta property="og:title" content="设计模式之’策略模式‘">
+<meta property="og:url" content="http://yoursite.com/2019/11/26/设计模式之’策略模式‘/index.html">
 <meta property="og:site_name" content="不及不急，跬步千里">
-<meta property="og:description" content="使用cProfile找出性能瓶颈cProfile 无需安装 用gprof2dot，和Graphviz可视化性能安装Graphviz前提已经安装了Homebrew 执行如下命名 1brew install graphviz 测试Graphviz查看版本： 12$ dot -Vdot - graphviz version 2.43.0 (0) 用vim 创建并编辑一个文件，例如hello.dot 12">
+<meta property="og:description" content="策略模式策略模式作为一种软件设计模式，指对象有某个行为，但是在不同的场景中，该行为有不同的实现算法，把这些不同的算法作为一个个独立的策略对象，进行调用和切换。 为什么要使用策略模式为了解释，我们假想有这么一个游戏，它有四种角色，分别是骑士、侏儒、仙女、敌人，他们可以拥有移动、跳跃、攻击这样的技能。但是每个角色在移动、跳跃、攻击上都有自己的不同方法。程序最初有一个角色父类，父类定义了移动、跳跃、攻击">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/11/12/使用cProfile和gprof2dot找出性能瓶颈/70.png">
-<meta property="og:updated_time" content="2019-11-13T02:18:11.066Z">
+<meta property="og:updated_time" content="2019-11-26T13:08:35.751Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用cProfile和gprof2dot找出性能瓶颈">
-<meta name="twitter:description" content="使用cProfile找出性能瓶颈cProfile 无需安装 用gprof2dot，和Graphviz可视化性能安装Graphviz前提已经安装了Homebrew 执行如下命名 1brew install graphviz 测试Graphviz查看版本： 12$ dot -Vdot - graphviz version 2.43.0 (0) 用vim 创建并编辑一个文件，例如hello.dot 12">
-<meta name="twitter:image" content="http://yoursite.com/2019/11/12/使用cProfile和gprof2dot找出性能瓶颈/70.png">
+<meta name="twitter:title" content="设计模式之’策略模式‘">
+<meta name="twitter:description" content="策略模式策略模式作为一种软件设计模式，指对象有某个行为，但是在不同的场景中，该行为有不同的实现算法，把这些不同的算法作为一个个独立的策略对象，进行调用和切换。 为什么要使用策略模式为了解释，我们假想有这么一个游戏，它有四种角色，分别是骑士、侏儒、仙女、敌人，他们可以拥有移动、跳跃、攻击这样的技能。但是每个角色在移动、跳跃、攻击上都有自己的不同方法。程序最初有一个角色父类，父类定义了移动、跳跃、攻击">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/11/12/使用cProfile和gprof2dot找出性能瓶颈/">
+  <link rel="canonical" href="http://yoursite.com/2019/11/26/设计模式之’策略模式‘/">
 
 
 
 
 
-  <title>使用cProfile和gprof2dot找出性能瓶颈 | 不及不急，跬步千里</title>
+  <title>设计模式之’策略模式‘ | 不及不急，跬步千里</title>
   
 
 
@@ -287,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/12/使用cProfile和gprof2dot找出性能瓶颈/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/26/设计模式之’策略模式‘/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="huerbt">
@@ -304,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用cProfile和gprof2dot找出性能瓶颈</h1>
+          <h1 class="post-title" itemprop="name headline">设计模式之’策略模式‘</h1>
         
 
         <div class="post-meta">
@@ -316,8 +314,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-12T16:00:33+08:00">
-                2019-11-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-26T19:38:45+08:00">
+                2019-11-26
               </time>
             
 
@@ -339,8 +337,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/效率工具/" itemprop="url" rel="index">
-                    <span itemprop="name">效率工具</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -350,8 +348,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/效率工具/安装/" itemprop="url" rel="index">
-                    <span itemprop="name">安装</span>
+                  <a href="/categories/python/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -387,31 +385,71 @@
       
 
       
-        <h1 id="使用cProfile找出性能瓶颈"><a href="#使用cProfile找出性能瓶颈" class="headerlink" title="使用cProfile找出性能瓶颈"></a>使用cProfile找出性能瓶颈</h1><p>cProfile 无需安装</p>
-<h1 id="用gprof2dot，和Graphviz可视化性能"><a href="#用gprof2dot，和Graphviz可视化性能" class="headerlink" title="用gprof2dot，和Graphviz可视化性能"></a>用gprof2dot，和Graphviz可视化性能</h1><h2 id="安装Graphviz"><a href="#安装Graphviz" class="headerlink" title="安装Graphviz"></a>安装Graphviz</h2><p>前提已经安装了Homebrew</p>
-<p>执行如下命名</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install graphviz</span><br></pre></td></tr></table></figure>
-<h2 id="测试Graphviz"><a href="#测试Graphviz" class="headerlink" title="测试Graphviz"></a>测试Graphviz</h2><p>查看版本：</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ dot -V</span><br><span class="line">dot - graphviz version 2.43.0 (0)</span><br></pre></td></tr></table></figure>
-<p>用vim 创建并编辑一个文件，例如hello.dot</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">digraph pic &#123; </span><br><span class="line">  Hello -&gt; World</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>同一目录下终端运行</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dot hello.dot -T png -o hello.png</span><br></pre></td></tr></table></figure>
-<p>就生成了一个hello.png的图片，图片如下</p>
-<p><img src="/2019/11/12/使用cProfile和gprof2dot找出性能瓶颈/70.png" alt="hello.png"></p>
-<p>完成Graphviz的安装</p>
-<h2 id="安装gprof2dot"><a href="#安装gprof2dot" class="headerlink" title="安装gprof2dot"></a>安装gprof2dot</h2><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install gprof2dot</span><br></pre></td></tr></table></figure>
-<h2 id="运行命令获得性能可视化图片"><a href="#运行命令获得性能可视化图片" class="headerlink" title="运行命令获得性能可视化图片"></a>运行命令获得性能可视化图片</h2><p>假设有一个目标程序simul.py，希望看到它的性能瓶颈</p>
-<ol>
-<li>运行cProfile命令，并保存到输出文件中</li>
-</ol>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m cProfile -o output.pstats simul.py</span><br></pre></td></tr></table></figure>
-<ol>
-<li>运行gprof2dot命令</li>
-</ol>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gprof2dot -f pstats output.pstats | dot -Tpng -o output.png</span><br></pre></td></tr></table></figure>
-<p>output.pstats是输出的文件，文件名可以自己起</p>
-<p>然后在目录中有生成了一个output.png图片，该图片即为性能瓶颈的可视化文件。</p>
+        <h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><p>策略模式作为一种软件设计模式，指对象有某个行为，但是在不同的场景中，该行为有不同的实现算法，把这些不同的算法作为一个个独立的策略对象，进行调用和切换。</p>
+<h2 id="为什么要使用策略模式"><a href="#为什么要使用策略模式" class="headerlink" title="为什么要使用策略模式"></a>为什么要使用策略模式</h2><p>为了解释，我们假想有这么一个游戏，它有四种角色，分别是骑士、侏儒、仙女、敌人，他们可以拥有移动、跳跃、攻击这样的技能。但是每个角色在移动、跳跃、攻击上都有自己的不同方法。程序最初有一个角色父类，父类定义了移动、跳跃、攻击等各种角色都有的方法。如果不使用任何涉及模式，最直接的想法，就是每个子类单独重写这些方法，以获得独特的能力，当然这样可以解决问题，但是随着日后程序的扩展，角色增加了、能力变化了都会带来巨大的代码维护工作。</p>
+<p>而策略模式可以把每个能力单独作为一个对象存在，方便角色对象调用和切换，而因为将同类型的每个能力对象组成一组，也减少了维护的难度。</p>
+<p>以角色具有的跳跃能力来具体说明。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>骑马的方式进行跳跃</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>侏儒</td>
+<td>不能跳跃</td>
+</tr>
+<tr>
+<td>侏儒</td>
+<td>不能跳跃</td>
+</tr>
+<tr>
+<td>仙女</td>
+<td>超能力的跳跃</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>建立一个类叫做JumpStrategy，他是所有不同跳跃形式的父类，该类中有个方法叫jump()，然后骑士的跳跃策略、侏儒的跳跃策略、仙女的跳跃策略都单独成为三个类，并继承JumpStrategy。形成了一组策略，当然移动、攻击等能力也可参照其方法。</p>
+<blockquote>
+<p>我最初有个疑问，既然侏儒不能跳跃，侏儒的代码里不写这个jump的方法不就可以了。这里要注意侏儒是继承了角色父类的，这个父类假设有一个监听键盘按键的方法，虽然你没有写侏儒的jump方法，但是他也会激活jump的行为。</p>
+</blockquote>
+<p>有了这些策略组，下一步就是在角色父类中引入JumpStrategy，并在角色实例化的时候指定指向那个jump策略。并且可以通过角色实例的对应方法切换策略。</p>
+<blockquote>
+<p>这让我想到了射击游戏，不同的武器杀伤方式，范围都不同，用户又需要频繁切换不同的武器。</p>
+</blockquote>
+<p>看代码来理解，首先是和角色相关的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""游戏角色"""</span></span><br><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABCMeta,abstractmethod</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AbstractGameUnit</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line">    <span class="string">"""角色父类"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, jump_object=None)</span>:</span></span><br><span class="line">        self.jumo_strategy = <span class="literal">None</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.set_jump_strategy(jump_object) <span class="comment"># 设置或切换能力</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_jump_strategy</span><span class="params">(self,JumpStrategy)</span>:</span></span><br><span class="line">        <span class="string">"""设置或切换能力使用"""</span></span><br><span class="line">        <span class="keyword">if</span> isinstance(jump_objec, JumpStrategy):</span><br><span class="line">            self.jump_strategy = jump_object</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.jump_strategy = JumpStrategy()    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""子类都有jump能力"""</span></span><br><span class="line">        self.jump_strategy.jump()</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DwarfFighter</span><span class="params">(AbstractGameUnit)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>接下来看一下能力策略组的代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""跳跃能力组"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JumpStrategy</span>:</span></span><br><span class="line">    <span class="string">"""跳跃策略的父类"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"默认跳跃形式"</span>)</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CanNotJump</span><span class="params">(JumpStrategy)</span>:</span></span><br><span class="line">    <span class="string">"""不能跳起来的形式"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"I can not jump"</span>)</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PowerJump</span><span class="params">(JumpStrategy)</span>:</span></span><br><span class="line">    <span class="string">"""超能力跳跃"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"I can jump 100 feet"</span>)</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HorseJump</span><span class="params">(JumpStrategy)</span>:</span></span><br><span class="line">    <span class="string">"""骑马跳跃"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"Jumping my horse"</span>)</span><br></pre></td></tr></table></figure>
+<p>有了能力策略组，接下来就是看侏儒是如何在实例化时选择CanNotJump这个跳跃形式，并且可能在某个特殊时间内侏儒又可以切换成PowerJump的跳跃。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">jump_strategy = CanNotJump()</span><br><span class="line">dwarf = DwarfFighter(<span class="string">"Dwarf"</span>, jump_stratrgy) <span class="comment">#实例化时指定了侏儒将使用哪种跳跃形式</span></span><br><span class="line">dwarf.jump() <span class="comment">#让侏儒跳跃，此时会打印I can not jump</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换能力形式</span></span><br><span class="line">dwarf.set_jump_strategy(PowerJump())<span class="comment">#能力切换到了新的能力对象上</span></span><br><span class="line">dwarf,jump() <span class="comment">#让侏儒跳跃，此时会答应I can jump 100 feet</span></span><br></pre></td></tr></table></figure>
+<h2 id="对策略模式的总结"><a href="#对策略模式的总结" class="headerlink" title="对策略模式的总结"></a>对策略模式的总结</h2><p>策略模式中主要有三个部分</p>
+<ul>
+<li>上下文</li>
+<li>策略的抽象类</li>
+<li>具体的策略</li>
+</ul>
+<p>策略模式的优缺点：</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>策略规则可以自由切换</li>
+<li>避免使用多重条件判断</li>
+<li>方便扩展和增加新的策略规则</li>
+<li>方便维护</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>客户端必须知道所有的策略类，并自行决定使用哪一个策略类。这就意味着客户端必须理解这些算法的区别</li>
+</ul>
+<h2 id="在python中的另一种实现"><a href="#在python中的另一种实现" class="headerlink" title="在python中的另一种实现"></a>在python中的另一种实现</h2><p>前面的例子只是不区别语言的前提下给出的通用写法，在python语言中可以简化成另一种方式。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""角色以及角色的能力"""</span></span><br><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABCMeta, abstractmethod</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Callable</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AbstractGameUnit</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line">    <span class="string">"""角色父类</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    :arg string name: 角色的名字</span></span><br><span class="line"><span class="string">    :arg jump_strategy: 一个可调用的函数</span></span><br><span class="line"><span class="string">    :ivar jump: 将jump_strategy函数分配给这个变量</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, jump_strategy)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span>(isinstance(jump_strategy, Callable)) <span class="comment">#确保jump_strategy是个可调用的函数</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.jump = jump_strategy</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DwarfFighter</span><span class="params">(AbstractGameUnit)</span>:</span></span><br><span class="line">    <span class="string">"""侏儒类"""</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""jump策略，已函数形式"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">can_not_jump</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"I can not jump"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">power_jump</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"I can jump 100 feet"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">horse_jump</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Jumping my horse"</span>)</span><br></pre></td></tr></table></figure>
+<p>实例化角色，并指定策略形式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dwarf = DwarfFighter(<span class="string">"Dwarf"</span>, can_not_jump) <span class="comment">#把关联的策略函数作为参数</span></span><br><span class="line">dwarf.jump()</span><br><span class="line"></span><br><span class="line"><span class="comment">#切换策略</span></span><br><span class="line">dwarf.jump = power_jump <span class="comment">#指向新的能力,注意都没有使用（）</span></span><br><span class="line">dwarf.jump()</span><br></pre></td></tr></table></figure>
+<p>这种python语言形式主要是用了函数是一级对象，可以吧函数作为参数的能力。但是这样写容易引起一些问题，就是在角色父类中可能不能直观的看到jump是函数，所以需要做好代码的文档化，以便每个输入参数的目的都是明确的。</p>
 
       
     </div>
@@ -429,13 +467,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/性能分析/" rel="tag"># 性能分析</a>
-          
-            <a href="/tags/cProfile/" rel="tag"># cProfile</a>
-          
-            <a href="/tags/gprof2dot/" rel="tag"># gprof2dot</a>
-          
-            <a href="/tags/Graphviz/" rel="tag"># Graphviz</a>
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
         </div>
       
@@ -448,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/09/从一头雾水到入门状态机/" rel="next" title="从一头雾水到入门状态机">
-                <i class="fa fa-chevron-left"></i> 从一头雾水到入门状态机
+              <a href="/2019/11/15/使用缓存提高性能初探/" rel="next" title="使用缓存提高性能初探">
+                <i class="fa fa-chevron-left"></i> 使用缓存提高性能初探
               </a>
             
           </div>
@@ -457,10 +489,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/13/line-profiler的安装/" rel="prev" title="line_profiler的安装">
-                line_profiler的安装 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -610,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用cProfile找出性能瓶颈"><span class="nav-number">1.</span> <span class="nav-text">使用cProfile找出性能瓶颈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用gprof2dot，和Graphviz可视化性能"><span class="nav-number">2.</span> <span class="nav-text">用gprof2dot，和Graphviz可视化性能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Graphviz"><span class="nav-number">2.1.</span> <span class="nav-text">安装Graphviz</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试Graphviz"><span class="nav-number">2.2.</span> <span class="nav-text">测试Graphviz</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装gprof2dot"><span class="nav-number">2.3.</span> <span class="nav-text">安装gprof2dot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行命令获得性能可视化图片"><span class="nav-number">2.4.</span> <span class="nav-text">运行命令获得性能可视化图片</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#策略模式"><span class="nav-number">1.</span> <span class="nav-text">策略模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用策略模式"><span class="nav-number">1.1.</span> <span class="nav-text">为什么要使用策略模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对策略模式的总结"><span class="nav-number">1.2.</span> <span class="nav-text">对策略模式的总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在python中的另一种实现"><span class="nav-number">1.3.</span> <span class="nav-text">在python中的另一种实现</span></a></li></ol></li></ol></div>
             
 
           </div>
