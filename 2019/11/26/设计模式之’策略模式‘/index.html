@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="策略模式策略模式作为一种软件设计模式，指对象有某个行为，但是在不同的场景中，该行为有不同的实现算法，把这些不同的算法作为一个个独立的策略对象，进行调用和切换。 为什么要使用策略模式为了解释，我们假想有这么一个游戏，它有四种角色，分别是骑士、侏儒、仙女、敌人，他们可以拥有移动、跳跃、攻击这样的技能。但是每个角色在移动、跳跃、攻击上都有自己的不同方法。程序最初有一个角色父类，父类定义了移动、跳跃、攻击">
+<meta name="description" content="策略模式策略模式作为一种软件设计模式，指对象有某个行为，但是在不同的场景中，该行为有不同的实现算法，把这些不同的算法作为一个个独立的策略对象，进行调用和切换。 核心词汇策略切换、能力（行为）策略组 为什么要使用策略模式为了解释，我们假想有这么一个游戏，它有四种角色，分别是骑士、侏儒、仙女、敌人，他们可以拥有移动、跳跃、攻击这样的技能。但是每个角色在移动、跳跃、攻击上都有自己的不同方法。程序最初有一">
 <meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式之’策略模式‘">
 <meta property="og:url" content="http://yoursite.com/2019/11/26/设计模式之’策略模式‘/index.html">
 <meta property="og:site_name" content="不及不急，跬步千里">
-<meta property="og:description" content="策略模式策略模式作为一种软件设计模式，指对象有某个行为，但是在不同的场景中，该行为有不同的实现算法，把这些不同的算法作为一个个独立的策略对象，进行调用和切换。 为什么要使用策略模式为了解释，我们假想有这么一个游戏，它有四种角色，分别是骑士、侏儒、仙女、敌人，他们可以拥有移动、跳跃、攻击这样的技能。但是每个角色在移动、跳跃、攻击上都有自己的不同方法。程序最初有一个角色父类，父类定义了移动、跳跃、攻击">
+<meta property="og:description" content="策略模式策略模式作为一种软件设计模式，指对象有某个行为，但是在不同的场景中，该行为有不同的实现算法，把这些不同的算法作为一个个独立的策略对象，进行调用和切换。 核心词汇策略切换、能力（行为）策略组 为什么要使用策略模式为了解释，我们假想有这么一个游戏，它有四种角色，分别是骑士、侏儒、仙女、敌人，他们可以拥有移动、跳跃、攻击这样的技能。但是每个角色在移动、跳跃、攻击上都有自己的不同方法。程序最初有一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-26T13:13:55.061Z">
+<meta property="og:updated_time" content="2019-11-28T07:41:54.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式之’策略模式‘">
-<meta name="twitter:description" content="策略模式策略模式作为一种软件设计模式，指对象有某个行为，但是在不同的场景中，该行为有不同的实现算法，把这些不同的算法作为一个个独立的策略对象，进行调用和切换。 为什么要使用策略模式为了解释，我们假想有这么一个游戏，它有四种角色，分别是骑士、侏儒、仙女、敌人，他们可以拥有移动、跳跃、攻击这样的技能。但是每个角色在移动、跳跃、攻击上都有自己的不同方法。程序最初有一个角色父类，父类定义了移动、跳跃、攻击">
+<meta name="twitter:description" content="策略模式策略模式作为一种软件设计模式，指对象有某个行为，但是在不同的场景中，该行为有不同的实现算法，把这些不同的算法作为一个个独立的策略对象，进行调用和切换。 核心词汇策略切换、能力（行为）策略组 为什么要使用策略模式为了解释，我们假想有这么一个游戏，它有四种角色，分别是骑士、侏儒、仙女、敌人，他们可以拥有移动、跳跃、攻击这样的技能。但是每个角色在移动、跳跃、攻击上都有自己的不同方法。程序最初有一">
 
 
 
@@ -386,7 +386,8 @@
 
       
         <h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><p>策略模式作为一种软件设计模式，指对象有某个行为，但是在不同的场景中，该行为有不同的实现算法，把这些不同的算法作为一个个独立的策略对象，进行调用和切换。</p>
-<h2 id="为什么要使用策略模式"><a href="#为什么要使用策略模式" class="headerlink" title="为什么要使用策略模式"></a>为什么要使用策略模式</h2><p>为了解释，我们假想有这么一个游戏，它有四种角色，分别是骑士、侏儒、仙女、敌人，他们可以拥有移动、跳跃、攻击这样的技能。但是每个角色在移动、跳跃、攻击上都有自己的不同方法。程序最初有一个角色父类，父类定义了移动、跳跃、攻击等各种角色都有的方法。如果不使用任何涉及模式，最直接的想法，就是每个子类单独重写这些方法，以获得独特的能力，当然这样可以解决问题，但是随着日后程序的扩展，角色增加了、能力变化了都会带来巨大的代码维护工作。</p>
+<h3 id="核心词汇"><a href="#核心词汇" class="headerlink" title="核心词汇"></a>核心词汇</h3><p>策略切换、能力（行为）策略组</p>
+<h2 id="为什么要使用策略模式"><a href="#为什么要使用策略模式" class="headerlink" title="为什么要使用策略模式"></a>为什么要使用策略模式</h2><p>为了解释，我们假想有这么一个游戏，它有四种角色，分别是骑士、侏儒、仙女、敌人，他们可以拥有移动、跳跃、攻击这样的技能。但是每个角色在移动、跳跃、攻击上都有自己的不同方法。程序最初有一个角色父类，父类定义了移动、跳跃、攻击等各种角色都有的方法。如果不使用任何设计模式，最直接的想法，就是每个子类单独重写这些方法，以获得独特的能力，当然这样可以解决问题，但是随着日后程序的扩展，角色增加了、能力变化了都会带来巨大的代码维护工作。</p>
 <p>而策略模式可以把每个能力单独作为一个对象存在，方便角色对象调用和切换，而因为将同类型的每个能力对象组成一组，也减少了维护的难度。</p>
 <p>以角色具有的跳跃能力来具体说明。</p>
 <div class="table-container">
@@ -394,13 +395,13 @@
 <thead>
 <tr>
 <th>角色</th>
-<th>跳跃形式</th>
+<th>能力（行为）均指跳跃</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>骑士</td>
-<td>不能跳跃</td>
+<td>通过马跳跃</td>
 </tr>
 <tr>
 <td>侏儒</td>
@@ -638,7 +639,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#策略模式"><span class="nav-number">1.</span> <span class="nav-text">策略模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用策略模式"><span class="nav-number">1.1.</span> <span class="nav-text">为什么要使用策略模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对策略模式的总结"><span class="nav-number">1.2.</span> <span class="nav-text">对策略模式的总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在python中的另一种实现"><span class="nav-number">1.3.</span> <span class="nav-text">在python中的另一种实现</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#策略模式"><span class="nav-number">1.</span> <span class="nav-text">策略模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心词汇"><span class="nav-number">1.0.1.</span> <span class="nav-text">核心词汇</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用策略模式"><span class="nav-number">1.1.</span> <span class="nav-text">为什么要使用策略模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对策略模式的总结"><span class="nav-number">1.2.</span> <span class="nav-text">对策略模式的总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在python中的另一种实现"><span class="nav-number">1.3.</span> <span class="nav-text">在python中的另一种实现</span></a></li></ol></div>
             
 
           </div>
