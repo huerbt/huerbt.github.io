@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。 第一个游戏来自《虎胆龙威3》，我们暂且叫这个游戏为虎胆龙威。游戏是这样的，有两个3L和5L的容器，如何通过这两个容器精确的获得4升的水。 第二个游戏是沿对角线移动的机器人，机器人只能在一个棋盘上沿对角线的格子行走，问机器人能否走到目标位置呢？  在第一个游戏中我们可以看到经历的每一中状态，">
+<meta name="description" content="核心思想归纳法证明状态机特征，简化计算或程序设计 核心词汇归纳法证明（保持不变性），状态转移，程序扩展 今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。 第一个游戏来自《虎胆龙威3》，我们暂且叫这个游戏为虎胆龙威。游戏是这样的，有两个3L和5L的容器，如何通过这两个容器精确的获得4升的水。 第二个游戏是沿对角线移动的机器人，机器人只能在一">
 <meta name="keywords" content="归纳证明,状态机,保持不变性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从一头雾水到入门状态机">
 <meta property="og:url" content="http://yoursite.com/2019/11/09/从一头雾水到入门状态机/index.html">
 <meta property="og:site_name" content="不及不急，跬步千里">
-<meta property="og:description" content="今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。 第一个游戏来自《虎胆龙威3》，我们暂且叫这个游戏为虎胆龙威。游戏是这样的，有两个3L和5L的容器，如何通过这两个容器精确的获得4升的水。 第二个游戏是沿对角线移动的机器人，机器人只能在一个棋盘上沿对角线的格子行走，问机器人能否走到目标位置呢？  在第一个游戏中我们可以看到经历的每一中状态，">
+<meta property="og:description" content="核心思想归纳法证明状态机特征，简化计算或程序设计 核心词汇归纳法证明（保持不变性），状态转移，程序扩展 今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。 第一个游戏来自《虎胆龙威3》，我们暂且叫这个游戏为虎胆龙威。游戏是这样的，有两个3L和5L的容器，如何通过这两个容器精确的获得4升的水。 第二个游戏是沿对角线移动的机器人，机器人只能在一">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/11/09/从一头雾水到入门状态机/IMG_5813.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/11/09/从一头雾水到入门状态机/IMG_1139.PNG">
-<meta property="og:updated_time" content="2019-11-13T02:18:11.062Z">
+<meta property="og:updated_time" content="2019-11-28T07:55:02.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从一头雾水到入门状态机">
-<meta name="twitter:description" content="今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。 第一个游戏来自《虎胆龙威3》，我们暂且叫这个游戏为虎胆龙威。游戏是这样的，有两个3L和5L的容器，如何通过这两个容器精确的获得4升的水。 第二个游戏是沿对角线移动的机器人，机器人只能在一个棋盘上沿对角线的格子行走，问机器人能否走到目标位置呢？  在第一个游戏中我们可以看到经历的每一中状态，">
+<meta name="twitter:description" content="核心思想归纳法证明状态机特征，简化计算或程序设计 核心词汇归纳法证明（保持不变性），状态转移，程序扩展 今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。 第一个游戏来自《虎胆龙威3》，我们暂且叫这个游戏为虎胆龙威。游戏是这样的，有两个3L和5L的容器，如何通过这两个容器精确的获得4升的水。 第二个游戏是沿对角线移动的机器人，机器人只能在一">
 <meta name="twitter:image" content="http://yoursite.com/2019/11/09/从一头雾水到入门状态机/IMG_5813.jpg">
 
 
@@ -388,7 +388,9 @@
       
 
       
-        <p>今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。</p>
+        <h3 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h3><p>归纳法证明状态机特征，简化计算或程序设计</p>
+<h3 id="核心词汇"><a href="#核心词汇" class="headerlink" title="核心词汇"></a>核心词汇</h3><p>归纳法证明（保持不变性），状态转移，程序扩展</p>
+<p>今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。</p>
 <p>第一个游戏来自《虎胆龙威3》，我们暂且叫这个游戏为虎胆龙威。游戏是这样的，有两个3L和5L的容器，如何通过这两个容器精确的获得4升的水。</p>
 <p>第二个游戏是沿对角线移动的机器人，机器人只能在一个棋盘上沿对角线的格子行走，问机器人能否走到目标位置呢？</p>
 <p><img src="/2019/11/09/从一头雾水到入门状态机/IMG_5813.jpg" alt="IMG_5813"></p>
@@ -556,8 +558,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -635,6 +646,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心思想"><span class="nav-number">1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心词汇"><span class="nav-number">2.</span> <span class="nav-text">核心词汇</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
