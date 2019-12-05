@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="不及不急，跬步千里">
 <meta property="og:description" content="构建项目目录结构proj（项目） ····|—data（项目数据） ····|—Src（项目源） ············|—Docs（文档） ············|—package（代码-包或者模块） 使用Sphinx生成文档Sphinx 是一个python事实上的标准文档生成工具。 官方参考文档 安装Sphinx1pip install -U sphinx 安装语法高亮1pip insta">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-04T07:24:51.554Z">
+<meta property="og:updated_time" content="2019-12-05T01:20:27.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="项目文档化标准操作">
 <meta name="twitter:description" content="构建项目目录结构proj（项目） ····|—data（项目数据） ····|—Src（项目源） ············|—Docs（文档） ············|—package（代码-包或者模块） 使用Sphinx生成文档Sphinx 是一个python事实上的标准文档生成工具。 官方参考文档 安装Sphinx1pip install -U sphinx 安装语法高亮1pip insta">
@@ -408,7 +408,16 @@
 <p>在conf.py文件的extensions列表中，加入扩展，最终形式如下：</p>
 </li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">extensions = [<span class="string">'sphinx.ext.autodoc'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">extensions = [<span class="string">'sphinx.ext.autodoc'</span>,<span class="string">'sphinx.ext.todo'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改模板</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">html_theme = <span class="string">'bizstyle'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>其他</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source_suffix = [<span class="string">'.rst'</span>, <span class="string">'.md'</span>]</span><br><span class="line">todo_include_todos = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<p><a href="http://www.sphinx-doc.org/en/master/usage/configuration.html" target="_blank" rel="noopener">更多配置参见</a></p>
 <h2 id="修改index-rst"><a href="#修改index-rst" class="headerlink" title="修改index.rst"></a>修改index.rst</h2><p>在source目录下，编辑index.rst文件，增加第13行的modules。这样就在首页里添加了模块或package的引用。以后自动更新即可。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">.. proj3 documentation master file, created by</span><br><span class="line">   sphinx-quickstart on Wed Dec  <span class="number">4</span> <span class="number">13</span>:<span class="number">24</span>:<span class="number">21</span> <span class="number">2019.</span></span><br><span class="line">   You can adapt this file completely to your liking, but it should at least</span><br><span class="line">   contain the root `toctree` directive.</span><br><span class="line"></span><br><span class="line">Welcome to proj3<span class="string">'s documentation!</span></span><br><span class="line"><span class="string">=================================</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">.. toctree::</span></span><br><span class="line"><span class="string">   :maxdepth: 2</span></span><br><span class="line"><span class="string">   :caption: Contents:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">   modules</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Indices and tables</span></span><br><span class="line"><span class="string">==================</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* :ref:`genindex`</span></span><br><span class="line"><span class="string">* :ref:`modindex`</span></span><br><span class="line"><span class="string">* :ref:`search`</span></span><br></pre></td></tr></table></figure>
 <h2 id="运行sphinx-apidoc"><a href="#运行sphinx-apidoc" class="headerlink" title="运行sphinx-apidoc"></a>运行sphinx-apidoc</h2><p>在package文件夹中写好模块以及文档字符串，要按照reStructureText的语法写。</p>
@@ -549,7 +558,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
