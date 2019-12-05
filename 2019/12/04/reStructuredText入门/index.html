@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="文档,">
+  <meta name="keywords" content="文档,reStructuredText,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="构建项目目录结构proj（项目） ····|—data（项目数据） ····|—Src（项目源） ············|—Docs（文档） ············|—package（代码-包或者模块） 使用Sphinx生成文档Sphinx 是一个python事实上的标准文档生成工具。 官方参考文档 安装Sphinx1pip install -U sphinx 安装语法高亮1pip insta">
-<meta name="keywords" content="文档">
+<meta name="description" content="段落段落是reST文档中最基本的块。段落只是由一个或多个空白行分隔的文本块。与Python中一样，缩进在reST中很重要，因此同一段落的所有行都必须左对齐到相同的缩进级别。 内联标记标准的reST内联标记非常简单：成对使用  一个星号：*text*强调（斜体）， 两个星号：**text**强调（粗体）， 反引号：text用于代码示例。( `` )  列表开头放置一个星号，然后正确缩进即可。编号列表">
+<meta name="keywords" content="文档,reStructuredText">
 <meta property="og:type" content="article">
-<meta property="og:title" content="项目文档化标准操作">
-<meta property="og:url" content="http://yoursite.com/2019/12/04/项目文档化标准操作/index.html">
+<meta property="og:title" content="reStructuredText入门">
+<meta property="og:url" content="http://yoursite.com/2019/12/04/reStructuredText入门/index.html">
 <meta property="og:site_name" content="不及不急，跬步千里">
-<meta property="og:description" content="构建项目目录结构proj（项目） ····|—data（项目数据） ····|—Src（项目源） ············|—Docs（文档） ············|—package（代码-包或者模块） 使用Sphinx生成文档Sphinx 是一个python事实上的标准文档生成工具。 官方参考文档 安装Sphinx1pip install -U sphinx 安装语法高亮1pip insta">
+<meta property="og:description" content="段落段落是reST文档中最基本的块。段落只是由一个或多个空白行分隔的文本块。与Python中一样，缩进在reST中很重要，因此同一段落的所有行都必须左对齐到相同的缩进级别。 内联标记标准的reST内联标记非常简单：成对使用  一个星号：*text*强调（斜体）， 两个星号：**text**强调（粗体）， 反引号：text用于代码示例。( `` )  列表开头放置一个星号，然后正确缩进即可。编号列表">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-04T07:24:51.554Z">
+<meta property="og:updated_time" content="2019-12-04T08:51:27.228Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="项目文档化标准操作">
-<meta name="twitter:description" content="构建项目目录结构proj（项目） ····|—data（项目数据） ····|—Src（项目源） ············|—Docs（文档） ············|—package（代码-包或者模块） 使用Sphinx生成文档Sphinx 是一个python事实上的标准文档生成工具。 官方参考文档 安装Sphinx1pip install -U sphinx 安装语法高亮1pip insta">
+<meta name="twitter:title" content="reStructuredText入门">
+<meta name="twitter:description" content="段落段落是reST文档中最基本的块。段落只是由一个或多个空白行分隔的文本块。与Python中一样，缩进在reST中很重要，因此同一段落的所有行都必须左对齐到相同的缩进级别。 内联标记标准的reST内联标记非常简单：成对使用  一个星号：*text*强调（斜体）， 两个星号：**text**强调（粗体）， 反引号：text用于代码示例。( `` )  列表开头放置一个星号，然后正确缩进即可。编号列表">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/12/04/项目文档化标准操作/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/04/reStructuredText入门/">
 
 
 
 
 
-  <title>项目文档化标准操作 | 不及不急，跬步千里</title>
+  <title>reStructuredText入门 | 不及不急，跬步千里</title>
   
 
 
@@ -285,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/04/项目文档化标准操作/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/04/reStructuredText入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="huerbt">
@@ -302,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">项目文档化标准操作</h1>
+          <h1 class="post-title" itemprop="name headline">reStructuredText入门</h1>
         
 
         <div class="post-meta">
@@ -314,7 +314,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-04T13:38:02+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-04T15:24:44+08:00">
                 2019-12-04
               </time>
             
@@ -385,49 +385,103 @@
       
 
       
-        <h1 id="构建项目目录结构"><a href="#构建项目目录结构" class="headerlink" title="构建项目目录结构"></a>构建项目目录结构</h1><p><strong>proj（项目）</strong></p>
-<p>····|—data（项目数据）</p>
-<p>····|—Src（项目源）</p>
-<p>············|—Docs（文档）</p>
-<p>············|—package（代码-包或者模块）</p>
-<h1 id="使用Sphinx生成文档"><a href="#使用Sphinx生成文档" class="headerlink" title="使用Sphinx生成文档"></a>使用Sphinx生成文档</h1><p>Sphinx 是一个python事实上的标准文档生成工具。</p>
-<p><a href="http://www.sphinx-doc.org/en/master/contents.html" target="_blank" rel="noopener">官方参考文档</a></p>
-<h2 id="安装Sphinx"><a href="#安装Sphinx" class="headerlink" title="安装Sphinx"></a>安装Sphinx</h2><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -U sphinx</span><br></pre></td></tr></table></figure>
-<h2 id="安装语法高亮"><a href="#安装语法高亮" class="headerlink" title="安装语法高亮"></a>安装语法高亮</h2><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pygments</span><br></pre></td></tr></table></figure>
-<h2 id="运行sphinx-quickstart"><a href="#运行sphinx-quickstart" class="headerlink" title="运行sphinx-quickstart"></a>运行sphinx-quickstart</h2><p>按上面的目录结构，进入到Docs目录下</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> proj/Src/Docs</span><br><span class="line">sphinx-quickstart</span><br></pre></td></tr></table></figure>
-<p>对提示的问题进行回答，默认都选<strong>y</strong>，语言选择<strong>zh_CN</strong>。然后看到在Docs目录下多出了source目录和build目录。</p>
-<h2 id="更新conf-py"><a href="#更新conf-py" class="headerlink" title="更新conf.py"></a>更新conf.py</h2><p>在source目录下，编辑conf.py文件</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> proj/Src/Docs/<span class="built_in">source</span></span><br><span class="line">vim conf.py</span><br></pre></td></tr></table></figure>
+        <h1 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h1><p>段落是reST文档中最基本的块。段落只是由一个或多个空白行分隔的文本块。与Python中一样，缩进在reST中很重要，因此同一段落的所有行都必须左对齐到相同的缩进级别。</p>
+<h1 id="内联标记"><a href="#内联标记" class="headerlink" title="内联标记"></a>内联标记</h1><p>标准的reST内联标记非常简单：成对使用</p>
 <ul>
-<li>修改sys.path路径，先在头部去掉<strong>注释#</strong>，并按<strong>../../.</strong>加入路径。该路径是让sphinx能够导入源码中的package或者模块用的。</li>
+<li>一个星号：<code>*text*</code>强调（斜体），</li>
+<li>两个星号：<code>**text**</code>强调（粗体），</li>
+<li>反引号：<code>text</code>用于代码示例。( `` )</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.insert(<span class="number">0</span>, os.path.abspath(<span class="string">'../../.'</span>))</span><br></pre></td></tr></table></figure>
+<h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><p>开头放置一个星号，然后正确缩进即可。编号列表也是如此。它们也可以使用<code>#</code>符号自动编号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">* This is a bulleted list.</span><br><span class="line">* It has two items, the second</span><br><span class="line">  item uses two lines.</span><br><span class="line"></span><br><span class="line">1. This is a numbered list.</span><br><span class="line">2. It has two items too.</span><br><span class="line"></span><br><span class="line">#. This is a numbered list.</span><br><span class="line">#. It has two items too.</span><br></pre></td></tr></table></figure>
+<p>嵌套列表是可能的，但请注意，它们必须与父列表项之间用空白行分隔：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">* this is</span><br><span class="line">* a list</span><br><span class="line"></span><br><span class="line">  * with a nested list</span><br><span class="line">  * and some subitems</span><br><span class="line"></span><br><span class="line">* and here the parent list continues</span><br></pre></td></tr></table></figure>
+<h1 id="文字块"><a href="#文字块" class="headerlink" title="文字块"></a>文字块</h1><p>文字块通过以特殊标记结尾的段落来引入<code>::</code>。文字块必须缩进（并且与所有段落一样，其周围用空行分隔）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">This is a normal text paragraph. The next paragraph is a code sample::</span><br><span class="line"></span><br><span class="line">   It is not processed in any way, except</span><br><span class="line">   that the indentation is removed.</span><br><span class="line"></span><br><span class="line">   It can span multiple lines.</span><br><span class="line"></span><br><span class="line">This is a normal text paragraph again.</span><br></pre></td></tr></table></figure>
+<p>注意使用 :: 标记</p>
+<h1 id="文档测试块"><a href="#文档测试块" class="headerlink" title="文档测试块"></a>文档测试块</h1><p>可以用来在文档中运行测试的块，文档测试块必须以一个空行结束并且应当<em>不</em>与一个未使用的提示结束：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 1 + 1</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><p>必须自己“绘制”单元格网格。他们看起来像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+------------------------+------------+----------+----------+</span><br><span class="line">| Header row, column 1   | Header 2   | Header 3 | Header 4 |</span><br><span class="line">| (header rows optional) |            |          |          |</span><br><span class="line">+========================+============+==========+==========+</span><br><span class="line">| body row 1, column 1   | column 2   | column 3 | column 4 |</span><br><span class="line">+------------------------+------------+----------+----------+</span><br><span class="line">| body row 2             | ...        | ...      |          |</span><br><span class="line">+------------------------+------------+----------+----------+</span><br></pre></td></tr></table></figure>
+<p>还有一个简单的写法，但有局限性：它们必须包含多个行，并且第一列单元格不能包含多行。他们看起来像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">=====  =====  =======</span><br><span class="line">A      B      A and B</span><br><span class="line">=====  =====  =======</span><br><span class="line">False  False  False</span><br><span class="line">True   False  False</span><br><span class="line">False  True   False</span><br><span class="line">True   True   True</span><br><span class="line">=====  =====  =======</span><br></pre></td></tr></table></figure>
+<h1 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h1><h2 id="外部链接"><a href="#外部链接" class="headerlink" title="外部链接"></a>外部链接</h2><p>Link text <a href="https://domain.invalid/" target="_blank" rel="noopener">https://domain.invalid/</a></p>
+<blockquote>
+<p>重要：链接文本和URL的开头&lt;之间必须有一个空格。 链接被&lt; &gt;包围</p>
+</blockquote>
+<h2 id="内部链接"><a href="#内部链接" class="headerlink" title="内部链接"></a>内部链接</h2><p>使用reST的角色（Role）交叉引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.. _my-reference-label:</span><br><span class="line"></span><br><span class="line">Section to cross-reference</span><br><span class="line">--------------------------</span><br><span class="line"></span><br><span class="line">This is the text of the section.</span><br><span class="line"></span><br><span class="line">It refers to the section itself, see :ref:`my-reference-label`.</span><br></pre></td></tr></table></figure>
+<p>见第8行</p>
+<h1 id="章节"><a href="#章节" class="headerlink" title="章节"></a>章节</h1><p>通过使用标点符号对节标题加下划线（或可选地加底划线）来创建节标题，该节标题至少与文本一样长：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">=================</span><br><span class="line">This is a heading</span><br><span class="line">=================</span><br></pre></td></tr></table></figure>
+<p>通常，由于结构是根据标题的顺序确定的,<a href="https://docs.python.org/devguide/documenting.html#style-guide" target="_blank" rel="noopener">Python的样式指南中用于记录</a>要遵循的顺序</p>
 <ul>
-<li><p>扩展autodoc</p>
-<p>在conf.py文件的extensions列表中，加入扩展，最终形式如下：</p>
+<li><code>#</code> 带有上划线， for parts</li>
+<li><code>*</code> 带有上划线，for chapters</li>
+<li><code>=</code>，for sections</li>
+<li><code>-</code>，for subsections</li>
+<li><code>^</code>，for subsubsections</li>
+<li><code>&quot;</code>，for paragraphs</li>
+</ul>
+<h1 id="Field-lists-字段列表"><a href="#Field-lists-字段列表" class="headerlink" title="Field lists 字段列表"></a>Field lists 字段列表</h1><p>主要用在函数、类的参数返回值的描述，其格式如：:fieldname: Field content</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_function</span><span class="params">(my_arg, my_other_arg)</span>:</span></span><br><span class="line">    <span class="string">"""A function just for me.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :param my_arg: The first of my arguments.</span></span><br><span class="line"><span class="string">    :param my_other_arg: The second of my arguments.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :returns: A message (just for me, of course).</span></span><br><span class="line"><span class="string">    """</span></span><br></pre></td></tr></table></figure>
+<p>如第4行到第7行。</p>
+<h1 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h1><p>是Sphinx提供的语义标记。它的通用格式语法为   <strong>:rolename:<code>content</code></strong></p>
+<p>角色可用来交叉引用、数学公式、其他</p>
+<h2 id="交叉引用"><a href="#交叉引用" class="headerlink" title="交叉引用"></a>交叉引用</h2><h3 id="交叉引用任何东西"><a href="#交叉引用任何东西" class="headerlink" title="交叉引用任何东西"></a>交叉引用任何东西</h3><p><strong>:any:</strong>任何目标</p>
+<p><strong>:ref:</strong>如果将标签直接放在节标题之前，则可以使用进行引用<code>:ref:</code>label-name``。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.. _my-reference-label:</span><br><span class="line"></span><br><span class="line">Section to cross-reference</span><br><span class="line">--------------------------</span><br><span class="line"></span><br><span class="line">This is the text of the section.</span><br><span class="line"></span><br><span class="line">It refers to the section itself, see :ref:`my-reference-label`.</span><br></pre></td></tr></table></figure>
+<p>见第一行，就是标签，放在了第3行之前，然后可以在第8行引用</p>
+<h3 id="交叉引用对象"><a href="#交叉引用对象" class="headerlink" title="交叉引用对象"></a>交叉引用对象</h3><h4 id="交叉引用Python对象"><a href="#交叉引用Python对象" class="headerlink" title="交叉引用Python对象"></a>交叉引用Python对象</h4><p>以下角色引用模块中的对象，如果找到匹配的标识符，则可能具有超链接：</p>
+<ul>
+<li><p><code>:py:mod:</code></p>
+<p>引用一个模块；可以使用点名。这也应用于程序包名称。</p>
+</li>
+<li><p><code>:py:func:</code></p>
+<p>引用Python函数；可以使用点名。角色文本不必包含尾括号以提高可读性；如果<a href="http://www.sphinx-doc.org/en/master/usage/configuration.html#confval-add_function_parentheses" target="_blank" rel="noopener"><code>add_function_parentheses</code></a>配置值为<code>True</code>（默认值），它们将由Sphinx自动添加。</p>
+</li>
+<li><p><code>:py:data:</code></p>
+<p>引用模块级变量。</p>
+</li>
+<li><p><code>:py:const:</code></p>
+<p>引用一个“定义的”常量。这可能是不希望更改的Python变量。</p>
+</li>
+<li><p><code>:py:class:</code></p>
+<p>引用一个类；可以使用点名。</p>
+</li>
+<li><p><code>:py:meth:</code></p>
+<p>引用对象的方法。角色文本可以包括类型名称和方法名称；如果它出现在类型的描述中，则可以省略类型名称。可以使用点名。</p>
+</li>
+<li><p><code>:py:attr:</code></p>
+<p>引用对象的数据属性。</p>
+</li>
+<li><p><code>:py:exc:</code></p>
+<p>引用一个异常。可以使用点名。</p>
+</li>
+<li><p><code>:py:obj:</code></p>
+<p>引用未指定类型的对象。</p>
 </li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">extensions = [<span class="string">'sphinx.ext.autodoc'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<h2 id="修改index-rst"><a href="#修改index-rst" class="headerlink" title="修改index.rst"></a>修改index.rst</h2><p>在source目录下，编辑index.rst文件，增加第13行的modules。这样就在首页里添加了模块或package的引用。以后自动更新即可。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">.. proj3 documentation master file, created by</span><br><span class="line">   sphinx-quickstart on Wed Dec  <span class="number">4</span> <span class="number">13</span>:<span class="number">24</span>:<span class="number">21</span> <span class="number">2019.</span></span><br><span class="line">   You can adapt this file completely to your liking, but it should at least</span><br><span class="line">   contain the root `toctree` directive.</span><br><span class="line"></span><br><span class="line">Welcome to proj3<span class="string">'s documentation!</span></span><br><span class="line"><span class="string">=================================</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">.. toctree::</span></span><br><span class="line"><span class="string">   :maxdepth: 2</span></span><br><span class="line"><span class="string">   :caption: Contents:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">   modules</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Indices and tables</span></span><br><span class="line"><span class="string">==================</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* :ref:`genindex`</span></span><br><span class="line"><span class="string">* :ref:`modindex`</span></span><br><span class="line"><span class="string">* :ref:`search`</span></span><br></pre></td></tr></table></figure>
-<h2 id="运行sphinx-apidoc"><a href="#运行sphinx-apidoc" class="headerlink" title="运行sphinx-apidoc"></a>运行sphinx-apidoc</h2><p>在package文件夹中写好模块以及文档字符串，要按照reStructureText的语法写。</p>
-<p>然后在Docs目录下运行命令</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> proj/Src/Docs/</span><br><span class="line">sphinx-apidoc -o <span class="built_in">source</span>/ ~/Documents/proj/Src</span><br></pre></td></tr></table></figure>
-<p>第一个参数 -O source/ 是指定生成的rst文件存放的位置，这个必须在source文件夹下。</p>
-<p>第二个参数是源程序的位置，里面的~/Documents要根据实际目录修改。</p>
-<blockquote>
-<p>如果指定生成的rst文件想放到source目录下的二级目录，比如source/package_name/。</p>
-<p>首先要修改index.rst，把原来的modules改成<strong>package_name/modules</strong></p>
-<p>然后运行sphinx-apidoc -o <strong>source/package_name</strong> ~/Documents/proj/Src</p>
-</blockquote>
-<h2 id="生成文档"><a href="#生成文档" class="headerlink" title="生成文档"></a>生成文档</h2><p>在Docs目录下生成文档</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make html</span><br></pre></td></tr></table></figure>
-<p>然后到build文件夹下找到index.html，打开即可查看。</p>
-<h1 id="丰富rst文件以及自动更新"><a href="#丰富rst文件以及自动更新" class="headerlink" title="丰富rst文件以及自动更新"></a>丰富rst文件以及自动更新</h1><p>假设我们有名为GG的package，在运行sphinx-apidoc文件后，会在source下生成一个GG.rst文件，这个文件就是我们用来丰富内容的地方，在这里我们可以使用reStructureText的语法修改文档，当源程序中的代码修改了文档字符串，再次运行sphinx-apidoc也不会影响之前丰富的内容。</p>
-<p>关于reStructureText支持的功能可以参考如下链接</p>
-<p><a href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html" target="_blank" rel="noopener">reStructureText英文介绍索引</a></p>
-<p><a href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html" target="_blank" rel="noopener">reStructureText入门 英文介绍</a></p>
+<h3 id="交叉引用文件"><a href="#交叉引用文件" class="headerlink" title="交叉引用文件"></a>交叉引用文件</h3><p>一种直接链接到文档的方法：</p>
+<p><strong>:doc:</strong> 链接到指定文件，可以以绝对或相对方式指定文档名称</p>
+<p><strong>:download:</strong>引用下载的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">See :download:`this example script &lt;../example.py&gt;`.</span><br></pre></td></tr></table></figure>
+<h2 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h2><p><strong>:math:</strong>数学公式，区别于数学指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Since Pythagoras, we know that :math:`a^2 + b^2 = c^2`.</span><br></pre></td></tr></table></figure>
+<p>数学指令是指 形如  <strong>.. math::</strong>，使用数学指令需要在数学公式前和公式后留一个空格。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.. math::</span><br><span class="line">   ax^3+bx^2+cx+b=0</span><br></pre></td></tr></table></figure>
+<p>即在a前面和0后面要有空格。</p>
+<h1 id="显式标记"><a href="#显式标记" class="headerlink" title="显式标记 .."></a>显式标记 ..</h1><p>用于大多数需要特殊处理的构造，例如脚注，特别突出显示的段落，注释和<strong>通用指令</strong>。</p>
+<p>显式标记块以<code>..</code>空格开头的行开头，并以相同的缩进级别由下一段终止。例如上面的数学指令。</p>
+<h1 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h1><p>它是reST的扩展机制之一，Sphinx大量使用了它。<a href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html" target="_blank" rel="noopener">参考</a></p>
+<p>指令的使用语法  ..  指令  ::</p>
+<h3 id="Admonitions（告诫类指令）"><a href="#Admonitions（告诫类指令）" class="headerlink" title="Admonitions（告诫类指令）"></a>Admonitions（告诫类指令）</h3><p><a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#attention" target="_blank" rel="noopener">attention</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#caution" target="_blank" rel="noopener">caution</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#danger" target="_blank" rel="noopener">danger</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#error" target="_blank" rel="noopener">error</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#hint" target="_blank" rel="noopener">hint</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#important" target="_blank" rel="noopener">important</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#note" target="_blank" rel="noopener">note</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#tip" target="_blank" rel="noopener">tip</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#warning" target="_blank" rel="noopener">warning</a> </p>
+<p>注意、小心、危险、错误、提示、重要、记录、提示、警告</p>
+<h3 id="图片类指令"><a href="#图片类指令" class="headerlink" title="图片类指令"></a>图片类指令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.. image :: picture.png</span><br></pre></td></tr></table></figure>
+<p>还可以设置图像选项。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.. image:: picture.jpeg</span><br><span class="line">   :height: 100px</span><br><span class="line">   :width: 200 px</span><br><span class="line">   :scale: 50 %</span><br><span class="line">   :alt: alternate text</span><br><span class="line">   :align: right</span><br></pre></td></tr></table></figure>
+<p>其中scale是比例，alt是替代文字，align是对其方式</p>
+<h3 id="Additional-body-elements（传统body元素类指令）"><a href="#Additional-body-elements（传统body元素类指令）" class="headerlink" title="Additional body elements（传统body元素类指令）"></a>Additional body elements（传统body元素类指令）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.. contents::</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -447,6 +501,8 @@
           
             <a href="/tags/文档/" rel="tag"># 文档</a>
           
+            <a href="/tags/reStructuredText/" rel="tag"># reStructuredText</a>
+          
         </div>
       
 
@@ -458,8 +514,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/26/设计模式之’策略模式‘/" rel="next" title="设计模式之’策略模式‘">
-                <i class="fa fa-chevron-left"></i> 设计模式之’策略模式‘
+              <a href="/2019/12/04/项目文档化标准操作/" rel="next" title="项目文档化标准操作">
+                <i class="fa fa-chevron-left"></i> 项目文档化标准操作
               </a>
             
           </div>
@@ -467,10 +523,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/12/04/reStructuredText入门/" rel="prev" title="reStructuredText入门">
-                reStructuredText入门 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -620,7 +672,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#构建项目目录结构"><span class="nav-number">1.</span> <span class="nav-text">构建项目目录结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Sphinx生成文档"><span class="nav-number">2.</span> <span class="nav-text">使用Sphinx生成文档</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Sphinx"><span class="nav-number">2.1.</span> <span class="nav-text">安装Sphinx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装语法高亮"><span class="nav-number">2.2.</span> <span class="nav-text">安装语法高亮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行sphinx-quickstart"><span class="nav-number">2.3.</span> <span class="nav-text">运行sphinx-quickstart</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新conf-py"><span class="nav-number">2.4.</span> <span class="nav-text">更新conf.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改index-rst"><span class="nav-number">2.5.</span> <span class="nav-text">修改index.rst</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行sphinx-apidoc"><span class="nav-number">2.6.</span> <span class="nav-text">运行sphinx-apidoc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成文档"><span class="nav-number">2.7.</span> <span class="nav-text">生成文档</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#丰富rst文件以及自动更新"><span class="nav-number">3.</span> <span class="nav-text">丰富rst文件以及自动更新</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#段落"><span class="nav-number">1.</span> <span class="nav-text">段落</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内联标记"><span class="nav-number">2.</span> <span class="nav-text">内联标记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#列表"><span class="nav-number">3.</span> <span class="nav-text">列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文字块"><span class="nav-number">4.</span> <span class="nav-text">文字块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文档测试块"><span class="nav-number">5.</span> <span class="nav-text">文档测试块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表格"><span class="nav-number">6.</span> <span class="nav-text">表格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#超链接"><span class="nav-number">7.</span> <span class="nav-text">超链接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#外部链接"><span class="nav-number">7.1.</span> <span class="nav-text">外部链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内部链接"><span class="nav-number">7.2.</span> <span class="nav-text">内部链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#章节"><span class="nav-number">8.</span> <span class="nav-text">章节</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Field-lists-字段列表"><span class="nav-number">9.</span> <span class="nav-text">Field lists 字段列表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#角色"><span class="nav-number">10.</span> <span class="nav-text">角色</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#交叉引用"><span class="nav-number">10.1.</span> <span class="nav-text">交叉引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#交叉引用任何东西"><span class="nav-number">10.1.1.</span> <span class="nav-text">交叉引用任何东西</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交叉引用对象"><span class="nav-number">10.1.2.</span> <span class="nav-text">交叉引用对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#交叉引用Python对象"><span class="nav-number">10.1.2.1.</span> <span class="nav-text">交叉引用Python对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交叉引用文件"><span class="nav-number">10.1.3.</span> <span class="nav-text">交叉引用文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数学公式"><span class="nav-number">10.2.</span> <span class="nav-text">数学公式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#显式标记"><span class="nav-number">11.</span> <span class="nav-text">显式标记 ..</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#指令"><span class="nav-number">12.</span> <span class="nav-text">指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Admonitions（告诫类指令）"><span class="nav-number">12.0.1.</span> <span class="nav-text">Admonitions（告诫类指令）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片类指令"><span class="nav-number">12.0.2.</span> <span class="nav-text">图片类指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Additional-body-elements（传统body元素类指令）"><span class="nav-number">12.0.3.</span> <span class="nav-text">Additional body elements（传统body元素类指令）</span></a></li></ol></li></ol></div>
             
 
           </div>
