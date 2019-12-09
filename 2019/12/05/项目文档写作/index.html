@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="不及不急，跬步千里">
 <meta property="og:description" content="写作规则 两步写作：先在纸上写想法，然后再审查和塑造文本 定位读者：谁会读 使用简单的风格： 限制信息范围：一次引入一个概念 使用现实中的代码示例： 使用轻量且充分的方法：不要啰嗦写成一本书 使用模板：帮助读者习惯  两步写作第一步：所有的想法都写在纸上，只考虑内容不考虑形式。与主题没有关系的写在第二张纸上。 第二步：回读整个文本，对其修正，增强风格，重新组织它，并删除冗余信息。 定位读者考虑谁会">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-05T07:38:31.047Z">
+<meta property="og:updated_time" content="2019-12-06T01:28:22.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="项目文档写作">
 <meta name="twitter:description" content="写作规则 两步写作：先在纸上写想法，然后再审查和塑造文本 定位读者：谁会读 使用简单的风格： 限制信息范围：一次引入一个概念 使用现实中的代码示例： 使用轻量且充分的方法：不要啰嗦写成一本书 使用模板：帮助读者习惯  两步写作第一步：所有的想法都写在纸上，只考虑内容不考虑形式。与主题没有关系的写在第二张纸上。 第二步：回读整个文本，对其修正，增强风格，重新组织它，并删除冗余信息。 定位读者考虑谁会">
@@ -432,6 +432,7 @@
 <p><strong>···············································|—modules</strong>  模块助手文件夹</p>
 <p><strong>···············································|—tutorial</strong>  教程文件夹</p>
 <h3 id="修改source目录下的index文件"><a href="#修改source目录下的index文件" class="headerlink" title="修改source目录下的index文件"></a>修改source目录下的index文件</h3><p>在index.rst文件中，在.. tortree::添加文档格局。注意usage_index是rst文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">.. BTQuant documentation master file, created by</span><br><span class="line">   sphinx-quickstart on Fri Dec  6 09:21:17 2019.</span><br><span class="line">   You can adapt this file completely to your liking, but it should at least</span><br><span class="line">   contain the root `toctree` directive.</span><br><span class="line"></span><br><span class="line">Welcome to BTQuant&apos;s documentation!</span><br><span class="line">===================================</span><br><span class="line"></span><br><span class="line">.. toctree::</span><br><span class="line">   :maxdepth: 2</span><br><span class="line">   :caption: Contents:</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Indices and tables</span><br><span class="line">==================</span><br><span class="line"></span><br><span class="line">* :ref:`genindex`</span><br><span class="line">* :ref:`modindex`</span><br><span class="line">* :ref:`search`</span><br></pre></td></tr></table></figure>
 <h3 id="修改usage目录下的usage-index文件"><a href="#修改usage目录下的usage-index文件" class="headerlink" title="修改usage目录下的usage_index文件"></a>修改usage目录下的usage_index文件</h3><p>在usage_index.rst文件中，在.. tortree::添加文档。注意tutorial_index是rst文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">使用文档集</span><br><span class="line">=================================</span><br><span class="line"></span><br><span class="line">.. toctree::</span><br><span class="line">   :maxdepth: 2</span><br><span class="line">   :caption: Contents:</span><br><span class="line"></span><br><span class="line">   tutorial/tutorial_index</span><br><span class="line">   modules/modules_index</span><br><span class="line">   cookbook/cookbook_index</span><br></pre></td></tr></table></figure>
 <h4 id="修改modules-index"><a href="#修改modules-index" class="headerlink" title="修改modules_index"></a>修改modules_index</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">模块助手文档集</span><br><span class="line">=================================</span><br><span class="line"></span><br><span class="line">.. toctree::</span><br><span class="line">   :maxdepth: 2</span><br><span class="line">   :caption: Contents:</span><br><span class="line"></span><br><span class="line">   某个包比如GG/modules</span><br></pre></td></tr></table></figure>
@@ -485,6 +486,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/09/项目路径的设置与导入/" rel="prev" title="项目路径的设置与导入">
+                项目路径的设置与导入 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -563,7 +568,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -574,7 +579,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -585,7 +590,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
