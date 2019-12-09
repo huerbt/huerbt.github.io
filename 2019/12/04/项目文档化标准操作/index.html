@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="不及不急，跬步千里">
 <meta property="og:description" content="构建项目目录结构proj（项目） ····|—data（项目数据） ····|—Src（项目源） ············|—Docs（文档） ············|—package（代码-包或者模块） 使用Sphinx生成文档Sphinx 是一个python事实上的标准文档生成工具。 官方参考文档 安装Sphinx1pip install -U sphinx 安装语法高亮1pip insta">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-05T01:20:27.695Z">
+<meta property="og:updated_time" content="2019-12-09T14:58:11.204Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="项目文档化标准操作">
 <meta name="twitter:description" content="构建项目目录结构proj（项目） ····|—data（项目数据） ····|—Src（项目源） ············|—Docs（文档） ············|—package（代码-包或者模块） 使用Sphinx生成文档Sphinx 是一个python事实上的标准文档生成工具。 官方参考文档 安装Sphinx1pip install -U sphinx 安装语法高亮1pip insta">
@@ -408,15 +408,33 @@
 <p>在conf.py文件的extensions列表中，加入扩展，最终形式如下：</p>
 </li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">extensions = [<span class="string">'sphinx.ext.autodoc'</span>,<span class="string">'sphinx.ext.todo'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">extensions = [<span class="string">'sphinx.ext.autodoc'</span>,<span class="string">'sphinx.ext.todo'</span>,<span class="string">'sphinx.ext.viewcode'</span>,<span class="string">'sphinx.ext.graphviz'</span>,<span class="string">'sphinx.ext.mathjax'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <ul>
 <li>修改模板</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">html_theme = <span class="string">'bizstyle'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">html_theme = <span class="string">'bizstyle'</span></span><br><span class="line">html_show_sourcelink = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">pygments_style = <span class="string">'sphinx'</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>其他</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source_suffix = [<span class="string">'.rst'</span>, <span class="string">'.md'</span>]</span><br><span class="line">todo_include_todos = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>中文搜索 结巴分词安装与设置</p>
+<ul>
+<li><p>参见(<a href="https://www.jianshu.com/p/354106f89a04" target="_blank" rel="noopener">https://www.jianshu.com/p/354106f89a04</a>)</p>
+</li>
+<li><p>安装结巴分词</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install jieba</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>设置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Language to be used for generating the HTML full-text search index.</span></span><br><span class="line">html_search_language = <span class="string">'zh'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># A dictionary with options for the search language support, empty by default.</span></span><br><span class="line">html_search_options = &#123;<span class="string">'dict'</span>: <span class="string">'user_dict'</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>config.py</code>的同级目录创建<code>user_dict</code>文件，<code>user_dict</code>格式如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 格式说明, 一个词占一行；每一行分三部分：词语、词频（可省略）、词性（可省略），用空格隔开，顺序不可颠倒。</span><br><span class="line"># 详见 https://github.com/fxsjy/jieba</span><br><span class="line">择时</span><br><span class="line">选股</span><br><span class="line">因子</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <p><a href="http://www.sphinx-doc.org/en/master/usage/configuration.html" target="_blank" rel="noopener">更多配置参见</a></p>
 <h2 id="修改index-rst"><a href="#修改index-rst" class="headerlink" title="修改index.rst"></a>修改index.rst</h2><p>在source目录下，编辑index.rst文件，增加第13行的modules。这样就在首页里添加了模块或package的引用。以后自动更新即可。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">.. proj3 documentation master file, created by</span><br><span class="line">   sphinx-quickstart on Wed Dec  <span class="number">4</span> <span class="number">13</span>:<span class="number">24</span>:<span class="number">21</span> <span class="number">2019.</span></span><br><span class="line">   You can adapt this file completely to your liking, but it should at least</span><br><span class="line">   contain the root `toctree` directive.</span><br><span class="line"></span><br><span class="line">Welcome to proj3<span class="string">'s documentation!</span></span><br><span class="line"><span class="string">=================================</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">.. toctree::</span></span><br><span class="line"><span class="string">   :maxdepth: 2</span></span><br><span class="line"><span class="string">   :caption: Contents:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">   modules</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Indices and tables</span></span><br><span class="line"><span class="string">==================</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* :ref:`genindex`</span></span><br><span class="line"><span class="string">* :ref:`modindex`</span></span><br><span class="line"><span class="string">* :ref:`search`</span></span><br></pre></td></tr></table></figure>
