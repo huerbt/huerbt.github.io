@@ -1,0 +1,3 @@
+graph graph_name{  //无向图graph_name
+	a -- b		// 接点a 和 b 之间连线
+}

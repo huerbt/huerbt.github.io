@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Graphviz 安装参见我的博客《使用cProfile和gprof2dot找出性能瓶颈》 前提已经安装了Homebrew 执行如下命名 1brew install graphviz 测试Graphviz查看版本： 12$ dot -Vdot - graphviz version 2.43.0 (0) 用vim 创建并编辑一个文件，例如hello.dot 123digraph pic &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Graphviz Dot绘制类图">
+<meta property="og:url" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/index.html">
+<meta property="og:site_name" content="不及不急，跬步千里">
+<meta property="og:description" content="Graphviz 安装参见我的博客《使用cProfile和gprof2dot找出性能瓶颈》 前提已经安装了Homebrew 执行如下命名 1brew install graphviz 测试Graphviz查看版本： 12$ dot -Vdot - graphviz version 2.43.0 (0) 用vim 创建并编辑一个文件，例如hello.dot 123digraph pic &amp;#123;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/70.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210103410644.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/70.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210104634420.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210105312917.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210111026435.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210112329425.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210113442075.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210113528942.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210113623424.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210113716410.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/451.jpeg">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210141021370.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/704.jpeg">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210114307905.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210114437899.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210133317437.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210133848355.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210140616422.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210135330763.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210135505896.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210140227387.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210140532295.png">
+<meta property="og:updated_time" content="2019-12-10T06:14:03.081Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Graphviz Dot绘制类图">
+<meta name="twitter:description" content="Graphviz 安装参见我的博客《使用cProfile和gprof2dot找出性能瓶颈》 前提已经安装了Homebrew 执行如下命名 1brew install graphviz 测试Graphviz查看版本： 12$ dot -Vdot - graphviz version 2.43.0 (0) 用vim 创建并编辑一个文件，例如hello.dot 123digraph pic &amp;#123;">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/70.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/">
+
+
+
+
+
+  <title>使用Graphviz Dot绘制类图 | 不及不急，跬步千里</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">不及不急，跬步千里</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">少些废话，是对自己也是阅读者的尊重</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/10/使用Graphviz-Dot绘制类图/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huerbt">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/kuibu.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不及不急，跬步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用Graphviz Dot绘制类图</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-10T10:10:59+08:00">
+                2019-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Graphviz-安装"><a href="#Graphviz-安装" class="headerlink" title="Graphviz 安装"></a>Graphviz 安装</h1><p>参见我的博客《使用cProfile和gprof2dot找出性能瓶颈》</p>
+<p>前提已经安装了Homebrew</p>
+<p>执行如下命名</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install graphviz</span><br></pre></td></tr></table></figure>
+<h2 id="测试Graphviz"><a href="#测试Graphviz" class="headerlink" title="测试Graphviz"></a>测试Graphviz</h2><p>查看版本：</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ dot -V</span><br><span class="line">dot - graphviz version 2.43.0 (0)</span><br></pre></td></tr></table></figure>
+<p>用vim 创建并编辑一个文件，例如hello.dot</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">digraph pic &#123; </span><br><span class="line">  Hello -&gt; World</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同一目录下终端运行</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dot hello.dot -T png -o hello.png</span><br></pre></td></tr></table></figure>
+<p>就生成了一个hello.png的图片，图片如下</p>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/70.png" alt="hello.png"></p>
+<p>完成Graphviz的安装</p>
+<h1 id="Dot语法基础"><a href="#Dot语法基础" class="headerlink" title="Dot语法基础"></a>Dot语法基础</h1><p>Dot绘制两种类型的图，一个是无向图graph，另一个是有向图digraph。</p>
+<h2 id="绘制一个无向图"><a href="#绘制一个无向图" class="headerlink" title="绘制一个无向图"></a>绘制一个无向图</h2><p>以graph开头 空格 图的名称，{}中对图的内容进行描述，在描述中可以使用注释。</p>
+<p>// 单行注释</p>
+<p>/* 多行注释</p>
+<p>*/</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph graph_name&#123;  //无向图graph_name</span><br><span class="line">	a -- b		// 接点a 和 b 之间连线</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210103410644.png" alt="image-20191210103410644"></p>
+<h2 id="绘制有向图"><a href="#绘制有向图" class="headerlink" title="绘制有向图"></a>绘制有向图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">digraph pic &#123; </span><br><span class="line">  Hello -&gt; World</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/70.png" alt="hello.png"></p>
+<h2 id="节点的设置"><a href="#节点的设置" class="headerlink" title="节点的设置"></a>节点的设置</h2><p>DOT中，节点可以不用像有向图哪样声明，节点可以不声明直接使用。每个节点首次出现的名称做为该节点的唯一标识。</p>
+<p>节点可以设置的属性有：</p>
+<ul>
+<li>shape：</li>
+<li>label：</li>
+<li>style：</li>
+<li>color：</li>
+<li>fillcolor：</li>
+<li>rank：</li>
+</ul>
+<p>可以为节点设置默认属性，也可以单独设置一个节点的属性，甚至再次设置默认属性使得之后的节点属性改变。</p>
+<p>设置默认属性要使用  node[attribute1=value1, attribute2=value2]</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">graph node_settings &#123;</span><br><span class="line">    node [shape = &quot;box&quot;, style = &quot;filled&quot;, color = &quot;black&quot;, fillcolor = &quot;green&quot;]   //设置节点的默认形状，类型，颜色，填充颜色</span><br><span class="line">    a [shape = &quot;ellipse&quot;, color = &quot;red&quot;, label = &quot;this is a&quot;]     //设置节点a的颜色，注意默认节点类型是filled，所以这里的color只是设置a的边框颜色</span><br><span class="line">    b [label = &quot;two\nlines&quot;]   //label支持&apos;\n&apos;换行</span><br><span class="line">    a -- b</span><br><span class="line">    a -- c     //如果不需要设置c的属性，可以不用声明c而直接使用</span><br><span class="line">    node [shape = &quot;circle&quot;]</span><br><span class="line">    d [label = &quot;cicle&quot;]</span><br><span class="line">    c -- d      //d使用之前最后出现的node设置，形状为circle</span><br><span class="line">    &#123;rank = same a, d&#125;     //设置a和d在同一层</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210104634420.png" alt="image-20191210104634420"></p>
+<h2 id="边的设置"><a href="#边的设置" class="headerlink" title="边的设置"></a>边的设置</h2><p>边有有向边和无向边两种，无向边用于无向图，有向边用于有向图，不可混用。</p>
+<p>边可以设置的属性有：</p>
+<ul>
+<li>style：</li>
+<li>color：</li>
+<li>weight：</li>
+<li>label：</li>
+<li>labelfontcolor：</li>
+<li>headlabel：</li>
+<li>taillabel：</li>
+<li>arrowhead=diamond \\菱形 </li>
+<li>decorate：</li>
+<li>用n; e; s; w或者组合表示边在节点上的起止位置</li>
+</ul>
+<p>可以为边设置默认属性，也可以单独设置一个边的属性，甚至再次设置默认属性使得之后的边属性改变。</p>
+<p>设置默认属性要使用 edge[  ]</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">digraph edge_settings &#123;</span><br><span class="line">    edge [color = &quot;green&quot;, decorate = false]        //设置边的默认属性</span><br><span class="line">    node [shape = &quot;polygon&quot;, sides = 4, color = &quot;blue&quot;]</span><br><span class="line">    a -&gt; b [style = &quot;dotted&quot;, color = &quot;red&quot;, label = &quot;a to b&quot;]  //设置style、color、label</span><br><span class="line">    b: se -&gt; c: w [headlabel = &quot;end&quot;,  taillabel = &quot;start&quot;]     //设置边从b的“东南方”出发，从c的“西方”结束，设置有向边起点和重点的label</span><br><span class="line">    edge [style = &quot;bond&quot;, decorate = true]      //设置之后的边加粗并且标签和连线之间有线标注</span><br><span class="line">    &#123;c, f&#125; -&gt; &#123;d, e&#125; [label = &quot;multi-lines&quot;]    //可以用这种方式同时画多条边</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210105312917.png" alt="image-20191210105312917"></p>
+<h2 id="图的设置"><a href="#图的设置" class="headerlink" title="图的设置"></a>图的设置</h2><p>Dot语言可以绘制有向图digraph 和 无向图graph，同时图也支持父图和子图。子图以subgraph声明开始，且必须以“cluster”作为名称开始。</p>
+<p>图可以设置的属性有：</p>
+<ul>
+<li>size：</li>
+<li>label：</li>
+<li>labelloc：</li>
+<li>labeljust：</li>
+<li>bgcolor：</li>
+<li>rankdir：指定绘图的方向，例如 rankdir=LR //从左到右绘图</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">digraph graph_settings &#123;</span><br><span class="line">    start [shape = &quot;Mdiamond&quot;] //设置节点start的形状</span><br><span class="line">    end [shape = &quot;Msquare&quot;] // 设置节点end的形状</span><br><span class="line">    </span><br><span class="line">    subgraph cluster_sub1 &#123;  // 子图 cluster_sub1</span><br><span class="line">        label = &quot;process #1&quot;  //子图的名称</span><br><span class="line">        labelloc = &quot;t&quot;</span><br><span class="line">        bgcolor = &quot;gray55&quot;  //子图的背景颜色</span><br><span class="line">        node [style = &quot;filled&quot;, color = &quot;white&quot;] //子图中节点的默认设置</span><br><span class="line">        a0 -&gt; a1 -&gt; a2 -&gt; a3 -&gt; a0</span><br><span class="line">    &#125;</span><br><span class="line">    subgraph cluster_sub2 &#123;</span><br><span class="line">        label = &quot;process #2&quot;</span><br><span class="line">        labelloc = &quot;t&quot;</span><br><span class="line">        color = &quot;blue&quot;</span><br><span class="line">        node [style = &quot;filled&quot;, color = &quot;black&quot;, fillcolor = &quot;gray55&quot;]</span><br><span class="line">        b0 -&gt; b1 -&gt; b2 -&gt; b3</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    start -&gt; &#123;a0, b0&#125;</span><br><span class="line">    a1 -&gt; b3</span><br><span class="line">    b2 -&gt; a3</span><br><span class="line">    &#123;a3, b3&#125; -&gt; end</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210111026435.png" alt="image-20191210111026435"></p>
+<h2 id="一些更复杂的图"><a href="#一些更复杂的图" class="headerlink" title="一些更复杂的图"></a>一些更复杂的图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">digraph g &#123;</span><br><span class="line">    nodesep = .5;</span><br><span class="line">    rankdir = LR;    //指定绘图的方向 (LR从左到右绘制)</span><br><span class="line"></span><br><span class="line">    //定义竖直节点</span><br><span class="line">    node[shape=record, width=.1, height=.1];</span><br><span class="line">    node0[label=&quot;&lt;f0&gt; |&lt;f1&gt; |&lt;f2&gt; |&lt;f3&gt; |&lt;f4&gt; |&lt;f5&gt; |&lt;f6&gt; &quot;, height=2.5]; //我是一个属性, 我有7个属性</span><br><span class="line"></span><br><span class="line">    //定义横向节点</span><br><span class="line">    node[width=1.5];</span><br><span class="line">    node1[label=&quot;&#123;&lt;n&gt; a13 | 111 | &lt;p&gt;&#125;&quot;]; //我也是一个节点, 定义了3个属性</span><br><span class="line">    node2[label=&quot;&#123;&lt;n&gt; hello | 2387 | &lt;p&gt;&#125;&quot;];</span><br><span class="line">    node3[label=&quot;&#123;&lt;n&gt; g23 | 344 | &lt;p&gt;&#125;&quot;];</span><br><span class="line">    node4[label=&quot;&#123;&lt;n&gt; k535 | 246 | &lt;p&gt;&#125;&quot;];</span><br><span class="line">    node5[label=&quot;&#123;&lt;n&gt; h25 | 13 | &lt;p&gt;&#125;&quot;];</span><br><span class="line">    node6[label=&quot;&#123;&lt;n&gt; dj | 04 | &lt;p&gt;&#125;&quot;];</span><br><span class="line">    node7[label=&quot;&#123;&lt;n&gt; sbd | 0x543 | &lt;p&gt;&#125;&quot;];</span><br><span class="line"></span><br><span class="line">    //建立节点之间的联系</span><br><span class="line">    node0:f0 -&gt; node1:n;</span><br><span class="line">    node0:f1 -&gt; node2:n;</span><br><span class="line">    node0:f2 -&gt; node3:n;</span><br><span class="line">    node0:f5 -&gt; node4:n;</span><br><span class="line">    node0:f6 -&gt; node5:n;</span><br><span class="line">    node2:p -&gt; node6:n;</span><br><span class="line">    node4:p -&gt; node7:n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210112329425.png" alt="image-20191210112329425"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">digraph &#123;</span><br><span class="line"></span><br><span class="line">    edge[fontname=&quot;SimSun&quot;,fontcolor=red];</span><br><span class="line">    node[fontname=&quot;SimSun&quot;,size=&quot;20,20&quot;];</span><br><span class="line"></span><br><span class="line">    北京[shape=doublecircle];</span><br><span class="line">    湘潭[shape=plaintext]</span><br><span class="line"></span><br><span class="line">    //高速公路节点关系</span><br><span class="line">    北京-&gt;石家庄-&gt;郑州-&gt;武汉-&gt;长沙-&gt;广州[label=京港澳高速,color=red];</span><br><span class="line">    北京-&gt;天津-&gt;沈阳-&gt;长春-&gt;哈尔滨[label=京哈高速,color=lawngreen];</span><br><span class="line">    北京-&gt;呼和浩特-&gt;银川-&gt;兰州-&gt;西宁-&gt;拉萨[label=京藏高速,color=purple];</span><br><span class="line">    郑州-&gt;西安-&gt;兰州-&gt;乌鲁木齐[label=连霍高速,color=blue]</span><br><span class="line">    上海-&gt;杭州-&gt;南昌-&gt;湘潭-&gt;贵阳-&gt;昆明[label=沪昆高速,color=orange];</span><br><span class="line">    福州-&gt;南昌-&gt;武汉-&gt;西安-&gt;银川[label=福银高速,color=brown];</span><br><span class="line">    湘潭-&gt;长沙[style=dotted];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210113442075.png" alt="image-20191210113442075"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">digraph &#123;</span><br><span class="line">    huarongpass [shape=none, margin=0, fontname=&quot;SimSun&quot; label=&lt;</span><br><span class="line">        &lt;TABLE BORDER=&quot;0&quot; CELLBORDER=&quot;1&quot; CELLSPACING=&quot;0&quot; CELLPADDING=&quot;4&quot;&gt;</span><br><span class="line">            &lt;TR&gt;&lt;TD&gt;张&lt;BR/&gt;飞&lt;/TD&gt;&lt;TD COLSPAN=&quot;2&quot;&gt;曹操&lt;/TD&gt;&lt;TD&gt;马&lt;BR/&gt;超&lt;/TD&gt;&lt;/TR&gt;</span><br><span class="line">            &lt;TR&gt;</span><br><span class="line">                &lt;TD ROWSPAN=&quot;2&quot;&gt;赵&lt;BR/&gt;云&lt;/TD&gt;</span><br><span class="line">                &lt;TD COLSPAN=&quot;2&quot;&gt;关羽&lt;/TD&gt;</span><br><span class="line">                &lt;TD ROWSPAN=&quot;2&quot;&gt;黄&lt;BR/&gt;忠&lt;/TD&gt;</span><br><span class="line">            &lt;/TR&gt;</span><br><span class="line">            &lt;TR&gt;&lt;TD&gt;卒&lt;/TD&gt;&lt;TD&gt;卒&lt;/TD&gt;&lt;/TR&gt;</span><br><span class="line">            &lt;TR&gt;&lt;TD&gt;卒&lt;/TD&gt;&lt;TD COLSPAN=&quot;2&quot;&gt;&lt;/TD&gt;&lt;TD&gt;卒&lt;/TD&gt;&lt;/TR&gt;</span><br><span class="line">        &lt;/TABLE&gt;</span><br><span class="line">    &gt;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210113528942.png" alt="image-20191210113528942"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">digraph &#123;</span><br><span class="line">    </span><br><span class="line">    ranksep=2.75; size=&quot;15,15&quot;;</span><br><span class="line">    &#123;</span><br><span class="line">        edge [fontname=&quot;SimSun&quot;, fontcolor=red];</span><br><span class="line">        //时间线</span><br><span class="line">        node [shape=plaintext, fontname=&quot;SimSun&quot;, fontsize=60];</span><br><span class="line">        &quot;高祖辈&quot;-&gt;&quot;曾祖辈&quot;-&gt;&quot;祖父辈&quot;-&gt;&quot;父辈&quot;-&gt;&quot;本人&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        rank = same;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    node [shape=box, fontname=&quot;SimSun&quot;, fontsize=60];</span><br><span class="line">    &#123; rank = same; &quot;高祖辈&quot;; &quot;孝景皇帝刘启&quot;; &quot;孝景皇后王氏&quot;; &quot;外高祖父卫父&quot;; &quot;外高祖母卫媪&quot;; &#125;</span><br><span class="line">    &#123; rank = same; &quot;曾祖辈&quot;; &quot;曾祖父世宗武皇帝刘彻&quot;; &quot;曾祖母思皇后卫子夫&quot;; &quot;外曾祖母贞君&quot;; &#125;</span><br><span class="line">    &#123; rank = same; &quot;祖父辈&quot;; &quot;祖父戾太子刘据&quot;; &quot;祖母戾后史氏&quot;; &quot;外祖父思成侯王乃始&quot;; &quot;外祖母博平君思成夫人王媪&quot;; &#125;</span><br><span class="line">    &#123; rank = same; &quot;父辈&quot;; &quot;父悼皇考刘进&quot;; &quot;母悼后王翁须&quot; &#125;</span><br><span class="line">    &#123; rank = same; &quot;本人&quot;; &quot;中宗孝宣皇帝刘询&quot; &#125;</span><br><span class="line"></span><br><span class="line">    &#123;&quot;孝景皇帝刘启&quot;, &quot;孝景皇后王氏&quot;&#125;-&gt;&quot;曾祖父世宗武皇帝刘彻&quot;;</span><br><span class="line">    &#123;&quot;外高祖父卫父&quot;, &quot;外高祖母卫媪&quot;&#125;-&gt;&quot;曾祖母思皇后卫子夫&quot;;</span><br><span class="line">    &#123;&quot;曾祖父世宗武皇帝刘彻&quot;, &quot;曾祖母思皇后卫子夫&quot;&#125;-&gt;&quot;祖父戾太子刘据&quot;;</span><br><span class="line">    &quot;外曾祖母贞君&quot;-&gt;&quot;祖母戾后史氏&quot;</span><br><span class="line">    &#123;&quot;祖父戾太子刘据&quot;, &quot;祖母戾后史氏&quot;&#125;-&gt;&quot;父悼皇考刘进&quot;;</span><br><span class="line">    &#123;&quot;外祖父思成侯王乃始&quot;, &quot;外祖母博平君思成夫人王媪&quot;&#125;-&gt;&quot;母悼后王翁须&quot;;</span><br><span class="line">    &#123;&quot;父悼皇考刘进&quot;, &quot;母悼后王翁须&quot;&#125;-&gt;&quot;中宗孝宣皇帝刘询&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210113623424.png" alt="image-20191210113623424"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">digraph &#123;</span><br><span class="line">    </span><br><span class="line">    edge[fontname=&quot;SimSun&quot;,fontcolor=red];</span><br><span class="line">    node[fontname=&quot;SimSun&quot;,size=&quot;20,20&quot;];</span><br><span class="line"></span><br><span class="line">    subgraph cluster0 &#123;</span><br><span class="line">        color=red;</span><br><span class="line">        &quot;曹操(0)&quot;,&quot;曹丕(1)&quot;,&quot;曹叡(2)&quot;,&quot;曹髦(3)&quot;,&quot;曹芳(4)&quot;,&quot;曹奂(5)&quot;[shape=box];</span><br><span class="line">        fontname=&quot;SimSun&quot;</span><br><span class="line">        label=&quot;#1 魏国&quot;;</span><br><span class="line">        &quot;曹操(0)&quot;-&gt;&#123;&quot;曹丕(1)&quot;, &quot;曹彰&quot;, &quot;曹宇&quot;&#125;;</span><br><span class="line">        &quot;曹丕(1)&quot;-&gt;&#123;&quot;曹叡(2)&quot;, &quot;曹霖&quot;&#125;;</span><br><span class="line">        &quot;曹霖&quot;-&gt;&quot;曹髦(3)&quot;</span><br><span class="line">        &quot;曹彰&quot;-&gt;&quot;曹楷&quot;-&gt;&quot;曹芳(4)&quot;</span><br><span class="line">        &quot;曹宇&quot;-&gt;&quot;曹奂(5)&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    subgraph cluster1 &#123;</span><br><span class="line">        color=blue;</span><br><span class="line">        &quot;刘备(0)&quot;,&quot;刘禅(1)&quot;[shape=box];</span><br><span class="line">        fontname=&quot;SimSun&quot;</span><br><span class="line">        label=&quot;#2 蜀国&quot;;</span><br><span class="line">        &quot;刘备(0)&quot;-&gt;&quot;刘禅(1)&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    subgraph cluster2 &#123;</span><br><span class="line">        color=purple;</span><br><span class="line">        &quot;孙坚(0)&quot;,&quot;孙策(1)&quot;,&quot;孙权(2)&quot;,&quot;孙亮(3)&quot;,&quot;孙休(4)&quot;,&quot;孙和(5)&quot;,&quot;孙皓(6)&quot;[shape=box];</span><br><span class="line">        fontname=&quot;SimSun&quot;</span><br><span class="line">        label=&quot;#3 吴国&quot;;</span><br><span class="line">        &quot;孙坚(0)&quot;-&gt;&#123;&quot;孙策(1)&quot;,&quot;孙权(2)&quot;&#125;;</span><br><span class="line">        &quot;孙权(2)&quot;-&gt;&#123;&quot;孙和(5)&quot;,&quot;孙休(4)&quot;,&quot;孙亮(3)&quot;&#125;;</span><br><span class="line">        &quot;孙和(5)&quot;-&gt;&quot;孙皓(6)&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &quot;初代君主&quot;-&gt;&#123;&quot;曹操(0)&quot;,&quot;刘备(0)&quot;,&quot;孙坚(0)&quot;&#125;[style=dotted];</span><br><span class="line">    &#123;&quot;曹奂(5)&quot;,&quot;刘禅(1)&quot;,&quot;孙皓(6)&quot;&#125;-&gt;&quot;末代君主&quot;[style=dotted];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210113716410.png" alt="image-20191210113716410"></p>
+<h2 id="更多的形状"><a href="#更多的形状" class="headerlink" title="更多的形状"></a>更多的形状</h2><p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/451.jpeg" alt="img"></p>
+<h2 id="更多箭头形状"><a href="#更多箭头形状" class="headerlink" title="更多箭头形状"></a>更多箭头形状</h2><p>参见(<a href="https://graphviz.gitlab.io/_pages/doc/info/arrows.html" target="_blank" rel="noopener">https://graphviz.gitlab.io/_pages/doc/info/arrows.html</a>)</p>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210141021370.png" alt="image-20191210141021370"></p>
+<h2 id="常用的颜色"><a href="#常用的颜色" class="headerlink" title="常用的颜色"></a>常用的颜色</h2><p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/704.jpeg" alt="img"></p>
+<h1 id="绘制类图"><a href="#绘制类图" class="headerlink" title="绘制类图"></a>绘制类图</h1><h2 id="描述一个类"><a href="#描述一个类" class="headerlink" title="描述一个类"></a>描述一个类</h2><p>建模一个Animal类，有两个共有属性：name、age，一个公有方法：die()，作为一个简单的例子，这样足够了，建模为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Animal [</span><br><span class="line">                label = &quot;&#123;Animal|+ name : string\l+ age : int\l|+ die() : void\l&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210114307905.png" alt="image-20191210114307905"></p>
+<h3 id="绘制多个类"><a href="#绘制多个类" class="headerlink" title="绘制多个类"></a>绘制多个类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Animal [</span><br><span class="line">                label = &quot;&#123;Animal|+ name : string\l+ age : int\l|+ die() : void\l&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Dog [</span><br><span class="line">                label = &quot;&#123;Dog||+ bark() : void\l&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Cat [</span><br><span class="line">                label = &quot;&#123;Cat||+ meow() : void\l&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210114437899.png" alt="image-20191210114437899"></p>
+<h2 id="描述一个包"><a href="#描述一个包" class="headerlink" title="描述一个包"></a>描述一个包</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">subgraph clusterAnimalImpl &#123;</span><br><span class="line">                label = &quot;Package animal&quot;</span><br><span class="line">                //这里添加包里的模块或类图</span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        subgraph clusterAnimalImpl &#123;</span><br><span class="line">                label = &quot;Package animal&quot;</span><br><span class="line"></span><br><span class="line">                Animal [</span><br><span class="line">                label = &quot;&#123;Animal|+ name : string\l+ age : int\l|+ die() : void\l&#125;&quot;</span><br><span class="line">                ]</span><br><span class="line"></span><br><span class="line">                Dog [</span><br><span class="line">                label = &quot;&#123;Dog||+ bark() : void\l&#125;&quot;</span><br><span class="line">                ]</span><br><span class="line"></span><br><span class="line">                Cat [</span><br><span class="line">                label = &quot;&#123;Cat||+ meow() : void\l&#125;&quot;</span><br><span class="line">                ]</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210133317437.png" alt="image-20191210133317437"></p>
+<h2 id="泛化关系（继承）"><a href="#泛化关系（继承）" class="headerlink" title="泛化关系（继承）"></a>泛化关系（继承）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                </span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Animal [</span><br><span class="line">                label = &quot;&#123;Animal|+ name : string\l+ age : int\l|+ die() : void\l&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Dog [</span><br><span class="line">                label = &quot;&#123;Dog||+ bark() : void\l&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Cat [</span><br><span class="line">                label = &quot;&#123;Cat||+ meow() : void\l&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Dog -&gt; Animal [arrowhead = &quot;empty&quot;] //泛化关系</span><br><span class="line">        Cat -&gt; Animal [arrowhead = &quot;empty&quot;] //泛化关系</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210133848355.png" alt="image-20191210133848355"></p>
+<h2 id="实现关系（接口）"><a href="#实现关系（接口）" class="headerlink" title="实现关系（接口）"></a>实现关系（接口）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                </span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Animal [</span><br><span class="line">                label = &quot;&#123; 《interface》 |+ flying()&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Bat [</span><br><span class="line">                label = &quot;&#123;Dog|+ flying()&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Bat -&gt; Animal [arrowhead = &quot;empty&quot;, style=&quot;dotted&quot;] \\实现</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210140616422.png" alt="image-20191210140616422"></p>
+<h2 id="聚合关系"><a href="#聚合关系" class="headerlink" title="聚合关系"></a>聚合关系</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                </span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        公司 [</span><br><span class="line">                label = &quot;&#123; 公司&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        员工 [</span><br><span class="line">                label = &quot;&#123;员工&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        员工 -&gt; 公司 [arrowhead = odiamond] // 聚合</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210135330763.png" alt="image-20191210135330763"></p>
+<h2 id="组合关系"><a href="#组合关系" class="headerlink" title="组合关系"></a>组合关系</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                </span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        电脑 [</span><br><span class="line">                label = &quot;&#123; 电脑&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        cpu [</span><br><span class="line">                label = &quot;&#123;cpu&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        cpu -&gt; 电脑 [arrowhead = diamond] // 组合</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210135505896.png" alt="image-20191210135505896"></p>
+<h2 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                </span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        读者 [</span><br><span class="line">                label = &quot;&#123;读者&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        书 [</span><br><span class="line">                label = &quot;&#123;书&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        作者 [</span><br><span class="line">                label= &quot;&#123;作者&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        读者-&gt;书 [arrowhead = &quot;none&quot; ,headlabel = &quot;+1..*&quot;, taillabel = &quot;+1..*&quot;] // 关联</span><br><span class="line">        书-&gt;作者 [arrowhead = &quot;vee&quot; ,headlabel = &quot;+1&quot;, taillabel = &quot;+1..*&quot;] // 关联</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210140227387.png" alt="image-20191210140227387"></p>
+<h2 id="依赖关系"><a href="#依赖关系" class="headerlink" title="依赖关系"></a>依赖关系</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                </span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        动物 [</span><br><span class="line">                label = &quot;&#123;动物&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        食物 [</span><br><span class="line">                label = &quot;&#123;食物&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        动物-&gt;食物 [arrowhead = &quot;vee&quot; ,style=&quot;dotted&quot;] // 依赖</span><br><span class="line">       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210140532295.png" alt="image-20191210140532295"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/09/项目路径的设置与导入/" rel="next" title="项目路径的设置与导入">
+                <i class="fa fa-chevron-left"></i> 项目路径的设置与导入
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/kuibu.jpg" alt="huerbt">
+            
+              <p class="site-author-name" itemprop="name">huerbt</p>
+              <p class="site-description motion-element" itemprop="description">关注量化平台、python编程、机器学习</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/huerbt/huerbt.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:huerbt@126.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Graphviz-安装"><span class="nav-number">1.</span> <span class="nav-text">Graphviz 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试Graphviz"><span class="nav-number">1.1.</span> <span class="nav-text">测试Graphviz</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dot语法基础"><span class="nav-number">2.</span> <span class="nav-text">Dot语法基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制一个无向图"><span class="nav-number">2.1.</span> <span class="nav-text">绘制一个无向图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制有向图"><span class="nav-number">2.2.</span> <span class="nav-text">绘制有向图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#节点的设置"><span class="nav-number">2.3.</span> <span class="nav-text">节点的设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#边的设置"><span class="nav-number">2.4.</span> <span class="nav-text">边的设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图的设置"><span class="nav-number">2.5.</span> <span class="nav-text">图的设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些更复杂的图"><span class="nav-number">2.6.</span> <span class="nav-text">一些更复杂的图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多的形状"><span class="nav-number">2.7.</span> <span class="nav-text">更多的形状</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多箭头形状"><span class="nav-number">2.8.</span> <span class="nav-text">更多箭头形状</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的颜色"><span class="nav-number">2.9.</span> <span class="nav-text">常用的颜色</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘制类图"><span class="nav-number">3.</span> <span class="nav-text">绘制类图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述一个类"><span class="nav-number">3.1.</span> <span class="nav-text">描述一个类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制多个类"><span class="nav-number">3.1.1.</span> <span class="nav-text">绘制多个类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#描述一个包"><span class="nav-number">3.2.</span> <span class="nav-text">描述一个包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛化关系（继承）"><span class="nav-number">3.3.</span> <span class="nav-text">泛化关系（继承）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现关系（接口）"><span class="nav-number">3.4.</span> <span class="nav-text">实现关系（接口）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚合关系"><span class="nav-number">3.5.</span> <span class="nav-text">聚合关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合关系"><span class="nav-number">3.6.</span> <span class="nav-text">组合关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联关系"><span class="nav-number">3.7.</span> <span class="nav-text">关联关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖关系"><span class="nav-number">3.8.</span> <span class="nav-text">依赖关系</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huerbt</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
