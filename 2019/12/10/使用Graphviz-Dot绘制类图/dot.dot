@@ -1,3 +1,27 @@
-graph graph_name{  //无向图graph_name
-	a -- b		// 接点a 和 b 之间连线
+digraph P {
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+
+        node [
+                fontname = "Bitstream Vera Sans"
+                fontsize = 8
+                shape = "record"
+        ]
+
+        edge [
+                fontname = "Bitstream Vera Sans"
+                fontsize = 8
+                
+        ]
+
+        Animal [
+                label = "{ 《interface》 |+ flying()}"
+        ]
+
+        Bat [
+                label = "{Dog|+ flying()}"
+        ]
+
+        Bat -> Animal [arrowhead = "empty", style="dotted"]
+        
 }
