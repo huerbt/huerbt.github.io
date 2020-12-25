@@ -1,0 +1,1451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>使用GitHub和Hexo制作博客</title>
+    <url>/2020/12/25/%E4%BD%BF%E7%94%A8GitHub%E5%92%8CHexo%E5%88%B6%E4%BD%9C%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h2 id="一、Mac电脑环境准备"><a href="#一、Mac电脑环境准备" class="headerlink" title="一、Mac电脑环境准备"></a>一、Mac电脑环境准备</h2><p>参考 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a></p>
+<p>另外我使用的命令行是zsh</p>
+<ol>
+<li>下载Xcode 安装Command Line Tools（或者尝试在命令行中运行xcode-select —install）</li>
+<li>安装Git </li>
+</ol>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">brew install git</span><br></pre></td></tr></table></figure>
+<p>​    如果brew没有安装，需要先在Mac上安装Homebrew，相关内容参见我的另一篇博客《在Mac上安装Homebrew以及遇到的那些坑》</p>
+<ol>
+<li>安装Node.js</li>
+</ol>
+<p>在<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js官网</a>下载安装 （安装完成后并不能马上看出是否有问题，在后面执行npm的命令时有可能出错，可以参见具体的解决办法）</p>
+<ol>
+<li>运行命令，确保Git 和 Node.js安装</li>
+</ol>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">➜  ~ node -v</span><br><span class="line">v10.16.2</span><br><span class="line">➜  ~ npm -v</span><br><span class="line">6.9.0</span><br><span class="line">➜  ~ Git --version</span><br><span class="line">git version 2.20.1 (Apple Git-117)</span><br></pre></td></tr></table></figure>
+<p>出现版本号即表示安装完成。</p>
+<h2 id="二、安装Hexo"><a href="#二、安装Hexo" class="headerlink" title="二、安装Hexo"></a>二、安装Hexo</h2><p>在命令行中运行</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">~ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>运行上述命令之后如果出现如下报错，需要解决操作权限的问题</p>
+<ul>
+<li>报错形如：</li>
+</ul>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">npm ERR! path /Users/huyi/.npm/_cacache/index-v5/41/11</span><br><span class="line">npm ERR! code EACCES</span><br><span class="line">npm ERR! errno -13</span><br><span class="line">npm ERR! syscall mkdir</span><br><span class="line">npm ERR! Error: EACCES: permission denied, mkdir <span class="string">'/Users/huyi/.npm/_cacache/index-v5/41/11'</span></span><br><span class="line">npm ERR!  &#123; [Error: EACCES: permission denied, mkdir <span class="string">'/Users/huyi/.npm/_cacache/index-v5/41/11'</span>]</span><br><span class="line">npm ERR!   cause:</span><br><span class="line">npm ERR!    &#123; Error: EACCES: permission denied, mkdir <span class="string">'/Users/huyi/.npm/_cacache/index-v5/41/11'</span></span><br><span class="line">npm ERR!      errno: -13,</span><br><span class="line">npm ERR!      code: <span class="string">'EACCES'</span>,</span><br><span class="line">npm ERR!      syscall: <span class="string">'mkdir'</span>,</span><br><span class="line">npm ERR!      path: <span class="string">'/Users/huyi/.npm/_cacache/index-v5/41/11'</span> &#125;,</span><br><span class="line">npm ERR!   isOperational: <span class="literal">true</span>,</span><br><span class="line">npm ERR!   stack:</span><br><span class="line">npm ERR!    <span class="string">'Error: EACCES: permission denied, mkdir \'</span>/Users/huyi/.npm/_cacache/index-v5/41/11\<span class="string">''</span>,</span><br><span class="line">npm ERR!   errno: -13,</span><br><span class="line">npm ERR!   code: <span class="string">'EACCES'</span>,</span><br><span class="line">npm ERR!   syscall: <span class="string">'mkdir'</span>,</span><br><span class="line">npm ERR!   path: <span class="string">'/Users/huyi/.npm/_cacache/index-v5/41/11'</span> &#125;</span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! The operation was rejected by your operating system.</span><br><span class="line">npm ERR! It is likely you <span class="keyword">do</span> not have the permissions to access this file as the current user</span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! If you believe this might be a permissions issue, please double-check the</span><br><span class="line">npm ERR! permissions of the file and its containing directories, or try running</span><br><span class="line">npm ERR! the <span class="built_in">command</span> again as root/Administrator (though this is not recommended).</span><br></pre></td></tr></table></figure>
+<ul>
+<li>解决方法</li>
+</ul>
+<p>参考<a href="https://www.jianshu.com/p/6f2ad4e93060" target="_blank" rel="noopener">安装nodejs后，用npm安装任何东西都报错</a></p>
+<p>依次执行，如果返回值不为null，继续执行：</p>
+<p><strong>这一步很重要，一定要保证两个命令的返回值都为null,话说回来，应该出现这个错误这两个返回值有不为null的</strong></p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">npm config get proxy</span><br><span class="line">npm config get https-proxy</span><br></pre></td></tr></table></figure>
+<p>然后继续依次执行</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> proxy null</span><br><span class="line">npm config <span class="built_in">set</span> https-proxy null</span><br><span class="line">npm config <span class="built_in">set</span> registry http://registry.cnpmjs.org/</span><br></pre></td></tr></table></figure>
+<p>然后就可以了。重新安装hexo</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">~ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<h2 id="三、初始化博客目录"><a href="#三、初始化博客目录" class="headerlink" title="三、初始化博客目录"></a>三、初始化博客目录</h2><p>建议，尽可能把目录建在Mac的文稿或桌面这样的目录下，之前我建在根目录下，后来电脑出问题重装了系统，忘了备份根目录下的文件。之前写的文档就没有了。放在文稿或桌面的关键是可以更容易发现，另外可以开通iCloud在多台Mac之间同步。</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">cd</span> Documents </span><br><span class="line"><span class="comment">#创建一个存放blog的目录</span></span><br><span class="line">➜  mkdir blog</span><br><span class="line">➜  <span class="built_in">cd</span> blog</span><br><span class="line"><span class="comment"># 初始化目录</span></span><br><span class="line">➜  hexo init</span><br></pre></td></tr></table></figure>
+<p>完成运行本地服务器，查看是否可以在本地打开默认的欢迎页面</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">➜  hexo s</span><br></pre></td></tr></table></figure>
+<p>此时hexo的本地服务器运行，打开浏览器，打开 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 如果有欢迎网页，就初始化完成了。</p>
+<h2 id="四、博客的基本使用"><a href="#四、博客的基本使用" class="headerlink" title="四、博客的基本使用"></a>四、博客的基本使用</h2><h4 id="创建新的文章"><a href="#创建新的文章" class="headerlink" title="创建新的文章"></a>创建新的文章</h4><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">"输入文档的名称"</span></span><br></pre></td></tr></table></figure>
+<p>执行上述命令后，会在blog/source/_posts/ 文件夹下生成新建的文档，然后使用Markdown编辑工具编辑即可。</p>
+<h4 id="文章的分类与tag"><a href="#文章的分类与tag" class="headerlink" title="文章的分类与tag"></a>文章的分类与tag</h4><p>一篇新的文章，被创建时默认会出现如下信息</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">title: 文档的名称</span><br><span class="line">data:2019-09-14 13:40:20</span><br><span class="line">tags:</span><br></pre></td></tr></table></figure>
+<p>在tag中输入标签的关键词，多个关键词使用[keyword1,keyword2,keyword3]的形式</p>
+<p>如果想对文档归属不同的分类，在tags：另起一行输入categories:如下，如果涉及二级分类使用如下方法。其中java是一级，SpringMVC是java下的第二级。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">title: 文档的名称</span><br><span class="line">data:2019-09-14 13:40:20</span><br><span class="line">tags:</span><br><span class="line">categories:</span><br><span class="line"><span class="bullet">- </span>java</span><br><span class="line"><span class="bullet">- </span>SpringMVC</span><br></pre></td></tr></table></figure>
+<h4 id="文章的生成"><a href="#文章的生成" class="headerlink" title="文章的生成"></a>文章的生成</h4><p>在命令行中输入如下命令</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<h4 id="在本地服务器查看"><a href="#在本地服务器查看" class="headerlink" title="在本地服务器查看"></a>在本地服务器查看</h4><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>打开浏览器，打开 <a href="http://localhost:4000，进行查看。" target="_blank" rel="noopener">http://localhost:4000，进行查看。</a></p>
+<h2 id="五、关联到GitHub"><a href="#五、关联到GitHub" class="headerlink" title="五、关联到GitHub"></a>五、关联到GitHub</h2><ol>
+<li><p>在Github中创建一个仓库，创建仓库的名字必须为<strong>username.github.io</strong>，我的用户名为huerbt，因此我创建的仓库就是<strong>huerbt.github.io</strong>，这是很关键的一点，很重要。</p>
+</li>
+<li><p>cd到blog目录下，编辑_config.yml文件。我用vim编辑器编辑</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">cd</span> Documents/blog</span><br><span class="line">➜  blog ls</span><br><span class="line">_config.yml       node_modules      package.json      <span class="built_in">source</span></span><br><span class="line">db.json           package-lock.json scaffolds         themes</span><br><span class="line">➜  blog vim _config.yml</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开自己的GitHub仓库，复制自己的仓库地址</p>
+</li>
+<li><p>打开后到文档最后部分，将deploy配置如下</p>
+<p><img src="/2020/12/25/使用GitHub和Hexo制作博客/image-20191109195324606.png" alt="image-20191109195324606"></p>
+<p>注意，type：之后有个空格。</p>
+</li>
+<li><p>然后部署到GitHub Page上，输入如下命令</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>如果出现</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">ERROR Deployer not found: git</span><br></pre></td></tr></table></figure>
+<p>在命令行中运行</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>然后在重新运行 hexo d</p>
+<p>在过程中需要输入GitHub的用户名密码</p>
+</li>
+</ol>
+<h2 id="六、博客美化"><a href="#六、博客美化" class="headerlink" title="六、博客美化"></a>六、博客美化</h2><p>我选择的是next主题，更多主题可以在Hexo官网：<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a>  里查看</p>
+<ol>
+<li><p>下载主题</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">cd</span> Documents/blog</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改站点配置文件：<code>_config.yml</code>，将里面<code>76行</code>的theme由landscape修改为next</p>
+</li>
+<li><p>修改站点配置文件的的其他部分</p>
+</li>
+<li><p>修改next主题的配置文件，在blog/themes/next/_config.yml文件。建议每做一个修改就在本地服务其中运行查看，一遍找到问题所在。</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">➜  blog ls</span><br><span class="line">_config.yml       node_modules      package.json      <span class="built_in">source</span></span><br><span class="line">db.json           package-lock.json scaffolds         themes</span><br><span class="line">➜  blog <span class="built_in">cd</span> themes</span><br><span class="line">➜  themes ls</span><br><span class="line">landscape next</span><br><span class="line">➜  themes <span class="built_in">cd</span> next</span><br><span class="line">➜  next git:(master) ls</span><br><span class="line">LICENSE         _config.yml     languages       scripts</span><br><span class="line">README.cn.md    bower.json      layout          <span class="built_in">source</span></span><br><span class="line">README.md       gulpfile.coffee package.json    <span class="built_in">test</span></span><br><span class="line">➜  next git:(master)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将114行的scheme：Muse换成 Pisces</p>
+</li>
+<li><p>取消next/config.yml文件中97、98行的<code>tags</code> <code>catagories</code> <code>archive</code>前面的<code>#</code></p>
+</li>
+<li><p>需要新建一个分类和标签页面</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/blog</span><br><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>编辑刚刚新建的页面，将页面的title 和 type做如下设置</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">title: 分类</span><br><span class="line">date: 2019-08-14 14:29:37</span><br><span class="line">type: "categories"</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">title: 标签</span><br><span class="line">date: 2019-08-14 14:29:43</span><br><span class="line">type: "tags"</span><br></pre></td></tr></table></figure>
+<p>系统会自动归档分类和标签云</p>
+</li>
+<li><p>设置头像，next主题的配置文件，在blog/themes/next/_config.yml文件。修改avatar，值设置成头像的链接, 将头像放到主题目录下的 source/images/ </p>
+</li>
+<li><p>设置社交链接, next主题的配置文件，在blog/themes/next/_config.yml文件。修改</p>
+</li>
+<li><p>设置本地搜索</p>
+<ol>
+<li><p>运行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<pre><code>2. 只需要next主题配置文件将`local search` 改成`true`，站点配置文件，在extensions下面，添加内容如下：
+
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml</span><br><span class="line">  field: post</span><br><span class="line">  format: html</span><br><span class="line">  <span class="built_in">limit</span>: 10000</span><br></pre></td></tr></table></figure>
+</code></pre><ol>
+<li>设置阅读全文按钮，将next主题的配置文件，在blog/themes/next/_config.yml，主题配置文件中<code>auto_excerpt</code>开启</li>
+</ol>
+]]></content>
+      <categories>
+        <category>效率工具</category>
+        <category>安装</category>
+      </categories>
+      <tags>
+        <tag>Hexo博客</tag>
+        <tag>多标签</tag>
+        <tag>多级分类</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Docker在ubuntu下的基本操作</title>
+    <url>/2020/12/09/Docker%E5%9C%A8ubuntu%E4%B8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h2 id="为什么要使用Docker"><a href="#为什么要使用Docker" class="headerlink" title="为什么要使用Docker"></a>为什么要使用Docker</h2><p>首先假设我们有一台目标服务器，有一台开发用的电脑。我们需要在开发用的电脑上编辑代码，然后将代码运行到目标服务器上。在这个场景中随着开发不断进行，目标服务的环境很可能不与开发电脑的环境保持一致，就会造成花费更多的时间判断哪里不一致，如何保持一致。</p>
+<p>正确的做法是，在开发用的电脑上，使用docker创建一个环境进行开发，然后把环境做成镜像，上传到docker的私人仓库中，然后在目标服务器上直接下载镜像使用</p>
+<h3 id="Docker概览"><a href="#Docker概览" class="headerlink" title="Docker概览"></a>Docker概览</h3><p>Docker中包括三个基本的概念:</p>
+<ul>
+<li>Image(镜像)</li>
+<li><code>Container</code>(容器)</li>
+<li><code>Repository</code>(仓库)</li>
+</ul>
+<p>镜像是 <code>Docker</code> 运行容器的前提，仓库是存放镜像的场所，可见镜像更是 <code>Docker</code> 的核心。</p>
+<p>容器 = 镜像 + 读写层。一个容器可以被构建成镜像。</p>
+<p>镜像有多种生成方法</p>
+<ol>
+<li><p>从无到有开始创建镜像</p>
+</li>
+<li><p>下载并使用别人创建好的现成的镜像</p>
+</li>
+<li><p>在现有镜像上创建新的镜像</p>
+</li>
+</ol>
+<p>我们可以将镜像的内容和创建步骤描述在一个文本文件中，这个文件被称作 <code>Dockerfile</code> ，通过执行 <code>docker build &lt;docker-file&gt;</code> 命令可以构建出 Docker 镜像</p>
+<p>Docker命令分为管理命令、镜像命令、容器命令、仓库命令、网络命令、数据卷命令、编排命令。</p>
+<h3 id="创建私有仓库"><a href="#创建私有仓库" class="headerlink" title="创建私有仓库"></a>创建私有仓库</h3><p>在 <a href="https://hub.docker.com/" target="_blank" rel="noopener">https://hub.docker.com</a> 免费注册一个 Docker 账号（已注册huerbt)</p>
+<h3 id="登录和退出"><a href="#登录和退出" class="headerlink" title="登录和退出"></a>登录和退出</h3><p>登录需要输入用户名和密码，登录成功后，我们就可以从 docker hub 上拉取自己账号下的全部镜像。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker login</span><br></pre></td></tr></table></figure>
+<p>退出</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker <span class="built_in">logout</span></span><br></pre></td></tr></table></figure>
+<h3 id="制作一个基于Ubuntu的镜像"><a href="#制作一个基于Ubuntu的镜像" class="headerlink" title="制作一个基于Ubuntu的镜像"></a>制作一个基于Ubuntu的镜像</h3><p>有些文章说到Docker在Ubuntu下的运行效率比CentOS要高，CentOS只是启动快，我没有实际比较，就只在Ubuntu下工作就好了</p>
+<p>制作一个基于最新版的 Ubuntu 系统的开发环境, 该环境可被重复在不同项目里使用。其好处主要是快速在云服务器部署，开发测试均使用相同的环境。 该环境包含：</p>
+<pre><code> 1、Ubuntu 系统是Ubuntu 18.04
+
+ 2、vim
+
+ 3、git
+
+ 4、wget
+
+ 5、python3.5
+
+ 6、pip3
+
+ 7、支持从 requirements.txt 中安装 python 项目需要的其他库
+</code></pre><ol>
+<li><p>基础准备，拉取一个ubuntu镜像，并进入镜像的命令</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker images <span class="comment">#查看都有哪些本地镜像</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+   <figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure>
+   <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -t -i ubuntu:18.04 /bin/bash</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>备份源</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">cp /etc/apt/sources.list /etc/apt/sources.list_backup</span><br><span class="line"></span><br><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装vim、git、wget</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">apt-get install -y vim</span><br><span class="line"></span><br><span class="line">apt-get install -y git</span><br><span class="line"></span><br><span class="line">apt-get install -y wget</span><br><span class="line"></span><br><span class="line">apt install curl</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>更新源</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">vim /etc/apt/sources.list 追加为下面提供的源</span><br><span class="line"></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+<p>然后更新</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>安装python3.5、pip3 、SpaceVim</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">apt-get install -y python3.5 （命令行中输入 python3.5可运行）注意撰写此文时 Docker 安装 python3.6以上版本会造成某些 python 库不能安装，推荐用 python3.5</span><br><span class="line"></span><br><span class="line">apt-get install -y python3-pip</span><br><span class="line"></span><br><span class="line">pip3 install --upgrade pip</span><br><span class="line"></span><br><span class="line">ln -sf /usr/bin/pip3 /usr/bin/pip（直接输入 pip 即可)</span><br><span class="line"></span><br><span class="line">ln -sf /usr/bin/python3.5 /usr/bin/python（直接输入 python 即可）</span><br><span class="line">curl -sLf https://spacevim.org/cn/install.sh | bash</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>提交容器为新的镜像</p>
+<ol>
+<li><p>退出 ：先按 CTRL+p，再按 CTRL+q（这样退出系统不会被关闭）</p>
+</li>
+<li><p>查看容器 id ： </p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li><p>提交生成新的镜像（提交到本地）： </p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker commit &lt;容器 id&gt; 新的镜像名字（bujidev）</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="从requirements-txt-中安装其他需要的库"><a href="#从requirements-txt-中安装其他需要的库" class="headerlink" title="从requirements.txt 中安装其他需要的库"></a>从requirements.txt 中安装其他需要的库</h3><p>运行新提交的镜像</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -t -i bujidev /bin/bash</span><br></pre></td></tr></table></figure>
+<p>在home目录下，生成requirements.txt文件（pip freeze &gt; requirements.txt），并编辑该文件。在requirement.txt文件中撰写如下形式内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alabaster==0.7.12</span><br><span class="line">atomicwrites==1.3.0</span><br><span class="line">attrs==19.1.0</span><br><span class="line">Babel==2.6.0</span><br><span class="line">certifi==2019.3.9</span><br><span class="line">chardet==3.0.4</span><br><span class="line">coverage==4.5.3</span><br><span class="line">cycler==0.10.0</span><br><span class="line">docutils==0.14</span><br><span class="line">future==0.17.1</span><br><span class="line">greenlet==0.4.15</span><br><span class="line">idna==2.8</span><br><span class="line">imagesize==1.1.0</span><br><span class="line">Jinja2==2.10</span><br><span class="line">joblib==0.13.2</span><br><span class="line">kiwisolver==1.0.1</span><br><span class="line">Markdown==3.1</span><br><span class="line">Markups==3.0.0</span><br><span class="line">MarkupSafe==1.1.1</span><br><span class="line">matplotlib==3.0.2</span><br><span class="line">mock==3.0.5</span><br><span class="line">more-itertools==7.0.0</span><br><span class="line">mpl-finance==0.10.0</span><br><span class="line">msgpack==0.6.1</span><br><span class="line">neovim==0.3.1</span><br><span class="line">nose==1.3.7</span><br><span class="line">numexpr==2.6.9</span><br><span class="line">numpy==1.16.1</span><br><span class="line">packaging==19.0</span><br><span class="line">pandas==0.24.1</span><br><span class="line">patsy==0.5.1</span><br><span class="line">pluggy==0.9.0</span><br><span class="line">psutil==5.6.3</span><br><span class="line">py==1.8.0</span><br><span class="line">Pygments==2.3.1</span><br><span class="line">pynvim==0.3.2</span><br><span class="line">pyparsing==2.3.1</span><br><span class="line">PyQt5==5.12.1</span><br><span class="line">PyQt5-sip==4.19.15</span><br><span class="line">PySnooper==0.2.2</span><br><span class="line">pytest==4.4.1</span><br><span class="line">pytest-cov==2.6.1</span><br><span class="line">pytest-doctestplus==0.3.0</span><br><span class="line">pytest-ordering==0.6</span><br><span class="line">python-dateutil==2.8.0</span><br><span class="line">python-markdown-math==0.6</span><br><span class="line">pytz==2018.9</span><br><span class="line">requests==2.21.0</span><br><span class="line">ReText==7.0.4</span><br><span class="line">scikit-learn==0.21.2</span><br><span class="line">scipy==1.2.1</span><br><span class="line">seaborn==0.9.0</span><br><span class="line">selenium==3.141.0</span><br><span class="line">six==1.12.0</span><br><span class="line">snowballstemmer==1.2.1</span><br><span class="line">Sphinx==1.8.5</span><br><span class="line">sphinxcontrib-websupport==1.1.0</span><br><span class="line">statsmodels==0.10.0</span><br><span class="line">tables==3.5.2</span><br><span class="line">urllib3==1.24.1</span><br></pre></td></tr></table></figure>
+<p>然后运行</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+<p>完成安装。</p>
+<p>再次重复执行提交容器为镜像的操作</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="docker-run、exec和attach使用和区别"><a href="#docker-run、exec和attach使用和区别" class="headerlink" title="docker run、exec和attach使用和区别"></a>docker run、exec和attach使用和区别</h3><ul>
+<li>docker run；创建和启动一个<strong>新的容器</strong>实例，操作对象是镜像，选项较多，如果你要创建和启动一个容器，只能用run；</li>
+<li>docker exec: 在已运行的容器中，执行命令，操作对象是容器，如果你要进入已运行的容器，并且执行命令，用exec；比attach强大，可以像使用SSH登录服务器一样操作容器，一般进入容器的命令都是使用docker exec 而不是docker attach。</li>
+<li>docker attach: 同样操作的是已运行的容器，可以将本机标准输入（键盘输入）输到容器中，也可以将容器的输出显示在本机的屏幕上，如果你想查看容器运行过程中产生的标准输入输出，用attach</li>
+</ul>
+<p>进入容器</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it &lt;容器id&gt; /bin/bash</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.cnblogs.com/xhyan/p/6593075.html" target="_blank" rel="noopener">更详细的内容可以参见</a></p>
+<h3 id="关闭容器"><a href="#关闭容器" class="headerlink" title="关闭容器"></a>关闭容器</h3><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker stop &lt;容器id&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="退出Docker-容器"><a href="#退出Docker-容器" class="headerlink" title="退出Docker 容器"></a>退出Docker 容器</h3><p>输入exit 回车</p>
+<h3 id="重新进入关闭了的容器"><a href="#重新进入关闭了的容器" class="headerlink" title="重新进入关闭了的容器"></a>重新进入关闭了的容器</h3><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">docker start -i &lt;容器id&gt;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>效率工具</category>
+        <category>Docker使用</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从控制论理解app设计</title>
+    <url>/2020/03/05/%E4%BB%8E%E6%8E%A7%E5%88%B6%E8%AE%BA%E7%90%86%E8%A7%A3app%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h1 id="抽象是个啥"><a href="#抽象是个啥" class="headerlink" title="抽象是个啥"></a>抽象是个啥</h1><p>我们总是听到抽象，在编程中也非常频繁的被提及，见得多了，就会笼统的认为抽象是给数学家用的，是给牛逼的编程大神用的。我们这些只考虑应用的小人物，不用费那神。</p>
+<p>其实是还不理解抽象是个啥，最近在看数学书，也有幸听了王晓钰博士的直播。忽然觉得豁然开朗了。其实抽象非常简单也非常实用，对其在实际工作中的作用是有非常大的帮助的。</p>
+<p>抽象就我目前的理解，它不是高升晦涩的找出一个牛逼理论重压群雄，它其实就是你把已有的知识，生活经验总结一下，看看这些经验知识在什么条件下有用，默默的记下来，当你遇到类似的问题时，要么直接使用，要么做一点变换借鉴使用，仅此而已。下面我们从控制论的观点进一步说明它。</p>
+<h1 id="看一眼控制论"><a href="#看一眼控制论" class="headerlink" title="看一眼控制论"></a>看一眼控制论</h1><p><img src="/2020/03/05/从控制论理解app设计/IMG_1176.PNG" alt="IMG_1176"></p>
+<p>看一下这个王晓钰博士提供的图，这个图其实说了两件大事，第一件就是你有一个现实中的实际问题（左边蓝色），你有一些经验，但是问题有些复杂，使用你已有的哪些经验呢？这就需要你使用抽象，看看能不能找到直接对应的经验，如果没有那能不能把问题简化一些，去掉一些不是太重要的条件，然后在找找对应的经验。如果你幸运，你找到了对应的经验或一组经验的组合，然后你就相当于运用这些经验得出了一个结果，然后你要把结果施加到你的现实问题上。</p>
+<p>当然在你简化现实问题时，你可能想把问题分解成若干小一些的重要问题，化整为零各个解决，这也是抽象的过程，也可以套用上面的过程。</p>
+<p>除此以外，还有一个控制论提供的好东西叫反馈控制，简单说，就是有只奔跑的兔子，他在鹰的视野里坐标不停的变化，那老鹰如何抓住他，其实就是靠不断的反馈然后调整自己的飞行。</p>
+<h1 id="如何在app设计中使用控制论"><a href="#如何在app设计中使用控制论" class="headerlink" title="如何在app设计中使用控制论"></a>如何在app设计中使用控制论</h1><p>有了简单的抽象工具，也有了浅显的控制论思考，那他们该如何指引我做app设计呢？</p>
+<h2 id="为什么我们总失败"><a href="#为什么我们总失败" class="headerlink" title="为什么我们总失败"></a>为什么我们总失败</h2><p>这一直以来都是很困扰我的，起初我以为是我设计的产品不够新奇特，后来又觉得是功能的体验不够，经过很多年不同公司的工作，我有些绝望了。渐渐的我感觉是伪需求太多。直到我听了王晓钰博士的直播，我有些豁然开朗的感觉。</p>
+<p>第一个失败的原因确实是伪需求，我经历的产品，很多需求来源是这样一个模式，领导看到大厂有个啥功能了，然后就想是不是我们的产品也可以有这种功能呢？他们越想越兴奋就此谁也挡不住他们决心走下去的路。或者是，一个客户或者其他部门的一个重要的同事提出了一个想法，同时他们也附带说了解决方案，貌似很完美。领导想解决用户的痛点就是我们最大的价值，一个字做。</p>
+<p>仔细想一想。需求的来源其实隐含了一个假象，就是貌似我们不用思考就可以认为那些大厂的功能，以及客户或部门同事的方案都是已经被证明有效的，所以做就好了。但是我们忽视了现实中的问题是复杂的，为了一味图快，偷懒不去认真抽象思考，一次可能蒙对，但是概率不骗人，大概率你是要失败的，而且越走越远，那真的是用博尔特的速度飞奔出体育场。</p>
+<h2 id="尝试一下可能的做法"><a href="#尝试一下可能的做法" class="headerlink" title="尝试一下可能的做法"></a>尝试一下可能的做法</h2><p>1、积累一些被证明有效的控制过程，它就是你的经验库，要清楚知道这些过程的条件，适用范围甚至原理。它包含的内容可以是一种有效的交互方式（比如：一系列有效的交互过程，比如如何注册登录、如何搜索、如何排序）；也可以是有效的算法比如如何推荐内容等，总之理解熟悉它的有效性、适用范围是最重要的。</p>
+<p>2、假设你要解决的现实问题是真需求，那么你也需要做认真的抽象，抽象包括识别需求中的干扰、对抗、破坏因素是啥，如何过滤去除，这样问题变得稍微简单一些纯粹一些，然后在已有的经验库中搜索可能的解决方案，然后看看问题是否可以化整为零，变成一个个小一些的问题，每个问题在过滤去除一些干扰、对抗、破坏，再找对应的解决方案。</p>
+<p>3、完成了第二步，还不能开始就开发app了。一个app就像一个孩子，要有自己成长的客观性。不是一个孩子还没出生，家长就可以说，我家孩子必然是一个伟大的世界顶级科学家同时又是一个有千万粉丝的网红。app是为了解决问题，而不是为了解决眼球和名誉的（当然你可以说眼球和名誉就是要解决的问题，我不争论，你可以走你的路）。我们接下来要看看要解决的那些现实问题有没有基础概率，这决定了你的方向，低频次，基础概率低的就要考虑，什么方式可以扩展频次和概率，是否要放弃这个现实问题，是否要控制投入成本等等，如果这些你都想好了（我说的是客观分析，不是盲从），接下来，要把你的那些小一些的问题拿出来，看看怎么组合，这个组合比较要功力，以前总说最小可上线，什么是最小可上线，我觉的关键是，能有效指导下一步成长——即有没有好的反馈设计，帮助你调整问题，分析干扰。</p>
+<p>4、好了，分好了一次迭代的问题组，也有了对应的经验，更有了反馈机制帮助你下一步成长。可以做了。这时候，还有个问题就是你做了很多抽象，简化了问题，那么如何将数字化的结果作用到真正的业务，为了补足简化后缺失的部分，你一方面可以等下一次app迭代，同时也要考虑非app手段，也就是运营。运营并不是一上来就奔着什么热度，而是要弥补抽象的补足，帮助反馈。如果你之前对基础概率频次都有了客观的认识，结果到运营了，你就不客观了，这就扯了。这里还有一点，就是在做产品之前，也可以拿前三步的结果让运营过程检测一下。也就是产品未动运营先行。</p>
+<h1 id="总结一下"><a href="#总结一下" class="headerlink" title="总结一下"></a>总结一下</h1><p>说了这么多，看到了抽象是个好东西，控制论是个好东西、经验库是个好东西，明白了为什么会失败，也知道了一个操作的可能方式，但这都不代表你能成功，因为环节一多，需要的能力经验就要越多，需要的公司管理环境也就更要求匹配。但是仍旧很愉快，因为发展总会用时间换精度，今天学习了思考了，等到机会来临，成功也就是大概率了。</p>
+]]></content>
+      <categories>
+        <category>项目管理</category>
+        <category>设计源自</category>
+      </categories>
+      <tags>
+        <tag>设计原则</tag>
+        <tag>控制论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>预测有效性的评估方法</title>
+    <url>/2019/12/24/%E9%A2%84%E6%B5%8B%E6%9C%89%E6%95%88%E6%80%A7%E7%9A%84%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="可证实的预测能力"><a href="#可证实的预测能力" class="headerlink" title="可证实的预测能力"></a>可证实的预测能力</h1><p>问这样一个问题，你身边有没有这样的人，他们总是喜欢时不时的预测自己公司的发展、领导的决策、人员的调动、科技的发展、世界的热点等，如果有，你是如何评价他们的预测能力的？</p>
+<p>是不是做这件事你会感觉对要评价的人只有一些主观的印象，不好作出严谨客观的评价。如果这个人对一件关乎你自己很重要的事情作出预测，你愿意在多大程度上相信他呢？</p>
+<p>现在，假设有这么一群人，他们持续对各种问题做预测，他们做预测的过程总是收集资料、计算并给出预测概率、继续收集不同视角的资料、修正之前的预测概率，直到预测的结束时间到了，他们停止预测等待预测的结果，当结果出来不理想，他们分析原因总结经验，然后优化下一次预测的方法。那么你是否更愿意相信我假设的这群人的预测呢？</p>
+<p>我想应该是的，但是不久你就会陷入另一个问题。他们都很严谨，但是对同一件事任然有不同的预测结论，你应该更相信谁。如果能有一个记录表格，可以看到每个人过去预测的准确率，相信你一定更愿意相信准确率一向较高的人。</p>
+<p>这个准确率除了对你有意义，对那些给出预测的人也有意义，一方面他们可以调整自己的方法、另一方面也可以将自己的能力为更多人服务。</p>
+<p>本文将介绍几个有关预测有效性的方法，这些方法来自《超预测》这本书。在介绍这些知识之前，希望你有概率思维，即任何事都不是一定发生的，用概率来表示发生的可能性是预测过程的重要手段。</p>
+<h1 id="吻合度分析"><a href="#吻合度分析" class="headerlink" title="吻合度分析"></a>吻合度分析</h1><p>吻合度分析可以看出预测者是否自信</p>
+<h2 id="理想吻合度曲线"><a href="#理想吻合度曲线" class="headerlink" title="理想吻合度曲线"></a>理想吻合度曲线</h2><p><img src="/2019/12/24/预测有效性的评估方法/coincidence_analysis.jpg" alt="coincidence_analysis"></p>
+<p>上图描述了理想的吻合度，即，预测为预测事情有80%的概率发生，正确率为过往所有预测该事件80%会发生的日子里，有80%的日子事情真的发生了。例如天气预报，一个预报员在他预测下雨概率为70%的那些日子里，果然有70%的日子下雨了，就说预测和正确率想吻合。</p>
+<h2 id="自信、不自信的曲线"><a href="#自信、不自信的曲线" class="headerlink" title="自信、不自信的曲线"></a>自信、不自信的曲线</h2><p><img src="/2019/12/24/预测有效性的评估方法/截屏2019-12-24下午4.45.31.png" alt="截屏2019-12-24下午4.45.31"></p>
+<h1 id="布莱尔计分系统"><a href="#布莱尔计分系统" class="headerlink" title="布莱尔计分系统"></a>布莱尔计分系统</h1><p>布莱尔计分系统可以进行对预测方法的比较排名，也可以对预测人过往精确度的比较。</p>
+<p><img src="/2019/12/24/预测有效性的评估方法/formula.png" alt="formula"></p>
+<p>例子：通过预测下雨还是不下雨。</p>
+<p>预测概率和实际观察值的表格及计算</p>
+<p><img src="/2019/12/24/预测有效性的评估方法/table_bs.png" alt="table_bs"></p>
+<p><img src="/2019/12/24/预测有效性的评估方法/bs_according_to_formula.png" alt="bs_according_to_formula"></p>
+<p>假设，n个场合（n次执行）中的每一个事件只能在r个可能的类别之一中发生，上述的例子r是2，分别是下雨或不下雨，两个类别是互斥的、穷举的。预测概率f，分别是fij(i代表场合执行次数，j代表分类)，其∑f=1</p>
+<p>Eij 是实际的观察值，要么是1（代表发生），要么是0（代表没有发生）</p>
+<p>BS得分 每个类别里的所有场景求和，然后在把每个类别求和，最后的总数除以场景执行总数（每个类别执行的场景总数都是n）</p>
+<p>计算过程完整描述如下</p>
+<blockquote>
+<p>事件分类两类，下雨和 不下雨，r=2.</p>
+<p>场景一共执行了10次，n = 10 i=1，2，3，4，5，6，7，8，9，10</p>
+</blockquote>
+<p>$P=\frac{1}{10}\left((0.7-0)^{2}+(0.9-1)^{2}+\cdots+(0.3-1)^{2}+(0.1-0)^{2}+\cdots+(0.9-1)^{2}\right)=0.19$</p>
+<p>布莱尔得分越低越好，最佳预测验证得分为0.0；随机得分为0.5；最糟糕的得分2.0。</p>
+<h1 id="均值回归评估"><a href="#均值回归评估" class="headerlink" title="均值回归评估"></a>均值回归评估</h1><p>均值回归评估，可以看到预测是运气主导还是能力主导</p>
+<p>均值回归理论是检验运气对成绩的影响的必要工具。 - 预测正确率缓慢回归现象说明该活动的结果主要是能力导致。 - 预测正确率快速回归是因为运气占主导地位。均值回归是指准确率为50%。</p>
+]]></content>
+      <categories>
+        <category>预测信项目</category>
+        <category>预测评估</category>
+      </categories>
+      <tags>
+        <tag>吻合度分析</tag>
+        <tag>布莱尔分数</tag>
+        <tag>能力运气识别</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>设计模式之’工厂模式‘</title>
+    <url>/2019/12/12/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E2%80%99%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E2%80%98/</url>
+    <content><![CDATA[<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><p>工厂模式，指用一个类来创建其他类的实例，根据参数不同创建不同类的实例。</p>
+<p>工厂模式有三个递进的形式。<strong>简单工程模式，工厂方法模式，抽象工厂模式</strong></p>
+<h3 id="核心词汇"><a href="#核心词汇" class="headerlink" title="核心词汇"></a>核心词汇</h3><h2 id="为什么要使用工厂模式"><a href="#为什么要使用工厂模式" class="headerlink" title="为什么要使用工厂模式"></a>为什么要使用工厂模式</h2><p>用户想让工厂可以生产定制化的产品，客户不需要知道创建这个产品的逻辑，只需要知道这个产品的类型，使用工厂模式，让工厂针对类型生产对应的产品。好处是结构简单，便于维护管理。</p>
+<p>这里有个前提，就是这些产品都有一定的继承关系</p>
+<h2 id="为什么工厂模式有递进的三种形式"><a href="#为什么工厂模式有递进的三种形式" class="headerlink" title="为什么工厂模式有递进的三种形式"></a>为什么工厂模式有递进的三种形式</h2><p>在于产品的类型有多种或有二级分类，就要使用不同的工厂模式，它是和产品类型的复杂有关的。</p>
+<h2 id="使用工厂模式"><a href="#使用工厂模式" class="headerlink" title="使用工厂模式"></a>使用工厂模式</h2><p>用来创建产品对象的类叫<strong>工厂类</strong>，被创建的对象的类就是<strong>产品类</strong>。</p>
+<h3 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h3><p><img src="/2019/12/12/设计模式之’工厂模式‘/image-20191216094834778.jpg" alt="image-20191216094834778"></p>
+<p>简单工厂模式不易扩展，当增加新的产品类型时，需要修改判断语句，不符合“开放-封闭”原则。</p>
+<h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3><p>解决简单工厂模式不符合“开放-封闭”原则</p>
+<p><img src="/2019/12/12/设计模式之’工厂模式‘/image-20191216095128935.jpg" alt="image-20191216095128935"></p>
+<p>产品与了简单的分类，但是对多种分类或有二级分类的不适用</p>
+<h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><p>抽象工厂方式解决了工厂方法模式的问题。</p>
+<p><img src="/2019/12/12/设计模式之’工厂模式‘/image-20191216095333706.jpg" alt="image-20191216095333706"></p>
+<p><img src="/2019/12/12/设计模式之’工厂模式‘/image-20191216095514963.jpg" alt="image-20191216095514963"></p>
+<p>抽象工厂模式适合用于有多个系列且每个系列有相同分类的产品，如果实际的应用场景中确实有三级甚至更多级，建议不要使用工厂模式，直接交给每一个具体的产品类自己去创建，因为会难以维护。</p>
+]]></content>
+      <categories>
+        <category>python</category>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Graphviz Dot绘制类图</title>
+    <url>/2019/12/10/%E4%BD%BF%E7%94%A8Graphviz-Dot%E7%BB%98%E5%88%B6%E7%B1%BB%E5%9B%BE/</url>
+    <content><![CDATA[<h1 id="Graphviz-安装"><a href="#Graphviz-安装" class="headerlink" title="Graphviz 安装"></a>Graphviz 安装</h1><p>参见我的博客《使用cProfile和gprof2dot找出性能瓶颈》</p>
+<p>前提已经安装了Homebrew</p>
+<p>执行如下命名</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">brew install graphviz</span><br></pre></td></tr></table></figure>
+<h2 id="测试Graphviz"><a href="#测试Graphviz" class="headerlink" title="测试Graphviz"></a>测试Graphviz</h2><p>查看版本：</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">$ dot -V</span><br><span class="line">dot - graphviz version 2.43.0 (0)</span><br></pre></td></tr></table></figure>
+<p>用vim 创建并编辑一个文件，例如hello.dot</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph pic &#123; </span><br><span class="line">  Hello -&gt; World</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同一目录下终端运行</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">dot hello.dot -T png -o hello.png</span><br></pre></td></tr></table></figure>
+<p>就生成了一个hello.png的图片，图片如下</p>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/70.png" alt="hello.png"></p>
+<p>完成Graphviz的安装</p>
+<h1 id="Dot语法基础"><a href="#Dot语法基础" class="headerlink" title="Dot语法基础"></a>Dot语法基础</h1><p>Dot绘制两种类型的图，一个是无向图graph，另一个是有向图digraph。</p>
+<h2 id="绘制一个无向图"><a href="#绘制一个无向图" class="headerlink" title="绘制一个无向图"></a>绘制一个无向图</h2><p>以graph开头 空格 图的名称，{}中对图的内容进行描述，在描述中可以使用注释。</p>
+<p>// 单行注释</p>
+<p>/* 多行注释</p>
+<p>*/</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph graph_name&#123;  //无向图graph_name</span><br><span class="line">	a -- b		// 接点a 和 b 之间连线</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210103410644.png" alt="image-20191210103410644"></p>
+<h2 id="绘制有向图"><a href="#绘制有向图" class="headerlink" title="绘制有向图"></a>绘制有向图</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph pic &#123; </span><br><span class="line">  Hello -&gt; World</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/70.png" alt="hello.png"></p>
+<h2 id="节点的设置"><a href="#节点的设置" class="headerlink" title="节点的设置"></a>节点的设置</h2><p>DOT中，节点可以不用像有向图哪样声明，节点可以不声明直接使用。每个节点首次出现的名称做为该节点的唯一标识。</p>
+<p>节点可以设置的属性有：</p>
+<ul>
+<li>shape：</li>
+<li>label：</li>
+<li>style：</li>
+<li>color：</li>
+<li>fillcolor：</li>
+<li>rank：</li>
+</ul>
+<p>可以为节点设置默认属性，也可以单独设置一个节点的属性，甚至再次设置默认属性使得之后的节点属性改变。</p>
+<p>设置默认属性要使用  node[attribute1=value1, attribute2=value2]</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">graph node_settings &#123;</span><br><span class="line">    node [shape = &quot;box&quot;, style = &quot;filled&quot;, color = &quot;black&quot;, fillcolor = &quot;green&quot;]   //设置节点的默认形状，类型，颜色，填充颜色</span><br><span class="line">    a [shape = &quot;ellipse&quot;, color = &quot;red&quot;, label = &quot;this is a&quot;]     //设置节点a的颜色，注意默认节点类型是filled，所以这里的color只是设置a的边框颜色</span><br><span class="line">    b [label = &quot;two\nlines&quot;]   //label支持&apos;\n&apos;换行</span><br><span class="line">    a -- b</span><br><span class="line">    a -- c     //如果不需要设置c的属性，可以不用声明c而直接使用</span><br><span class="line">    node [shape = &quot;circle&quot;]</span><br><span class="line">    d [label = &quot;cicle&quot;]</span><br><span class="line">    c -- d      //d使用之前最后出现的node设置，形状为circle</span><br><span class="line">    &#123;rank = same a, d&#125;     //设置a和d在同一层</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210104634420.png" alt="image-20191210104634420"></p>
+<h2 id="边的设置"><a href="#边的设置" class="headerlink" title="边的设置"></a>边的设置</h2><p>边有有向边和无向边两种，无向边用于无向图，有向边用于有向图，不可混用。</p>
+<p>边可以设置的属性有：</p>
+<ul>
+<li>style：</li>
+<li>color：</li>
+<li>weight：</li>
+<li>label：</li>
+<li>labelfontcolor：</li>
+<li>headlabel：</li>
+<li>taillabel：</li>
+<li>arrowhead=diamond \\菱形 </li>
+<li>decorate：</li>
+<li>用n; e; s; w或者组合表示边在节点上的起止位置</li>
+</ul>
+<p>可以为边设置默认属性，也可以单独设置一个边的属性，甚至再次设置默认属性使得之后的边属性改变。</p>
+<p>设置默认属性要使用 edge[  ]</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph edge_settings &#123;</span><br><span class="line">    edge [color = &quot;green&quot;, decorate = false]        //设置边的默认属性</span><br><span class="line">    node [shape = &quot;polygon&quot;, sides = 4, color = &quot;blue&quot;]</span><br><span class="line">    a -&gt; b [style = &quot;dotted&quot;, color = &quot;red&quot;, label = &quot;a to b&quot;]  //设置style、color、label</span><br><span class="line">    b: se -&gt; c: w [headlabel = &quot;end&quot;,  taillabel = &quot;start&quot;]     //设置边从b的“东南方”出发，从c的“西方”结束，设置有向边起点和重点的label</span><br><span class="line">    edge [style = &quot;bond&quot;, decorate = true]      //设置之后的边加粗并且标签和连线之间有线标注</span><br><span class="line">    &#123;c, f&#125; -&gt; &#123;d, e&#125; [label = &quot;multi-lines&quot;]    //可以用这种方式同时画多条边</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210105312917.png" alt="image-20191210105312917"></p>
+<h2 id="图的设置"><a href="#图的设置" class="headerlink" title="图的设置"></a>图的设置</h2><p>Dot语言可以绘制有向图digraph 和 无向图graph，同时图也支持父图和子图。子图以subgraph声明开始，且必须以“cluster”作为名称开始。</p>
+<p>图可以设置的属性有：</p>
+<ul>
+<li>size：</li>
+<li>label：</li>
+<li>labelloc：</li>
+<li>labeljust：</li>
+<li>bgcolor：</li>
+<li>rankdir：指定绘图的方向，例如 rankdir=LR //从左到右绘图</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph graph_settings &#123;</span><br><span class="line">    start [shape = &quot;Mdiamond&quot;] //设置节点start的形状</span><br><span class="line">    end [shape = &quot;Msquare&quot;] // 设置节点end的形状</span><br><span class="line">    </span><br><span class="line">    subgraph cluster_sub1 &#123;  // 子图 cluster_sub1</span><br><span class="line">        label = &quot;process #1&quot;  //子图的名称</span><br><span class="line">        labelloc = &quot;t&quot;</span><br><span class="line">        bgcolor = &quot;gray55&quot;  //子图的背景颜色</span><br><span class="line">        node [style = &quot;filled&quot;, color = &quot;white&quot;] //子图中节点的默认设置</span><br><span class="line">        a0 -&gt; a1 -&gt; a2 -&gt; a3 -&gt; a0</span><br><span class="line">    &#125;</span><br><span class="line">    subgraph cluster_sub2 &#123;</span><br><span class="line">        label = &quot;process #2&quot;</span><br><span class="line">        labelloc = &quot;t&quot;</span><br><span class="line">        color = &quot;blue&quot;</span><br><span class="line">        node [style = &quot;filled&quot;, color = &quot;black&quot;, fillcolor = &quot;gray55&quot;]</span><br><span class="line">        b0 -&gt; b1 -&gt; b2 -&gt; b3</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    start -&gt; &#123;a0, b0&#125;</span><br><span class="line">    a1 -&gt; b3</span><br><span class="line">    b2 -&gt; a3</span><br><span class="line">    &#123;a3, b3&#125; -&gt; end</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210111026435.png" alt="image-20191210111026435"></p>
+<h2 id="一些更复杂的图"><a href="#一些更复杂的图" class="headerlink" title="一些更复杂的图"></a>一些更复杂的图</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph g &#123;</span><br><span class="line">    nodesep = .5;</span><br><span class="line">    rankdir = LR;    //指定绘图的方向 (LR从左到右绘制)</span><br><span class="line"></span><br><span class="line">    //定义竖直节点</span><br><span class="line">    node[shape=record, width=.1, height=.1];</span><br><span class="line">    node0[label=&quot;&lt;f0&gt; |&lt;f1&gt; |&lt;f2&gt; |&lt;f3&gt; |&lt;f4&gt; |&lt;f5&gt; |&lt;f6&gt; &quot;, height=2.5]; //我是一个属性, 我有7个属性</span><br><span class="line"></span><br><span class="line">    //定义横向节点</span><br><span class="line">    node[width=1.5];</span><br><span class="line">    node1[label=&quot;&#123;&lt;n&gt; a13 | 111 | &lt;p&gt;&#125;&quot;]; //我也是一个节点, 定义了3个属性</span><br><span class="line">    node2[label=&quot;&#123;&lt;n&gt; hello | 2387 | &lt;p&gt;&#125;&quot;];</span><br><span class="line">    node3[label=&quot;&#123;&lt;n&gt; g23 | 344 | &lt;p&gt;&#125;&quot;];</span><br><span class="line">    node4[label=&quot;&#123;&lt;n&gt; k535 | 246 | &lt;p&gt;&#125;&quot;];</span><br><span class="line">    node5[label=&quot;&#123;&lt;n&gt; h25 | 13 | &lt;p&gt;&#125;&quot;];</span><br><span class="line">    node6[label=&quot;&#123;&lt;n&gt; dj | 04 | &lt;p&gt;&#125;&quot;];</span><br><span class="line">    node7[label=&quot;&#123;&lt;n&gt; sbd | 0x543 | &lt;p&gt;&#125;&quot;];</span><br><span class="line"></span><br><span class="line">    //建立节点之间的联系</span><br><span class="line">    node0:f0 -&gt; node1:n;</span><br><span class="line">    node0:f1 -&gt; node2:n;</span><br><span class="line">    node0:f2 -&gt; node3:n;</span><br><span class="line">    node0:f5 -&gt; node4:n;</span><br><span class="line">    node0:f6 -&gt; node5:n;</span><br><span class="line">    node2:p -&gt; node6:n;</span><br><span class="line">    node4:p -&gt; node7:n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210112329425.png" alt="image-20191210112329425"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph &#123;</span><br><span class="line"></span><br><span class="line">    edge[fontname=&quot;SimSun&quot;,fontcolor=red];</span><br><span class="line">    node[fontname=&quot;SimSun&quot;,size=&quot;20,20&quot;];</span><br><span class="line"></span><br><span class="line">    北京[shape=doublecircle];</span><br><span class="line">    湘潭[shape=plaintext]</span><br><span class="line"></span><br><span class="line">    //高速公路节点关系</span><br><span class="line">    北京-&gt;石家庄-&gt;郑州-&gt;武汉-&gt;长沙-&gt;广州[label=京港澳高速,color=red];</span><br><span class="line">    北京-&gt;天津-&gt;沈阳-&gt;长春-&gt;哈尔滨[label=京哈高速,color=lawngreen];</span><br><span class="line">    北京-&gt;呼和浩特-&gt;银川-&gt;兰州-&gt;西宁-&gt;拉萨[label=京藏高速,color=purple];</span><br><span class="line">    郑州-&gt;西安-&gt;兰州-&gt;乌鲁木齐[label=连霍高速,color=blue]</span><br><span class="line">    上海-&gt;杭州-&gt;南昌-&gt;湘潭-&gt;贵阳-&gt;昆明[label=沪昆高速,color=orange];</span><br><span class="line">    福州-&gt;南昌-&gt;武汉-&gt;西安-&gt;银川[label=福银高速,color=brown];</span><br><span class="line">    湘潭-&gt;长沙[style=dotted];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210113442075.png" alt="image-20191210113442075"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph &#123;</span><br><span class="line">    huarongpass [shape=none, margin=0, fontname=&quot;SimSun&quot; label=&lt;</span><br><span class="line">        &lt;TABLE BORDER=&quot;0&quot; CELLBORDER=&quot;1&quot; CELLSPACING=&quot;0&quot; CELLPADDING=&quot;4&quot;&gt;</span><br><span class="line">            &lt;TR&gt;&lt;TD&gt;张&lt;BR/&gt;飞&lt;/TD&gt;&lt;TD COLSPAN=&quot;2&quot;&gt;曹操&lt;/TD&gt;&lt;TD&gt;马&lt;BR/&gt;超&lt;/TD&gt;&lt;/TR&gt;</span><br><span class="line">            &lt;TR&gt;</span><br><span class="line">                &lt;TD ROWSPAN=&quot;2&quot;&gt;赵&lt;BR/&gt;云&lt;/TD&gt;</span><br><span class="line">                &lt;TD COLSPAN=&quot;2&quot;&gt;关羽&lt;/TD&gt;</span><br><span class="line">                &lt;TD ROWSPAN=&quot;2&quot;&gt;黄&lt;BR/&gt;忠&lt;/TD&gt;</span><br><span class="line">            &lt;/TR&gt;</span><br><span class="line">            &lt;TR&gt;&lt;TD&gt;卒&lt;/TD&gt;&lt;TD&gt;卒&lt;/TD&gt;&lt;/TR&gt;</span><br><span class="line">            &lt;TR&gt;&lt;TD&gt;卒&lt;/TD&gt;&lt;TD COLSPAN=&quot;2&quot;&gt;&lt;/TD&gt;&lt;TD&gt;卒&lt;/TD&gt;&lt;/TR&gt;</span><br><span class="line">        &lt;/TABLE&gt;</span><br><span class="line">    &gt;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210113528942.png" alt="image-20191210113528942"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph &#123;</span><br><span class="line">    </span><br><span class="line">    ranksep=2.75; size=&quot;15,15&quot;;</span><br><span class="line">    &#123;</span><br><span class="line">        edge [fontname=&quot;SimSun&quot;, fontcolor=red];</span><br><span class="line">        //时间线</span><br><span class="line">        node [shape=plaintext, fontname=&quot;SimSun&quot;, fontsize=60];</span><br><span class="line">        &quot;高祖辈&quot;-&gt;&quot;曾祖辈&quot;-&gt;&quot;祖父辈&quot;-&gt;&quot;父辈&quot;-&gt;&quot;本人&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        rank = same;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    node [shape=box, fontname=&quot;SimSun&quot;, fontsize=60];</span><br><span class="line">    &#123; rank = same; &quot;高祖辈&quot;; &quot;孝景皇帝刘启&quot;; &quot;孝景皇后王氏&quot;; &quot;外高祖父卫父&quot;; &quot;外高祖母卫媪&quot;; &#125;</span><br><span class="line">    &#123; rank = same; &quot;曾祖辈&quot;; &quot;曾祖父世宗武皇帝刘彻&quot;; &quot;曾祖母思皇后卫子夫&quot;; &quot;外曾祖母贞君&quot;; &#125;</span><br><span class="line">    &#123; rank = same; &quot;祖父辈&quot;; &quot;祖父戾太子刘据&quot;; &quot;祖母戾后史氏&quot;; &quot;外祖父思成侯王乃始&quot;; &quot;外祖母博平君思成夫人王媪&quot;; &#125;</span><br><span class="line">    &#123; rank = same; &quot;父辈&quot;; &quot;父悼皇考刘进&quot;; &quot;母悼后王翁须&quot; &#125;</span><br><span class="line">    &#123; rank = same; &quot;本人&quot;; &quot;中宗孝宣皇帝刘询&quot; &#125;</span><br><span class="line"></span><br><span class="line">    &#123;&quot;孝景皇帝刘启&quot;, &quot;孝景皇后王氏&quot;&#125;-&gt;&quot;曾祖父世宗武皇帝刘彻&quot;;</span><br><span class="line">    &#123;&quot;外高祖父卫父&quot;, &quot;外高祖母卫媪&quot;&#125;-&gt;&quot;曾祖母思皇后卫子夫&quot;;</span><br><span class="line">    &#123;&quot;曾祖父世宗武皇帝刘彻&quot;, &quot;曾祖母思皇后卫子夫&quot;&#125;-&gt;&quot;祖父戾太子刘据&quot;;</span><br><span class="line">    &quot;外曾祖母贞君&quot;-&gt;&quot;祖母戾后史氏&quot;</span><br><span class="line">    &#123;&quot;祖父戾太子刘据&quot;, &quot;祖母戾后史氏&quot;&#125;-&gt;&quot;父悼皇考刘进&quot;;</span><br><span class="line">    &#123;&quot;外祖父思成侯王乃始&quot;, &quot;外祖母博平君思成夫人王媪&quot;&#125;-&gt;&quot;母悼后王翁须&quot;;</span><br><span class="line">    &#123;&quot;父悼皇考刘进&quot;, &quot;母悼后王翁须&quot;&#125;-&gt;&quot;中宗孝宣皇帝刘询&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210113623424.png" alt="image-20191210113623424"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph &#123;</span><br><span class="line">    </span><br><span class="line">    edge[fontname=&quot;SimSun&quot;,fontcolor=red];</span><br><span class="line">    node[fontname=&quot;SimSun&quot;,size=&quot;20,20&quot;];</span><br><span class="line"></span><br><span class="line">    subgraph cluster0 &#123;</span><br><span class="line">        color=red;</span><br><span class="line">        &quot;曹操(0)&quot;,&quot;曹丕(1)&quot;,&quot;曹叡(2)&quot;,&quot;曹髦(3)&quot;,&quot;曹芳(4)&quot;,&quot;曹奂(5)&quot;[shape=box];</span><br><span class="line">        fontname=&quot;SimSun&quot;</span><br><span class="line">        label=&quot;#1 魏国&quot;;</span><br><span class="line">        &quot;曹操(0)&quot;-&gt;&#123;&quot;曹丕(1)&quot;, &quot;曹彰&quot;, &quot;曹宇&quot;&#125;;</span><br><span class="line">        &quot;曹丕(1)&quot;-&gt;&#123;&quot;曹叡(2)&quot;, &quot;曹霖&quot;&#125;;</span><br><span class="line">        &quot;曹霖&quot;-&gt;&quot;曹髦(3)&quot;</span><br><span class="line">        &quot;曹彰&quot;-&gt;&quot;曹楷&quot;-&gt;&quot;曹芳(4)&quot;</span><br><span class="line">        &quot;曹宇&quot;-&gt;&quot;曹奂(5)&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    subgraph cluster1 &#123;</span><br><span class="line">        color=blue;</span><br><span class="line">        &quot;刘备(0)&quot;,&quot;刘禅(1)&quot;[shape=box];</span><br><span class="line">        fontname=&quot;SimSun&quot;</span><br><span class="line">        label=&quot;#2 蜀国&quot;;</span><br><span class="line">        &quot;刘备(0)&quot;-&gt;&quot;刘禅(1)&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    subgraph cluster2 &#123;</span><br><span class="line">        color=purple;</span><br><span class="line">        &quot;孙坚(0)&quot;,&quot;孙策(1)&quot;,&quot;孙权(2)&quot;,&quot;孙亮(3)&quot;,&quot;孙休(4)&quot;,&quot;孙和(5)&quot;,&quot;孙皓(6)&quot;[shape=box];</span><br><span class="line">        fontname=&quot;SimSun&quot;</span><br><span class="line">        label=&quot;#3 吴国&quot;;</span><br><span class="line">        &quot;孙坚(0)&quot;-&gt;&#123;&quot;孙策(1)&quot;,&quot;孙权(2)&quot;&#125;;</span><br><span class="line">        &quot;孙权(2)&quot;-&gt;&#123;&quot;孙和(5)&quot;,&quot;孙休(4)&quot;,&quot;孙亮(3)&quot;&#125;;</span><br><span class="line">        &quot;孙和(5)&quot;-&gt;&quot;孙皓(6)&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &quot;初代君主&quot;-&gt;&#123;&quot;曹操(0)&quot;,&quot;刘备(0)&quot;,&quot;孙坚(0)&quot;&#125;[style=dotted];</span><br><span class="line">    &#123;&quot;曹奂(5)&quot;,&quot;刘禅(1)&quot;,&quot;孙皓(6)&quot;&#125;-&gt;&quot;末代君主&quot;[style=dotted];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210113716410.png" alt="image-20191210113716410"></p>
+<h2 id="更多的形状"><a href="#更多的形状" class="headerlink" title="更多的形状"></a>更多的形状</h2><p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/451.jpeg" alt="img"></p>
+<h2 id="更多箭头形状"><a href="#更多箭头形状" class="headerlink" title="更多箭头形状"></a>更多箭头形状</h2><p>参见(<a href="https://graphviz.gitlab.io/_pages/doc/info/arrows.html" target="_blank" rel="noopener">https://graphviz.gitlab.io/_pages/doc/info/arrows.html</a>)</p>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210141021370.png" alt="image-20191210141021370"></p>
+<h2 id="常用的颜色"><a href="#常用的颜色" class="headerlink" title="常用的颜色"></a>常用的颜色</h2><p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/704.jpeg" alt="img"></p>
+<h1 id="绘制类图"><a href="#绘制类图" class="headerlink" title="绘制类图"></a>绘制类图</h1><h2 id="描述一个类"><a href="#描述一个类" class="headerlink" title="描述一个类"></a>描述一个类</h2><p>建模一个Animal类，有两个共有属性：name、age，一个公有方法：die()，作为一个简单的例子，这样足够了，建模为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Animal [</span><br><span class="line">                label = &quot;&#123;Animal|+ name : string\l+ age : int\l|+ die() : void\l&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210114307905.png" alt="image-20191210114307905"></p>
+<h3 id="绘制多个类"><a href="#绘制多个类" class="headerlink" title="绘制多个类"></a>绘制多个类</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Animal [</span><br><span class="line">                label = &quot;&#123;Animal|+ name : string\l+ age : int\l|+ die() : void\l&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Dog [</span><br><span class="line">                label = &quot;&#123;Dog||+ bark() : void\l&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Cat [</span><br><span class="line">                label = &quot;&#123;Cat||+ meow() : void\l&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210114437899.png" alt="image-20191210114437899"></p>
+<h2 id="描述一个包"><a href="#描述一个包" class="headerlink" title="描述一个包"></a>描述一个包</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">subgraph clusterAnimalImpl &#123;</span><br><span class="line">                label = &quot;Package animal&quot;</span><br><span class="line">                //这里添加包里的模块或类图</span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        subgraph clusterAnimalImpl &#123;</span><br><span class="line">                label = &quot;Package animal&quot;</span><br><span class="line"></span><br><span class="line">                Animal [</span><br><span class="line">                label = &quot;&#123;Animal|+ name : string\l+ age : int\l|+ die() : void\l&#125;&quot;</span><br><span class="line">                ]</span><br><span class="line"></span><br><span class="line">                Dog [</span><br><span class="line">                label = &quot;&#123;Dog||+ bark() : void\l&#125;&quot;</span><br><span class="line">                ]</span><br><span class="line"></span><br><span class="line">                Cat [</span><br><span class="line">                label = &quot;&#123;Cat||+ meow() : void\l&#125;&quot;</span><br><span class="line">                ]</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210133317437.png" alt="image-20191210133317437"></p>
+<h2 id="泛化关系（继承）"><a href="#泛化关系（继承）" class="headerlink" title="泛化关系（继承）"></a>泛化关系（继承）</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                </span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Animal [</span><br><span class="line">                label = &quot;&#123;Animal|+ name : string\l+ age : int\l|+ die() : void\l&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Dog [</span><br><span class="line">                label = &quot;&#123;Dog||+ bark() : void\l&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Cat [</span><br><span class="line">                label = &quot;&#123;Cat||+ meow() : void\l&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Dog -&gt; Animal [arrowhead = &quot;empty&quot;] //泛化关系</span><br><span class="line">        Cat -&gt; Animal [arrowhead = &quot;empty&quot;] //泛化关系</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210133848355.png" alt="image-20191210133848355"></p>
+<h2 id="实现关系（接口）"><a href="#实现关系（接口）" class="headerlink" title="实现关系（接口）"></a>实现关系（接口）</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                </span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Animal [</span><br><span class="line">                label = &quot;&#123; 《interface》 |+ flying()&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Bat [</span><br><span class="line">                label = &quot;&#123;Dog|+ flying()&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        Bat -&gt; Animal [arrowhead = &quot;empty&quot;, style=&quot;dotted&quot;] \\实现</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210140616422.png" alt="image-20191210140616422"></p>
+<h2 id="聚合关系"><a href="#聚合关系" class="headerlink" title="聚合关系"></a>聚合关系</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                </span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        公司 [</span><br><span class="line">                label = &quot;&#123; 公司&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        员工 [</span><br><span class="line">                label = &quot;&#123;员工&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        员工 -&gt; 公司 [arrowhead = odiamond] // 聚合</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210135330763.png" alt="image-20191210135330763"></p>
+<h2 id="组合关系"><a href="#组合关系" class="headerlink" title="组合关系"></a>组合关系</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                </span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        电脑 [</span><br><span class="line">                label = &quot;&#123; 电脑&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        cpu [</span><br><span class="line">                label = &quot;&#123;cpu&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        cpu -&gt; 电脑 [arrowhead = diamond] // 组合</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210135505896.png" alt="image-20191210135505896"></p>
+<h2 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                </span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        读者 [</span><br><span class="line">                label = &quot;&#123;读者&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        书 [</span><br><span class="line">                label = &quot;&#123;书&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        作者 [</span><br><span class="line">                label= &quot;&#123;作者&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        读者-&gt;书 [arrowhead = &quot;none&quot; ,headlabel = &quot;+1..*&quot;, taillabel = &quot;+1..*&quot;] // 关联</span><br><span class="line">        书-&gt;作者 [arrowhead = &quot;vee&quot; ,headlabel = &quot;+1&quot;, taillabel = &quot;+1..*&quot;] // 关联</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210140227387.png" alt="image-20191210140227387"></p>
+<h2 id="依赖关系"><a href="#依赖关系" class="headerlink" title="依赖关系"></a>依赖关系</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph G &#123;</span><br><span class="line">        fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">        fontsize = 8</span><br><span class="line"></span><br><span class="line">        node [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                shape = &quot;record&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        edge [</span><br><span class="line">                fontname = &quot;Bitstream Vera Sans&quot;</span><br><span class="line">                fontsize = 8</span><br><span class="line">                </span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        动物 [</span><br><span class="line">                label = &quot;&#123;动物&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        食物 [</span><br><span class="line">                label = &quot;&#123;食物&#125;&quot;</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        动物-&gt;食物 [arrowhead = &quot;vee&quot; ,style=&quot;dotted&quot;] // 依赖</span><br><span class="line">       </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/10/使用Graphviz-Dot绘制类图/image-20191210140532295.png" alt="image-20191210140532295"></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>项目路径的设置与导入</title>
+    <url>/2019/12/09/%E9%A1%B9%E7%9B%AE%E8%B7%AF%E5%BE%84%E7%9A%84%E8%AE%BE%E7%BD%AE%E4%B8%8E%E5%AF%BC%E5%85%A5/</url>
+    <content><![CDATA[<h2 id="sphinx绝对路径的写法"><a href="#sphinx绝对路径的写法" class="headerlink" title="sphinx绝对路径的写法"></a>sphinx绝对路径的写法</h2><p>当我在Mac系统下使用sphinx，修改conf.py文件时，我可以使用相对路径如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.insert(<span class="number">0</span>, os.path.abspath(<span class="string">'../../.'</span>))</span><br></pre></td></tr></table></figure>
+<p>上述的相对路径是指 ~/bujiCode/proj/Src sphinx是可以工作的。但是如果换成绝对路径就不work了。应该使用如下的绝对路径即可解决问题</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#错误示范</span></span><br><span class="line">sys.path.insert(<span class="number">0</span>, os.path.abspath(<span class="string">'~/bujiCode/proj/Src'</span>))</span><br><span class="line">sys.path.insert(<span class="number">0</span>, os.path.abspath(<span class="string">'/~/bujiCode/proj/Src'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#正确做法</span></span><br><span class="line">sys.path.insert(<span class="number">0</span>, os.path.abspath(<span class="string">'/Users/huyi/bujiCode/proj/Src'</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="环境变量的临时和永久的设置"><a href="#环境变量的临时和永久的设置" class="headerlink" title="环境变量的临时和永久的设置"></a>环境变量的临时和永久的设置</h2><h3 id="临时"><a href="#临时" class="headerlink" title="临时"></a>临时</h3><p>像上面sphinx那种在程序中使用sys.path.insert的方式，在程序退出后，环境变量即失效，这就是临时写法。</p>
+<h3 id="永久设置环境变量"><a href="#永久设置环境变量" class="headerlink" title="永久设置环境变量"></a>永久设置环境变量</h3><p>我把我的所有编程项目都放在了bujiCode这个文件夹下，我希望只要在这个文件夹下的项目在使用类似pytest测试时都不用在单独配置环境变量。</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">vim ~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>然后添加下面的语句</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PYTHONPATH=<span class="string">"Users/huyi/bujiCode/:<span class="variable">$PATHONPATH</span>"</span></span><br></pre></td></tr></table></figure>
+<p>如果使用的是bash，就修改.bashrc</p>
+<p>export 语句是用于创建自己的变量使用的。</p>
+<p>有了这个操作，sphinx的conf.py文件还是需要打开并使用临时环境变量的，但pytest就可以工作了 </p>
+]]></content>
+      <categories>
+        <category>项目管理</category>
+        <category>环境设置</category>
+      </categories>
+      <tags>
+        <tag>路径问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>项目文档写作</title>
+    <url>/2019/12/05/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3%E5%86%99%E4%BD%9C/</url>
+    <content><![CDATA[<h1 id="写作规则"><a href="#写作规则" class="headerlink" title="写作规则"></a>写作规则</h1><ul>
+<li>两步写作：先在纸上写想法，然后再审查和塑造文本</li>
+<li>定位读者：谁会读</li>
+<li>使用简单的风格：</li>
+<li>限制信息范围：一次引入一个概念</li>
+<li>使用现实中的代码示例：</li>
+<li>使用轻量且充分的方法：不要啰嗦写成一本书</li>
+<li>使用模板：帮助读者习惯</li>
+</ul>
+<h2 id="两步写作"><a href="#两步写作" class="headerlink" title="两步写作"></a>两步写作</h2><p>第一步：所有的想法都写在纸上，只考虑内容不考虑形式。与主题没有关系的写在第二张纸上。</p>
+<p>第二步：回读整个文本，对其修正，增强风格，重新组织它，并删除冗余信息。</p>
+<h2 id="定位读者"><a href="#定位读者" class="headerlink" title="定位读者"></a>定位读者</h2><p>考虑谁会读，每个文本都只有一种类型的读者。并在文档中指导不同类型读者阅读不同内容。</p>
+<h2 id="使用简单风格"><a href="#使用简单风格" class="headerlink" title="使用简单风格"></a>使用简单风格</h2><p>每一段，最多3或4个句子组成，表达一个主要思想，一个句子不要超过两行。</p>
+<h2 id="限制信息范围"><a href="#限制信息范围" class="headerlink" title="限制信息范围"></a>限制信息范围</h2><p>段落应该被聚集在有意义的标题下，标题的简单写法是思考在搜索引擎中用什么关键字可以被找到。</p>
+<h2 id="构建文档集模板"><a href="#构建文档集模板" class="headerlink" title="构建文档集模板"></a>构建文档集模板</h2><p>从作者的角度，一组可重用的模板，描述如何以及何时在项目中使用。</p>
+<p>软件项目的文档分为3类</p>
+<ul>
+<li><strong>设计</strong>：提供架构信息和底层设计信息，例如类图等。</li>
+<li><strong>用法</strong>：包括如何使用软件，可以是教程或模块级别的帮助。</li>
+<li><strong>安装</strong>：提供如何部署，升级的指南</li>
+</ul>
+<h3 id="设计文档模板"><a href="#设计文档模板" class="headerlink" title="设计文档模板"></a>设计文档模板</h3><p>目标读者是将要重用代码的开发人员</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">========================</span><br><span class="line">设计文档标题</span><br><span class="line">========================</span><br><span class="line"></span><br><span class="line">:Author: 文档作者</span><br><span class="line">:Tags: 用空格分隔的关键词</span><br><span class="line"></span><br><span class="line">:abstract:</span><br><span class="line"></span><br><span class="line">	空出一行的摘要</span><br><span class="line">.. contents ::</span><br><span class="line"></span><br><span class="line">Audience</span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">解释谁是阅读对象</span><br><span class="line"></span><br><span class="line">Content</span><br><span class="line">=======</span><br><span class="line"></span><br><span class="line">在这里写文档，可以分隔成不同部分</span><br><span class="line"></span><br><span class="line">References</span><br><span class="line">==========</span><br><span class="line"></span><br><span class="line">在这里放入引用，链接其他文档</span><br></pre></td></tr></table></figure>
+<h3 id="使用文档模板"><a href="#使用文档模板" class="headerlink" title="使用文档模板"></a>使用文档模板</h3><p>目标读者是将要重用代码的开发人员。3种主要的文件。</p>
+<ul>
+<li><strong>技巧</strong>：一个简短的的文档，解释如何做某事，并专注于一个特定的主题</li>
+<li><strong>教程</strong>：一个逐步操作的文档</li>
+<li><strong>模块助手</strong>：是一个底层文档，用于说明模块包含的内容。</li>
+</ul>
+<h4 id="技巧recipe"><a href="#技巧recipe" class="headerlink" title="技巧recipe"></a>技巧recipe</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">============</span><br><span class="line">Recipe name</span><br><span class="line">============</span><br><span class="line"></span><br><span class="line">:Author: 技巧作者</span><br><span class="line">:Tags: 用空格分隔的关键词</span><br><span class="line"></span><br><span class="line">:abstract:</span><br><span class="line"></span><br><span class="line">   简短的摘要，说明设计思路</span><br><span class="line"></span><br><span class="line">.. contents ::</span><br><span class="line"></span><br><span class="line">Audience</span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">解释谁是阅读对象</span><br><span class="line"></span><br><span class="line">Prerequisite</span><br><span class="line">============</span><br><span class="line"></span><br><span class="line">描述先决条件，比如要读其他的文档</span><br><span class="line"></span><br><span class="line">Problem</span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">解释试图解决什么问题</span><br><span class="line"></span><br><span class="line">Solution</span><br><span class="line">=========</span><br><span class="line"></span><br><span class="line">主要文本，给出解决方案。</span><br><span class="line"></span><br><span class="line">References</span><br><span class="line">==========</span><br><span class="line"></span><br><span class="line">在这里放入引用，链接其他文档</span><br></pre></td></tr></table></figure>
+<h4 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h4><p>教程和技巧有不同的目的，它不解决孤立的问题，而是描述如何逐步使用应用程序的功能，这比技巧更长，且涉及程序的许多部分。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">============</span><br><span class="line">Tutorial</span><br><span class="line">============</span><br><span class="line"></span><br><span class="line">:Author: 技巧作者</span><br><span class="line">:Tags: 用空格分隔的关键词</span><br><span class="line"></span><br><span class="line">:abstract:</span><br><span class="line"></span><br><span class="line">   简短的摘要，说明设计思路</span><br><span class="line"></span><br><span class="line">.. contents ::</span><br><span class="line"></span><br><span class="line">Audience</span><br><span class="line">========</span><br><span class="line"></span><br><span class="line">解释谁是阅读对象</span><br><span class="line"></span><br><span class="line">Prerequisite</span><br><span class="line">============</span><br><span class="line"></span><br><span class="line">描述先决条件，比如要读其他的文档</span><br><span class="line"></span><br><span class="line">Tutor</span><br><span class="line">=========</span><br><span class="line"></span><br><span class="line">主要文本，教程。</span><br><span class="line"></span><br><span class="line">References</span><br><span class="line">==========</span><br><span class="line"></span><br><span class="line">在这里放入引用，链接其他文档</span><br></pre></td></tr></table></figure>
+<h4 id="模块助手"><a href="#模块助手" class="headerlink" title="模块助手"></a>模块助手</h4><p>用Sphinx来帮助对每个模块单独分离出字符串文档，并由Sphinx来保持这部分文档的更新。</p>
+<h2 id="构建文档格局"><a href="#构建文档格局" class="headerlink" title="构建文档格局"></a>构建文档格局</h2><p>从读者的角度，能够无痛的浏览文档，并习惯于有效的查找信息。</p>
+<p><strong>proj（项目）</strong></p>
+<p>····|—data（项目数据）</p>
+<p>····|—Src（项目源）</p>
+<p>············|—package（代码-包或者模块）</p>
+<p><strong>············|—Docs（文档）</strong></p>
+<p><strong>························|—source</strong></p>
+<p><strong>···································|—design</strong> 设计文档文件夹</p>
+<p><strong>···································|—operation</strong> 部署文档文件夹</p>
+<p><strong>···································|—usage</strong> 使用文档文件夹</p>
+<p><strong>···············································|—cookbook</strong> 技巧手册文件夹</p>
+<p><strong>···············································|—modules</strong>  模块助手文件夹</p>
+<p><strong>···············································|—tutorial</strong>  教程文件夹</p>
+<h3 id="修改source目录下的index文件"><a href="#修改source目录下的index文件" class="headerlink" title="修改source目录下的index文件"></a>修改source目录下的index文件</h3><p>在index.rst文件中，在.. tortree::添加文档格局。注意usage_index是rst文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.. BTQuant documentation master file, created by</span><br><span class="line">   sphinx-quickstart on Fri Dec  6 09:21:17 2019.</span><br><span class="line">   You can adapt this file completely to your liking, but it should at least</span><br><span class="line">   contain the root `toctree` directive.</span><br><span class="line"></span><br><span class="line">Welcome to BTQuant&apos;s documentation!</span><br><span class="line">===================================</span><br><span class="line"></span><br><span class="line">.. toctree::</span><br><span class="line">   :maxdepth: 2</span><br><span class="line">   :caption: Contents:</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Indices and tables</span><br><span class="line">==================</span><br><span class="line"></span><br><span class="line">* :ref:`genindex`</span><br><span class="line">* :ref:`modindex`</span><br><span class="line">* :ref:`search`</span><br></pre></td></tr></table></figure>
+<h3 id="修改usage目录下的usage-index文件"><a href="#修改usage目录下的usage-index文件" class="headerlink" title="修改usage目录下的usage_index文件"></a>修改usage目录下的usage_index文件</h3><p>在usage_index.rst文件中，在.. tortree::添加文档。注意tutorial_index是rst文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">使用文档集</span><br><span class="line">=================================</span><br><span class="line"></span><br><span class="line">.. toctree::</span><br><span class="line">   :maxdepth: 2</span><br><span class="line">   :caption: Contents:</span><br><span class="line"></span><br><span class="line">   tutorial/tutorial_index</span><br><span class="line">   modules/modules_index</span><br><span class="line">   cookbook/cookbook_index</span><br></pre></td></tr></table></figure>
+<h4 id="修改modules-index"><a href="#修改modules-index" class="headerlink" title="修改modules_index"></a>修改modules_index</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">模块助手文档集</span><br><span class="line">=================================</span><br><span class="line"></span><br><span class="line">.. toctree::</span><br><span class="line">   :maxdepth: 2</span><br><span class="line">   :caption: Contents:</span><br><span class="line"></span><br><span class="line">   某个包比如GG/modules</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：在Sphinx的命令，其中的GG就是包名称</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">sphinx-apidoc -o <span class="built_in">source</span>/usage/modules/GG ~/Documents/proj3/Src/GG</span><br></pre></td></tr></table></figure>
+<p>另外modules是rst文件，由上面这个名称自动生成。它会链接到GG.rst文件。并可以设置maxdepth</p>
+<blockquote>
+<p> tutorial_index、cookbook_index两个文件的修改可以根据需要自行操作。<strong>注意.. toctree::一定是指向了rst文件</strong></p>
+</blockquote>
+<h3 id="修改design目录下的design-index文件"><a href="#修改design目录下的design-index文件" class="headerlink" title="修改design目录下的design_index文件"></a>修改design目录下的design_index文件</h3><p>在design_index.rst文件中，在.. tortree::添加文档</p>
+<h3 id="修改operation目录下的operation-index文件"><a href="#修改operation目录下的operation-index文件" class="headerlink" title="修改operation目录下的operation_index文件"></a>修改operation目录下的operation_index文件</h3><p>在operation_index.rst文件中，在.. tortree::添加文档</p>
+<blockquote>
+<p>注意，要是文档没有写好，先不要被.. toctree::引用，会报错。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>项目管理</category>
+        <category>文档标准</category>
+      </categories>
+      <tags>
+        <tag>文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何用reStructuredText描述类和函数</title>
+    <url>/2019/12/05/%E5%A6%82%E4%BD%95%E7%94%A8reStructuredText%E6%8F%8F%E8%BF%B0%E7%B1%BB%E5%92%8C%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="描述模块"><a href="#描述模块" class="headerlink" title="描述模块"></a>描述模块</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">"""ch01_ex01</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">A simple text-based game (script) - select a hut where Sir Foo can rest.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">This module is compatible with Python 3.5.x. It contains</span></span><br><span class="line"><span class="string">supporting code for the book, Learning Python Application Development,</span></span><br><span class="line"><span class="string">Packt Publishing.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">The is a simple command line script where the player input a hut number</span></span><br><span class="line"><span class="string">to 'enter a hut'. Depending on the occupant, the player either</span></span><br><span class="line"><span class="string">wins or loses! In the aforementioned book this is also referred to as</span></span><br><span class="line"><span class="string">"Attack of the Orcs v0.0.1". More details can be found in the relevant</span></span><br><span class="line"><span class="string">chapter of the book..</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">RUNNING THE PROGRAM:</span></span><br><span class="line"><span class="string">--------------------</span></span><br><span class="line"><span class="string">- Python 3.5.x must be installed on your system.</span></span><br><span class="line"><span class="string">- It is assumed that you have Python 3.5 available in your environment</span></span><br><span class="line"><span class="string">  variable PATH. It will be typically available as 'python' or 'python3'.</span></span><br><span class="line"><span class="string">- Here is the command to execute this code from command prompt</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        $ python ch01_ex01.py     ( OR $ python3 ch01_ex01.py)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">- See the README file for more information. Or visit python.org for OS</span></span><br><span class="line"><span class="string">  specific instructions on executing Python from a command prompt.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">TODO：</span></span><br><span class="line"><span class="string">------</span></span><br><span class="line"><span class="string">- The code comments and function descriptions in this file are</span></span><br><span class="line"><span class="string">   intentionally kept to a minimum! See a later chapter of the book to</span></span><br><span class="line"><span class="string">   learn about the code documentation and best practices!</span></span><br><span class="line"><span class="string">   Feel free to add documentation after reading that chapter.</span></span><br><span class="line"><span class="string">   Description of the code can be found in the book.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">It is quite simple to make this code compatible even with Python 2.7.9</span></span><br><span class="line"><span class="string">as follows. This is not used as this script is intended to be a very simple</span></span><br><span class="line"><span class="string">Python illustration.</span></span><br><span class="line"><span class="string"> | --------------------------------------------------------------------------</span></span><br><span class="line"><span class="string"> | For backward compatibility with Python 2.7.9</span></span><br><span class="line"><span class="string"> | Python 2.x, the built-in function 'input' is equivalent to</span></span><br><span class="line"><span class="string"> | eval(raw_input(prompt)). So we should use just raw_input instead.</span></span><br><span class="line"><span class="string"> | Also note that we are importing print_function from module __future__</span></span><br><span class="line"><span class="string"> | for the same reason (see the first line of this file)</span></span><br><span class="line"><span class="string"> | --------------------------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"><span class="meta">&gt;&gt;&gt; </span>user_input_function = None</span></span><br><span class="line"><span class="string"><span class="meta">&gt;&gt;&gt; </span>if sys.version_info &lt; (3, 0):</span></span><br><span class="line"><span class="string"><span class="meta">&gt;&gt;&gt; </span>    user_input_function = raw_input</span></span><br><span class="line"><span class="string"><span class="meta">&gt;&gt;&gt; </span>else:</span></span><br><span class="line"><span class="string"><span class="meta">&gt;&gt;&gt; </span>    user_input_function = input</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># Then call user_input_function() in places where we call input()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">:copyright: 2016, Ninad Sathaye</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">:license: The MIT License (MIT) . See LICENSE file for further details.</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<h1 id="描述函数"><a href="#描述函数" class="headerlink" title="描述函数"></a>描述函数</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">weighted_random_selection</span><span class="params">(obj1, obj2)</span>:</span></span><br><span class="line">    <span class="string">"""Randomly return one of the following, obj1 or obj2</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :arg obj1: An instance of class AbstractGameUnit. It can</span></span><br><span class="line"><span class="string">                be any object. The calling code should ensure the correct</span></span><br><span class="line"><span class="string">                object is passed to this function.</span></span><br><span class="line"><span class="string">    :arg obj2: Another instance of class AbstractGameUnit.</span></span><br><span class="line"><span class="string">                See the comment for o</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :return: obj1 or obj2</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    .. seealso: :py:func:`weighted_random_selection_alternate` which is an</span></span><br><span class="line"><span class="string">                         alternative implementation that is used to demonstrate</span></span><br><span class="line"><span class="string">                         importance of unit testing.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    weighted_list = <span class="number">3</span> * [id(obj1)] + <span class="number">7</span> * [id(obj2)]</span><br><span class="line">    selection = random.choice(weighted_list)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> selection == id(obj1):</span><br><span class="line">        <span class="keyword">return</span> obj1</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> obj2</span><br></pre></td></tr></table></figure>
+<h1 id="描述类"><a href="#描述类" class="headerlink" title="描述类"></a>描述类</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hut</span>:</span></span><br><span class="line">    <span class="string">"""Class to create hut objects in the game Attack of the Orcs</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :arg int number: Hut number to be assigned</span></span><br><span class="line"><span class="string">    :arg AbstractGameUnit occupant: The new occupant of the Hut</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :ivar int number: A number assigned to this hut</span></span><br><span class="line"><span class="string">    :ivar boolean is_acquired: A boolean flag to indicate if the</span></span><br><span class="line"><span class="string">                   hut is acquired. In the current implementation</span></span><br><span class="line"><span class="string">                   this is viewed from the player's perspective.</span></span><br><span class="line"><span class="string">    :ivar AbstractGameUnit occupant: The occupant of this hut.</span></span><br><span class="line"><span class="string">                   Needs to be an instance of the subclass of</span></span><br><span class="line"><span class="string">                  `AbstractGameUnit`.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    .. seealso:: Where it is used --</span></span><br><span class="line"><span class="string">            :py:meth:`attackoftheorcs.AttackOfTheOrcs.setup_game_scenario`</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, number, occupant)</span>:</span></span><br><span class="line">        self.occupant = occupant</span><br><span class="line">        self.number = number</span><br><span class="line">        self.is_acquired = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">acquire</span><span class="params">(self, new_occupant)</span>:</span></span><br><span class="line">        <span class="string">"""Update the occupant of this hut and set is_acquired flag.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Update the occupant instance variable with the parameter new_occupant</span></span><br><span class="line"><span class="string">        and set the is_acquired flag to True.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :arg new_occupant: self.occupant will be updated with this parameter</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        .. todo:: In the current implementation this is supposed to be</span></span><br><span class="line"><span class="string">                  called only by the `Knight` instance (everything from the</span></span><br><span class="line"><span class="string">                  player context. A generalization is to allow anyone to</span></span><br><span class="line"><span class="string">                  'acquire' the hut! In that case, the client code</span></span><br><span class="line"><span class="string">                  should properly interpret meaning of `is_acquired` flag!</span></span><br><span class="line"><span class="string">                  Otherwise it will be a bug! As an exercise, write a unit test</span></span><br><span class="line"><span class="string">                  to catch this and/or make the calling code robust.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.occupant = new_occupant</span><br><span class="line">        self.is_acquired = <span class="literal">True</span></span><br><span class="line">        print_bold(<span class="string">"GOOD JOB! Hut %d acquired"</span> % self.number)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_occupant_type</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""Return a string giving info on occupant type.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Used only for the printing information on who is present in the hut</span></span><br><span class="line"><span class="string">        the information it will return depends on the occupant and can be</span></span><br><span class="line"><span class="string">        one of these strings: 'enemy', 'friend', 'ACQUIRED', 'unoccupied'</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        The logic is as follows: If the hut.occupant is one of the game</span></span><br><span class="line"><span class="string">        characters, it will simply retrieve this info from that instance.</span></span><br><span class="line"><span class="string">        Otherwise determine whether it is acquired or unoccupied.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        :return: A string representing the occupant type</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        .. seealso: :py:meth:`attackoftheorcs.AttackOfTheOrcs.get_occupants`</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> self.is_acquired:</span><br><span class="line">            occupant_type = <span class="string">'ACQUIRED'</span></span><br><span class="line">        <span class="keyword">elif</span> self.occupant <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            occupant_type = <span class="string">'unoccupied'</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            occupant_type = self.occupant.unit_type</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> occupant_type</span><br></pre></td></tr></table></figure>
+<h1 id="文档字符串常用特征"><a href="#文档字符串常用特征" class="headerlink" title="文档字符串常用特征"></a>文档字符串常用特征</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:param</td>
+<td>参数描述</td>
+</tr>
+<tr>
+<td>:arg</td>
+<td>用来描述输入参数</td>
+</tr>
+<tr>
+<td>:key</td>
+<td>关键字描述</td>
+</tr>
+<tr>
+<td>:type</td>
+<td>可以使用另一种语法描述形参或实参类型。:param type param_name: description</td>
+</tr>
+<tr>
+<td>:ivar或者:var</td>
+<td>任何变量的描述。通常用于实例变量的描述</td>
+</tr>
+<tr>
+<td>:vartype</td>
+<td>变量类型描述</td>
+</tr>
+<tr>
+<td>:py:meth:  :py:func:  :py:class:  :py:attr:</td>
+<td>用来交叉引用python函数、类、属性的方法例如。:py:meth:`MyClassA.method_a 反引号</td>
+</tr>
+<tr>
+<td>.. code::</td>
+<td>包含任何示例代码</td>
+</tr>
+<tr>
+<td>.. todo::</td>
+<td>列出TODO事项</td>
+</tr>
+<tr>
+<td>.. note::</td>
+<td>记录有价值的东西</td>
+</tr>
+<tr>
+<td>.. warning::</td>
+<td>警告信息会被渲染成浅红色背景</td>
+</tr>
+<tr>
+<td>.. seealso::</td>
+<td>引用其他内容</td>
+</tr>
+</tbody>
+</table>
+</div>
+]]></content>
+      <categories>
+        <category>项目管理</category>
+        <category>文档标准</category>
+      </categories>
+      <tags>
+        <tag>文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>reStructuredText入门</title>
+    <url>/2019/12/04/reStructuredText%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<h1 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h1><p>段落是reST文档中最基本的块。段落只是由一个或多个空白行分隔的文本块。与Python中一样，缩进在reST中很重要，因此同一段落的所有行都必须左对齐到相同的缩进级别。</p>
+<h1 id="内联标记"><a href="#内联标记" class="headerlink" title="内联标记"></a>内联标记</h1><p>标准的reST内联标记非常简单：成对使用</p>
+<ul>
+<li>一个星号：<code>*text*</code>强调（斜体），</li>
+<li>两个星号：<code>**text**</code>强调（粗体），</li>
+<li>反引号：<code>text</code>用于代码示例。( `` )</li>
+</ul>
+<h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><p>开头放置一个星号，然后正确缩进即可。编号列表也是如此。它们也可以使用<code>#</code>符号自动编号：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* This is a bulleted list.</span><br><span class="line">* It has two items, the second</span><br><span class="line">  item uses two lines.</span><br><span class="line"></span><br><span class="line">1. This is a numbered list.</span><br><span class="line">2. It has two items too.</span><br><span class="line"></span><br><span class="line">#. This is a numbered list.</span><br><span class="line">#. It has two items too.</span><br></pre></td></tr></table></figure>
+<p>嵌套列表是可能的，但请注意，它们必须与父列表项之间用空白行分隔：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* this is</span><br><span class="line">* a list</span><br><span class="line"></span><br><span class="line">  * with a nested list</span><br><span class="line">  * and some subitems</span><br><span class="line"></span><br><span class="line">* and here the parent list continues</span><br></pre></td></tr></table></figure>
+<h1 id="文字块"><a href="#文字块" class="headerlink" title="文字块"></a>文字块</h1><p>文字块通过以特殊标记结尾的段落来引入<code>::</code>。文字块必须缩进（并且与所有段落一样，其周围用空行分隔）：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">This is a normal text paragraph. The next paragraph is a code sample::</span><br><span class="line"></span><br><span class="line">   It is not processed in any way, except</span><br><span class="line">   that the indentation is removed.</span><br><span class="line"></span><br><span class="line">   It can span multiple lines.</span><br><span class="line"></span><br><span class="line">This is a normal text paragraph again.</span><br></pre></td></tr></table></figure>
+<p>注意使用 :: 标记</p>
+<h1 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h1><p>代码块通过以特殊标记结尾的段落来引入<code>::</code>，代码块内容需要缩进，且第一行要空行。</p>
+<h1 id="文档测试块"><a href="#文档测试块" class="headerlink" title="文档测试块"></a>文档测试块</h1><p>可以用来在文档中运行测试的块，文档测试块必须以一个空行结束并且应当<em>不</em>与一个未使用的提示结束：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; 1 + 1</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><p>必须自己“绘制”单元格网格。他们看起来像这样：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">+------------------------+------------+----------+----------+</span><br><span class="line">| Header row, column 1   | Header 2   | Header 3 | Header 4 |</span><br><span class="line">| (header rows optional) |            |          |          |</span><br><span class="line">+========================+============+==========+==========+</span><br><span class="line">| body row 1, column 1   | column 2   | column 3 | column 4 |</span><br><span class="line">+------------------------+------------+----------+----------+</span><br><span class="line">| body row 2             | ...        | ...      |          |</span><br><span class="line">+------------------------+------------+----------+----------+</span><br></pre></td></tr></table></figure>
+<p>还有一个简单的写法，但有局限性：它们必须包含多个行，并且第一列单元格不能包含多行。他们看起来像这样：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">=====  =====  =======</span><br><span class="line">A      B      A and B</span><br><span class="line">=====  =====  =======</span><br><span class="line">False  False  False</span><br><span class="line">True   False  False</span><br><span class="line">False  True   False</span><br><span class="line">True   True   True</span><br><span class="line">=====  =====  =======</span><br></pre></td></tr></table></figure>
+<h1 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h1><h2 id="外部链接"><a href="#外部链接" class="headerlink" title="外部链接"></a>外部链接</h2><p>Link text <a href="https://domain.invalid/" target="_blank" rel="noopener">https://domain.invalid/</a></p>
+<blockquote>
+<p>重要：链接文本和URL的开头&lt;之间必须有一个空格。 链接被&lt; &gt;包围</p>
+</blockquote>
+<h2 id="内部链接"><a href="#内部链接" class="headerlink" title="内部链接"></a>内部链接</h2><p>使用reST的角色（Role）交叉引用</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.. _my-reference-label:</span><br><span class="line"></span><br><span class="line">Section to cross-reference</span><br><span class="line">--------------------------</span><br><span class="line"></span><br><span class="line">This is the text of the section.</span><br><span class="line"></span><br><span class="line">It refers to the section itself, see :ref:`my-reference-label`.</span><br></pre></td></tr></table></figure>
+<p>见第8行</p>
+<h1 id="章节"><a href="#章节" class="headerlink" title="章节"></a>章节</h1><p>通过使用标点符号对节标题加下划线（或可选地加底划线）来创建节标题，该节标题至少与文本一样长：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">=================</span><br><span class="line">This is a heading</span><br><span class="line">=================</span><br></pre></td></tr></table></figure>
+<p>通常，由于结构是根据标题的顺序确定的,<a href="https://docs.python.org/devguide/documenting.html#style-guide" target="_blank" rel="noopener">Python的样式指南中用于记录</a>要遵循的顺序</p>
+<ul>
+<li><code>#</code> 带有上划线， for parts</li>
+<li><code>*</code> 带有上划线，for chapters</li>
+<li><code>=</code>，for sections</li>
+<li><code>-</code>，for subsections</li>
+<li><code>^</code>，for subsubsections</li>
+<li><code>&quot;</code>，for paragraphs</li>
+</ul>
+<h1 id="Field-lists-字段列表"><a href="#Field-lists-字段列表" class="headerlink" title="Field lists 字段列表"></a>Field lists 字段列表</h1><p>主要用在函数、类的参数返回值的描述，其格式如：:fieldname: Field content</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_function</span><span class="params">(my_arg, my_other_arg)</span>:</span></span><br><span class="line">    <span class="string">"""A function just for me.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :param my_arg: The first of my arguments.</span></span><br><span class="line"><span class="string">    :param my_other_arg: The second of my arguments.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    :returns: A message (just for me, of course).</span></span><br><span class="line"><span class="string">    """</span></span><br></pre></td></tr></table></figure>
+<p>如第4行到第7行。</p>
+<h1 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h1><p>是Sphinx提供的语义标记。它的通用格式语法为   <strong>:rolename:<code>content</code></strong></p>
+<p>角色可用来交叉引用、数学公式、其他</p>
+<h2 id="交叉引用"><a href="#交叉引用" class="headerlink" title="交叉引用"></a>交叉引用</h2><h3 id="交叉引用任何东西"><a href="#交叉引用任何东西" class="headerlink" title="交叉引用任何东西"></a>交叉引用任何东西</h3><p><strong>:any:</strong>任何目标</p>
+<p><strong>:ref:</strong>如果将标签直接放在节标题之前，则可以使用进行引用<code>:ref:</code>label-name``。例如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.. _my-reference-label:</span><br><span class="line"></span><br><span class="line">Section to cross-reference</span><br><span class="line">--------------------------</span><br><span class="line"></span><br><span class="line">This is the text of the section.</span><br><span class="line"></span><br><span class="line">It refers to the section itself, see :ref:`my-reference-label`.</span><br></pre></td></tr></table></figure>
+<p>见第一行，就是标签，放在了第3行之前，然后可以在第8行引用</p>
+<h3 id="交叉引用对象"><a href="#交叉引用对象" class="headerlink" title="交叉引用对象"></a>交叉引用对象</h3><h4 id="交叉引用Python对象"><a href="#交叉引用Python对象" class="headerlink" title="交叉引用Python对象"></a>交叉引用Python对象</h4><p>以下角色引用模块中的对象，如果找到匹配的标识符，则可能具有超链接：</p>
+<ul>
+<li><p><code>:py:mod:</code></p>
+<p>引用一个模块；可以使用点名。这也应用于程序包名称。</p>
+</li>
+<li><p><code>:py:func:</code></p>
+<p>引用Python函数；可以使用点名。角色文本不必包含尾括号以提高可读性；如果<a href="http://www.sphinx-doc.org/en/master/usage/configuration.html#confval-add_function_parentheses" target="_blank" rel="noopener"><code>add_function_parentheses</code></a>配置值为<code>True</code>（默认值），它们将由Sphinx自动添加。</p>
+</li>
+<li><p><code>:py:data:</code></p>
+<p>引用模块级变量。</p>
+</li>
+<li><p><code>:py:const:</code></p>
+<p>引用一个“定义的”常量。这可能是不希望更改的Python变量。</p>
+</li>
+<li><p><code>:py:class:</code></p>
+<p>引用一个类；可以使用点名。</p>
+</li>
+<li><p><code>:py:meth:</code></p>
+<p>引用对象的方法。角色文本可以包括类型名称和方法名称；如果它出现在类型的描述中，则可以省略类型名称。可以使用点名。</p>
+</li>
+<li><p><code>:py:attr:</code></p>
+<p>引用对象的数据属性。</p>
+</li>
+<li><p><code>:py:exc:</code></p>
+<p>引用一个异常。可以使用点名。</p>
+</li>
+<li><p><code>:py:obj:</code></p>
+<p>引用未指定类型的对象。</p>
+</li>
+</ul>
+<h3 id="交叉引用文件"><a href="#交叉引用文件" class="headerlink" title="交叉引用文件"></a>交叉引用文件</h3><p>一种直接链接到文档的方法：</p>
+<p><strong>:doc:</strong> 链接到指定文件，可以以绝对或相对方式指定文档名称</p>
+<p><strong>:download:</strong>引用下载的文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">See :download:`this example script &lt;../example.py&gt;`.</span><br></pre></td></tr></table></figure>
+<h2 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h2><p><strong>:math:</strong>数学公式，区别于数学指令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Since Pythagoras, we know that :math:`a^2 + b^2 = c^2`.</span><br></pre></td></tr></table></figure>
+<p>数学指令是指 形如  <strong>.. math::</strong>，使用数学指令需要在数学公式前和公式后留一个空格。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.. math::</span><br><span class="line">   ax^3+bx^2+cx+b=0</span><br></pre></td></tr></table></figure>
+<p>即在a前面和0后面要有空格。</p>
+<h1 id="显式标记"><a href="#显式标记" class="headerlink" title="显式标记 .."></a>显式标记 ..</h1><p>用于大多数需要特殊处理的构造，例如脚注，特别突出显示的段落，注释和<strong>通用指令</strong>。</p>
+<p>显式标记块以<code>..</code>空格开头的行开头，并以相同的缩进级别由下一段终止。例如上面的数学指令。</p>
+<h1 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h1><p>它是reST的扩展机制之一，Sphinx大量使用了它。<a href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html" target="_blank" rel="noopener">参考</a></p>
+<p>指令的使用语法  ..  指令  ::</p>
+<h3 id="Admonitions（告诫类指令）"><a href="#Admonitions（告诫类指令）" class="headerlink" title="Admonitions（告诫类指令）"></a>Admonitions（告诫类指令）</h3><p><a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#attention" target="_blank" rel="noopener">attention</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#caution" target="_blank" rel="noopener">caution</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#danger" target="_blank" rel="noopener">danger</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#error" target="_blank" rel="noopener">error</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#hint" target="_blank" rel="noopener">hint</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#important" target="_blank" rel="noopener">important</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#note" target="_blank" rel="noopener">note</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#tip" target="_blank" rel="noopener">tip</a>, <a href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#warning" target="_blank" rel="noopener">warning</a> </p>
+<p>注意、小心、危险、错误、提示、重要、记录、提示、警告</p>
+<h3 id="图片类指令"><a href="#图片类指令" class="headerlink" title="图片类指令"></a>图片类指令</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.. image :: picture.png</span><br></pre></td></tr></table></figure>
+<p>还可以设置图像选项。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.. image:: picture.jpeg</span><br><span class="line">   :height: 100px</span><br><span class="line">   :width: 200 px</span><br><span class="line">   :scale: 50 %</span><br><span class="line">   :alt: alternate text</span><br><span class="line">   :align: right</span><br></pre></td></tr></table></figure>
+<p>其中scale是比例，alt是替代文字，align是对其方式</p>
+<h3 id="Additional-body-elements（传统body元素类指令）"><a href="#Additional-body-elements（传统body元素类指令）" class="headerlink" title="Additional body elements（传统body元素类指令）"></a>Additional body elements（传统body元素类指令）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.. contents::</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>项目管理</category>
+        <category>文档标准</category>
+      </categories>
+      <tags>
+        <tag>文档</tag>
+        <tag>reStructuredText</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>项目文档化标准操作</title>
+    <url>/2019/12/04/%E9%A1%B9%E7%9B%AE%E6%96%87%E6%A1%A3%E5%8C%96%E6%A0%87%E5%87%86%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h1 id="构建项目目录结构"><a href="#构建项目目录结构" class="headerlink" title="构建项目目录结构"></a>构建项目目录结构</h1><p><strong>proj（项目）</strong></p>
+<p>····|—data（项目数据）</p>
+<p>····|—Src（项目源）</p>
+<p>············|—Docs（文档）</p>
+<p>············|—package（代码-包或者模块）</p>
+<h1 id="使用Sphinx生成文档"><a href="#使用Sphinx生成文档" class="headerlink" title="使用Sphinx生成文档"></a>使用Sphinx生成文档</h1><p>Sphinx 是一个python事实上的标准文档生成工具。</p>
+<p><a href="http://www.sphinx-doc.org/en/master/contents.html" target="_blank" rel="noopener">官方参考文档</a></p>
+<h2 id="安装Sphinx"><a href="#安装Sphinx" class="headerlink" title="安装Sphinx"></a>安装Sphinx</h2><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pip install -U sphinx</span><br></pre></td></tr></table></figure>
+<h2 id="安装语法高亮"><a href="#安装语法高亮" class="headerlink" title="安装语法高亮"></a>安装语法高亮</h2><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pip install pygments</span><br></pre></td></tr></table></figure>
+<h2 id="运行sphinx-quickstart"><a href="#运行sphinx-quickstart" class="headerlink" title="运行sphinx-quickstart"></a>运行sphinx-quickstart</h2><p>按上面的目录结构，进入到Docs目录下</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> proj/Src/Docs</span><br><span class="line">sphinx-quickstart</span><br></pre></td></tr></table></figure>
+<p>对提示的问题进行回答，默认都选<strong>y</strong>，语言选择<strong>zh_CN</strong>。然后看到在Docs目录下多出了source目录和build目录。</p>
+<h2 id="更新conf-py"><a href="#更新conf-py" class="headerlink" title="更新conf.py"></a>更新conf.py</h2><p>在source目录下，编辑conf.py文件</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> proj/Src/Docs/<span class="built_in">source</span></span><br><span class="line">vim conf.py</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改sys.path路径，先在头部去掉<strong>注释#</strong>，并按<strong>../../.</strong>加入路径。该路径是让sphinx能够导入源码中的package或者模块用的。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.insert(<span class="number">0</span>, os.path.abspath(<span class="string">'../../.'</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>扩展autodoc</p>
+<p>在conf.py文件的extensions列表中，加入扩展，最终形式如下：</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">extensions = [<span class="string">'sphinx.ext.autodoc'</span>,<span class="string">'sphinx.ext.todo'</span>,<span class="string">'sphinx.ext.viewcode'</span>,<span class="string">'sphinx.ext.graphviz'</span>,<span class="string">'sphinx.ext.mathjax'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改模板</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">html_theme = <span class="string">'bizstyle'</span></span><br><span class="line">html_show_sourcelink = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">pygments_style = <span class="string">'sphinx'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>其他</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">source_suffix = [<span class="string">'.rst'</span>, <span class="string">'.md'</span>]</span><br><span class="line">todo_include_todos = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>中文搜索 结巴分词安装与设置</p>
+<ul>
+<li><p>参见(<a href="https://www.jianshu.com/p/354106f89a04" target="_blank" rel="noopener">https://www.jianshu.com/p/354106f89a04</a>)</p>
+</li>
+<li><p>安装结巴分词</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pip install jieba</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>设置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Language to be used for generating the HTML full-text search index.</span></span><br><span class="line">html_search_language = <span class="string">'zh'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># A dictionary with options for the search language support, empty by default.</span></span><br><span class="line">html_search_options = &#123;<span class="string">'dict'</span>: <span class="string">'user_dict'</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>config.py</code>的同级目录创建<code>user_dict</code>文件，<code>user_dict</code>格式如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 格式说明, 一个词占一行；每一行分三部分：词语、词频（可省略）、词性（可省略），用空格隔开，顺序不可颠倒。</span><br><span class="line"># 详见 https://github.com/fxsjy/jieba</span><br><span class="line">择时</span><br><span class="line">选股</span><br><span class="line">因子</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a href="http://www.sphinx-doc.org/en/master/usage/configuration.html" target="_blank" rel="noopener">更多配置参见</a></p>
+<h2 id="修改index-rst"><a href="#修改index-rst" class="headerlink" title="修改index.rst"></a>修改index.rst</h2><p>在source目录下，编辑index.rst文件，增加第13行的modules。这样就在首页里添加了模块或package的引用。以后自动更新即可。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">.. proj3 documentation master file, created by</span><br><span class="line">   sphinx-quickstart on Wed Dec  <span class="number">4</span> <span class="number">13</span>:<span class="number">24</span>:<span class="number">21</span> <span class="number">2019.</span></span><br><span class="line">   You can adapt this file completely to your liking, but it should at least</span><br><span class="line">   contain the root `toctree` directive.</span><br><span class="line"></span><br><span class="line">Welcome to proj3<span class="string">'s documentation!</span></span><br><span class="line"><span class="string">=================================</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">.. toctree::</span></span><br><span class="line"><span class="string">   :maxdepth: 2</span></span><br><span class="line"><span class="string">   :caption: Contents:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">   modules</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Indices and tables</span></span><br><span class="line"><span class="string">==================</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">* :ref:`genindex`</span></span><br><span class="line"><span class="string">* :ref:`modindex`</span></span><br><span class="line"><span class="string">* :ref:`search`</span></span><br></pre></td></tr></table></figure>
+<h2 id="运行sphinx-apidoc"><a href="#运行sphinx-apidoc" class="headerlink" title="运行sphinx-apidoc"></a>运行sphinx-apidoc</h2><p>在package文件夹中写好模块以及文档字符串，要按照reStructureText的语法写。</p>
+<p>然后在Docs目录下运行命令</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> proj/Src/Docs/</span><br><span class="line">sphinx-apidoc -o <span class="built_in">source</span>/ ~/Documents/proj/Src</span><br></pre></td></tr></table></figure>
+<p>第一个参数 -O source/ 是指定生成的rst文件存放的位置，这个必须在source文件夹下。</p>
+<p>第二个参数是源程序的位置，里面的~/Documents要根据实际目录修改。</p>
+<blockquote>
+<p>如果指定生成的rst文件想放到source目录下的二级目录，比如source/package_name/。</p>
+<p>首先要修改index.rst，把原来的modules改成<strong>package_name/modules</strong></p>
+<p>然后运行sphinx-apidoc -o <strong>source/package_name</strong> ~/Documents/proj/Src</p>
+</blockquote>
+<h2 id="生成文档"><a href="#生成文档" class="headerlink" title="生成文档"></a>生成文档</h2><p>在Docs目录下生成文档</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">make html</span><br></pre></td></tr></table></figure>
+<p>然后到build文件夹下找到index.html，打开即可查看。</p>
+<h1 id="丰富rst文件以及自动更新"><a href="#丰富rst文件以及自动更新" class="headerlink" title="丰富rst文件以及自动更新"></a>丰富rst文件以及自动更新</h1><p>假设我们有名为GG的package，在运行sphinx-apidoc文件后，会在source下生成一个GG.rst文件，这个文件就是我们用来丰富内容的地方，在这里我们可以使用reStructureText的语法修改文档，当源程序中的代码修改了文档字符串，再次运行sphinx-apidoc也不会影响之前丰富的内容。</p>
+<p>关于reStructureText支持的功能可以参考如下链接</p>
+<p><a href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html" target="_blank" rel="noopener">reStructureText英文介绍索引</a></p>
+<p><a href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html" target="_blank" rel="noopener">reStructureText入门 英文介绍</a></p>
+]]></content>
+      <categories>
+        <category>项目管理</category>
+        <category>文档标准</category>
+      </categories>
+      <tags>
+        <tag>文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>设计模式之’策略模式‘</title>
+    <url>/2019/11/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E2%80%99%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E2%80%98/</url>
+    <content><![CDATA[<h1 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h1><p>策略模式作为一种软件设计模式，指对象有某个行为，但是在不同的场景中，该行为有不同的实现算法，把这些不同的算法作为一个个独立的策略对象，进行调用和切换。</p>
+<h3 id="核心词汇"><a href="#核心词汇" class="headerlink" title="核心词汇"></a>核心词汇</h3><p>策略切换、能力（行为）策略组</p>
+<h2 id="为什么要使用策略模式"><a href="#为什么要使用策略模式" class="headerlink" title="为什么要使用策略模式"></a>为什么要使用策略模式</h2><p>为了解释，我们假想有这么一个游戏，它有四种角色，分别是骑士、侏儒、仙女、敌人，他们可以拥有移动、跳跃、攻击这样的技能。但是每个角色在移动、跳跃、攻击上都有自己的不同方法。程序最初有一个角色父类，父类定义了移动、跳跃、攻击等各种角色都有的方法。如果不使用任何设计模式，最直接的想法，就是每个子类单独重写这些方法，以获得独特的能力，当然这样可以解决问题，但是随着日后程序的扩展，角色增加了、能力变化了都会带来巨大的代码维护工作。</p>
+<p>而策略模式可以把每个能力单独作为一个对象存在，方便角色对象调用和切换，而因为将同类型的每个能力对象组成一组，也减少了维护的难度。</p>
+<p>以角色具有的跳跃能力来具体说明。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>能力（行为）均指跳跃</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>骑士</td>
+<td>通过马跳跃</td>
+</tr>
+<tr>
+<td>侏儒</td>
+<td>不能跳跃</td>
+</tr>
+<tr>
+<td>仙女</td>
+<td>超能力的跳跃</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>建立一个类叫做JumpStrategy，他是所有不同跳跃形式的父类，该类中有个方法叫jump()，然后骑士的跳跃策略、侏儒的跳跃策略、仙女的跳跃策略都单独成为三个类，并继承JumpStrategy。形成了一组策略，当然移动、攻击等能力也可参照其方法。</p>
+<blockquote>
+<p>我最初有个疑问，既然侏儒不能跳跃，侏儒的代码里不写这个jump的方法不就可以了。这里要注意侏儒是继承了角色父类的，这个父类假设有一个监听键盘按键的方法，虽然你没有写侏儒的jump方法，但是他也会激活jump的行为。</p>
+</blockquote>
+<p>有了这些策略组，下一步就是在角色父类中引入JumpStrategy，并在角色实例化的时候指定指向那个jump策略。并且可以通过角色实例的对应方法切换策略。</p>
+<blockquote>
+<p>这让我想到了射击游戏，不同的武器杀伤方式，范围都不同，用户又需要频繁切换不同的武器。</p>
+</blockquote>
+<p>看代码来理解，首先是和角色相关的代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">"""游戏角色"""</span></span><br><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABCMeta,abstractmethod</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AbstractGameUnit</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line">    <span class="string">"""角色父类"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, jump_object=None)</span>:</span></span><br><span class="line">        self.jumo_strategy = <span class="literal">None</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.set_jump_strategy(jump_object) <span class="comment"># 设置或切换能力</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_jump_strategy</span><span class="params">(self,JumpStrategy)</span>:</span></span><br><span class="line">        <span class="string">"""设置或切换能力使用"""</span></span><br><span class="line">        <span class="keyword">if</span> isinstance(jump_objec, JumpStrategy):</span><br><span class="line">            self.jump_strategy = jump_object</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.jump_strategy = JumpStrategy()    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""子类都有jump能力"""</span></span><br><span class="line">        self.jump_strategy.jump()</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DwarfFighter</span><span class="params">(AbstractGameUnit)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>接下来看一下能力策略组的代码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">"""跳跃能力组"""</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JumpStrategy</span>:</span></span><br><span class="line">    <span class="string">"""跳跃策略的父类"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"默认跳跃形式"</span>)</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CanNotJump</span><span class="params">(JumpStrategy)</span>:</span></span><br><span class="line">    <span class="string">"""不能跳起来的形式"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"I can not jump"</span>)</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PowerJump</span><span class="params">(JumpStrategy)</span>:</span></span><br><span class="line">    <span class="string">"""超能力跳跃"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"I can jump 100 feet"</span>)</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HorseJump</span><span class="params">(JumpStrategy)</span>:</span></span><br><span class="line">    <span class="string">"""骑马跳跃"""</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">jump</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">"Jumping my horse"</span>)</span><br></pre></td></tr></table></figure>
+<p>有了能力策略组，接下来就是看侏儒是如何在实例化时选择CanNotJump这个跳跃形式，并且可能在某个特殊时间内侏儒又可以切换成PowerJump的跳跃。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">jump_strategy = CanNotJump()</span><br><span class="line">dwarf = DwarfFighter(<span class="string">"Dwarf"</span>, jump_stratrgy) <span class="comment">#实例化时指定了侏儒将使用哪种跳跃形式</span></span><br><span class="line">dwarf.jump() <span class="comment">#让侏儒跳跃，此时会打印I can not jump</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换能力形式</span></span><br><span class="line">dwarf.set_jump_strategy(PowerJump())<span class="comment">#能力切换到了新的能力对象上</span></span><br><span class="line">dwarf,jump() <span class="comment">#让侏儒跳跃，此时会答应I can jump 100 feet</span></span><br></pre></td></tr></table></figure>
+<h2 id="对策略模式的总结"><a href="#对策略模式的总结" class="headerlink" title="对策略模式的总结"></a>对策略模式的总结</h2><p>策略模式中主要有三个部分</p>
+<ul>
+<li>上下文</li>
+<li>策略的抽象类</li>
+<li>具体的策略</li>
+</ul>
+<p>策略模式的优缺点：</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>策略规则可以自由切换</li>
+<li>避免使用多重条件判断</li>
+<li>方便扩展和增加新的策略规则</li>
+<li>方便维护</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>客户端必须知道所有的策略类，并自行决定使用哪一个策略类。这就意味着客户端必须理解这些算法的区别</li>
+</ul>
+<h2 id="在python中的另一种实现"><a href="#在python中的另一种实现" class="headerlink" title="在python中的另一种实现"></a>在python中的另一种实现</h2><p>前面的例子只是不区别语言的前提下给出的通用写法，在python语言中可以简化成另一种方式。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">"""角色以及角色的能力"""</span></span><br><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABCMeta, abstractmethod</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Callable</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AbstractGameUnit</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line">    <span class="string">"""角色父类</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    :arg string name: 角色的名字</span></span><br><span class="line"><span class="string">    :arg jump_strategy: 一个可调用的函数</span></span><br><span class="line"><span class="string">    :ivar jump: 将jump_strategy函数分配给这个变量</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, jump_strategy)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span>(isinstance(jump_strategy, Callable)) <span class="comment">#确保jump_strategy是个可调用的函数</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.jump = jump_strategy</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DwarfFighter</span><span class="params">(AbstractGameUnit)</span>:</span></span><br><span class="line">    <span class="string">"""侏儒类"""</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""jump策略，已函数形式"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">can_not_jump</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"I can not jump"</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">power_jump</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"I can jump 100 feet"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">horse_jump</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">"Jumping my horse"</span>)</span><br></pre></td></tr></table></figure>
+<p>实例化角色，并指定策略形式</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dwarf = DwarfFighter(<span class="string">"Dwarf"</span>, can_not_jump) <span class="comment">#把关联的策略函数作为参数</span></span><br><span class="line">dwarf.jump()</span><br><span class="line"></span><br><span class="line"><span class="comment">#切换策略</span></span><br><span class="line">dwarf.jump = power_jump <span class="comment">#指向新的能力,注意都没有使用（）</span></span><br><span class="line">dwarf.jump()</span><br></pre></td></tr></table></figure>
+<p>这种python语言形式主要是用了函数是一级对象，可以吧函数作为参数的能力。但是这样写容易引起一些问题，就是在角色父类中可能不能直观的看到jump是函数，所以需要做好代码的文档化，以便每个输入参数的目的都是明确的。</p>
+]]></content>
+      <categories>
+        <category>python</category>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用缓存提高性能初探</title>
+    <url>/2019/11/15/%E4%BD%BF%E7%94%A8%E7%BC%93%E5%AD%98%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD%E5%88%9D%E6%8E%A2/</url>
+    <content><![CDATA[<h1 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h1><p>将好不容易得到的结果存储在临时区域。这个区域被称为缓存区，可以是内存，也可以是磁盘或远程位置</p>
+<p>缓存提高性能的第一个场景：</p>
+<p>在Web中常常会发生多位用户同时请求同一个页面，Web应用利用缓存可以只生成网页一次，而不是每位用户请求时都重复生成页面，减少资源的消耗。</p>
+<p>缓存提高性能的第二个场景：</p>
+<p>在应用程序中存储并重用以前的函数调用结果，这种方式被称为动态规划。它不再重复调用一个函数，而是直接使用上一次这个函数的结果，节省了函数结果产生之前的步骤。</p>
+<h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><p>在如下的演示中，sum2函数被调用了2次，第二次调用时，直接使用了缓存结果。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">from</span> functools <span class="keyword">import</span> lru_cache                                                                                                 </span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: @lru_cache() </span><br><span class="line">   ...: <span class="function"><span class="keyword">def</span> <span class="title">sum2</span><span class="params">(a, b)</span>:</span> </span><br><span class="line">   ...:     print(<span class="string">"计算&#123;&#125;+&#123;&#125;"</span>.format(a,b)) </span><br><span class="line">   ...:     <span class="keyword">return</span> a+b </span><br><span class="line">   ...:                                                                                                                                 </span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: print(sum2(<span class="number">1</span>,<span class="number">2</span>))                                                                                                                </span><br><span class="line">计算<span class="number">1</span>+<span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: print(sum2(<span class="number">1</span>,<span class="number">2</span>))                                                                                                                </span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h1 id="functools-lru-cache-内存缓存"><a href="#functools-lru-cache-内存缓存" class="headerlink" title="functools.lru_cache 内存缓存"></a>functools.lru_cache 内存缓存</h1><p>正如上面的例子，functools是Python的标准库中的模块，然后使用@lru_cache()装饰一个要被缓存的函数，那么函数调用后的结果就被缓存到内存里，再次调用这个函数就直接得到缓存的结果。(前提是函数再次调用时参数没变，如果参数变了就会再次完整的运行程序)</p>
+<p>清除缓存</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">函数名.cache_clear()</span><br></pre></td></tr></table></figure>
+<p>查看缓存信息</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">函数名.cache_info()</span><br></pre></td></tr></table></figure>
+<p>设置缓存大小</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@lru_cache(maxsize=16)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum2</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@lru_cache(maxsize=None)#缓存区大小不受限制</span></span><br></pre></td></tr></table></figure>
+<h1 id="使用缓存技术对比计算斐波那锲数列"><a href="#使用缓存技术对比计算斐波那锲数列" class="headerlink" title="使用缓存技术对比计算斐波那锲数列"></a>使用缓存技术对比计算斐波那锲数列</h1><h2 id="未使用缓存"><a href="#未使用缓存" class="headerlink" title="未使用缓存"></a>未使用缓存</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">50</span>]: <span class="function"><span class="keyword">def</span> <span class="title">fibonacci</span><span class="params">(n)</span>:</span> </span><br><span class="line">    ...:     <span class="keyword">if</span> n&lt;<span class="number">1</span>: </span><br><span class="line">    ...:         <span class="keyword">return</span> <span class="number">1</span> </span><br><span class="line">    ...:     <span class="keyword">else</span>: </span><br><span class="line">    ...:         <span class="keyword">return</span> fibonacci(n<span class="number">-1</span>) + fibonacci(n<span class="number">-2</span>) </span><br><span class="line">    ...:          </span><br><span class="line">    ...:                                                                                                                                </span><br><span class="line"></span><br><span class="line">In [<span class="number">51</span>]: %timeit fibonacci(<span class="number">20</span>)                                                                                                          </span><br><span class="line"><span class="number">5.03</span> ms ± <span class="number">9.18</span> µs per loop (mean ± std. dev. of <span class="number">7</span> runs, <span class="number">100</span> loops each)</span><br></pre></td></tr></table></figure>
+<p>该计算的时间复杂度大约为：</p>
+<script type="math/tex; mode=display">
+O(2^N)</script><h2 id="使用缓存技术"><a href="#使用缓存技术" class="headerlink" title="使用缓存技术"></a>使用缓存技术</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">52</span>]: @lru_cache(maxsize=<span class="number">16</span>) </span><br><span class="line">    ...: <span class="function"><span class="keyword">def</span> <span class="title">fibonacci</span><span class="params">(n)</span>:</span> </span><br><span class="line">    ...:     <span class="keyword">if</span> n&lt;<span class="number">1</span>: </span><br><span class="line">    ...:         <span class="keyword">return</span> <span class="number">1</span> </span><br><span class="line">    ...:     <span class="keyword">else</span>: </span><br><span class="line">    ...:         <span class="keyword">return</span> fibonacci(n<span class="number">-1</span>) + fibonacci(n<span class="number">-2</span>) </span><br><span class="line">    ...:                                                                                                                                </span><br><span class="line"></span><br><span class="line">In [<span class="number">53</span>]: %timeit fibonacci(<span class="number">20</span>)                                                                                                          </span><br><span class="line"><span class="number">94.4</span> ns ± <span class="number">0.433</span> ns per loop (mean ± std. dev. of <span class="number">7</span> runs, <span class="number">10000000</span> loops each)</span><br></pre></td></tr></table></figure>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>使用缓存是94.4 ns，不使用缓存是5.03ms</p>
+<h1 id="缓存到磁盘"><a href="#缓存到磁盘" class="headerlink" title="缓存到磁盘"></a>缓存到磁盘</h1><p>使用joblib库，他提供了装饰器Memory.cache来存储函数结果</p>
+<h2 id="安装joblib"><a href="#安装joblib" class="headerlink" title="安装joblib"></a>安装joblib</h2><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pip install joblib</span><br></pre></td></tr></table></figure>
+<h2 id="重写sum2"><a href="#重写sum2" class="headerlink" title="重写sum2"></a>重写sum2</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">from</span> joblib <span class="keyword">import</span> Memory                                                                                                       </span><br><span class="line"></span><br><span class="line">In [<span class="number">3</span>]: memory = Memory(location=<span class="string">'/Users/huyi/Documents/cachedir_test'</span>)                                                                 </span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: @memory.cache </span><br><span class="line">   ...: <span class="function"><span class="keyword">def</span> <span class="title">sum2</span><span class="params">(a,b)</span>:</span> </span><br><span class="line">   ...:     print(<span class="string">'jisuan&#123;&#125;+&#123;&#125;'</span>.format(a,b)) </span><br><span class="line">   ...:     <span class="keyword">return</span> a+b </span><br><span class="line">   ...:                                                                                                                                 </span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: print(sum2(<span class="number">1</span>,<span class="number">23</span>))                                                                                                               </span><br><span class="line">________________________________________________________________________________</span><br><span class="line">[Memory] Calling __main__--Users-huyi-__ipython-input__.sum2...</span><br><span class="line">sum2(<span class="number">1</span>, <span class="number">23</span>)</span><br><span class="line">jisuan1+<span class="number">23</span></span><br><span class="line">_____________________________________________________________sum2 - <span class="number">0.0</span>s, <span class="number">0.0</span>min</span><br><span class="line"><span class="number">24</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: print(sum2(<span class="number">1</span>,<span class="number">23</span>))                                                                                                               </span><br><span class="line"><span class="number">24</span></span><br></pre></td></tr></table></figure>
+<p>在本地路径上也存储了本地文件。</p>
+]]></content>
+      <categories>
+        <category>python</category>
+        <category>性能</category>
+      </categories>
+      <tags>
+        <tag>性能优化</tag>
+        <tag>缓存</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用字典树提高查询速度</title>
+    <url>/2019/11/14/%E4%BD%BF%E7%94%A8%E5%AD%97%E5%85%B8%E6%A0%91%E6%8F%90%E9%AB%98%E6%9F%A5%E8%AF%A2%E9%80%9F%E5%BA%A6/</url>
+    <content><![CDATA[<h1 id="字典树"><a href="#字典树" class="headerlink" title="字典树"></a>字典树</h1><p>字典树也称为前缀树，字典树的速度极快，非常适合输入时查找和自动补全功能。</p>
+<h2 id="安装patricia-trie"><a href="#安装patricia-trie" class="headerlink" title="安装patricia-trie"></a>安装patricia-trie</h2><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pip install patricia-trie</span><br></pre></td></tr></table></figure>
+<h2 id="使用列表推导式和str-startswith搜索"><a href="#使用列表推导式和str-startswith搜索" class="headerlink" title="使用列表推导式和str.startswith搜索"></a>使用列表推导式和str.startswith搜索</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> choice</span><br><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> ascii_uppercase</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_string</span><span class="params">(length)</span>:</span></span><br><span class="line">    <span class="string">"""生成一个有length个大写ASCII字符组成的随机字符串"""</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">""</span>.join(choice(ascii_uppercase) <span class="keyword">for</span> i <span class="keyword">in</span> range(length))</span><br><span class="line"></span><br><span class="line">strings = [random_string(<span class="number">32</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>)]</span><br><span class="line">mathces = [s <span class="keyword">for</span> s <span class="keyword">in</span> strings <span class="keyword">if</span> s.startswith(<span class="string">'AA'</span>)]</span><br></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<p>1.91 ms ± 162 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)</p>
+<h2 id="使用字典树patricia-trie搜索"><a href="#使用字典树patricia-trie搜索" class="headerlink" title="使用字典树patricia-trie搜索"></a>使用字典树patricia-trie搜索</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> choice</span><br><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> ascii_uppercase</span><br><span class="line"><span class="keyword">from</span> patricia <span class="keyword">import</span> trie</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_string</span><span class="params">(length)</span>:</span></span><br><span class="line">    <span class="string">"""生成一个有length个大写ASCII字符组成的随机字符串"""</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">""</span>.join(choice(ascii_uppercase) <span class="keyword">for</span> i <span class="keyword">in</span> range(length))</span><br><span class="line"></span><br><span class="line">strings = [random_string(<span class="number">32</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>)]</span><br><span class="line"><span class="comment">#mathces = [s for s in strings if s.startswith('AA')]#列表推导式查询</span></span><br><span class="line">strings_dict = &#123;s:<span class="number">0</span> <span class="keyword">for</span> s <span class="keyword">in</span> strings&#125; <span class="comment">#一个所有值都为0，key是生成的随机字符串，搜索就是在key中找</span></span><br><span class="line"></span><br><span class="line">strings_trie = trie(**strings_dict)</span><br><span class="line">matches = list(strings_trie.iter(<span class="string">'AA'</span>))</span><br></pre></td></tr></table></figure>
+<p>strings_dict形如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&apos;XESUAINETYRQXVIGLIQTZVUMAXYUCOMS&apos;: 0,</span><br><span class="line"> &apos;JAPFHKNWUMCUKMGTUXWMPDRZSNQIQGPZ&apos;: 0,</span><br><span class="line"> &apos;ACCNODXFYFUGLUEOCWQPZWUICJREBYSE&apos;: 0,</span><br><span class="line"> &apos;PBMRZDHYVTSSJNZAOWXAEXFBHCSGHQZV&apos;: 0,</span><br><span class="line"> &apos;LCMTNKWWVHAUYCUTFPENUMINDXIZWGEQ&apos;: 0,</span><br><span class="line"> &apos;VAVDYEZREUICZGBQDQEESBVSRALPKKIH&apos;: 0,</span><br><span class="line"> &apos;OICFADOIXIGOURWHBRMBBIYNLALBOXQG&apos;: 0,</span><br><span class="line"> &apos;DVLZSHBRZAHXAFCAEWAWXJUUXQTEPJOX&apos;: 0,</span><br><span class="line"> &apos;BFIDCFQXKYXXSGFLEKIZLIUFKNBLXIED&apos;: 0,</span><br><span class="line"> &apos;TPRPTBFHRURDMSYWMZMNCPMQILGJBKLA&apos;: 0,</span><br><span class="line"> &apos;KZKMTURHJUNDUECFLURCBHIWTGLHOVUY&apos;: 0,</span><br><span class="line"> &apos;RNQNMIEUDJZVEIFVEFAMRGQKDKCMBZDS&apos;: 0&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<p>25.7 µs ± 298 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>列表推导式用了1.91ms，字典树用了25.7µs ，字典树优势明显。这是因为字典树搜索的计算复杂度更低，字典树查询的时间复杂度为O(S)，其中S为集合中最长的字符串的长度，而简单的线性扫描时间复杂度为O(N)，其中N为集合的长度。</p>
+]]></content>
+      <categories>
+        <category>python</category>
+        <category>性能</category>
+      </categories>
+      <tags>
+        <tag>字典树</tag>
+        <tag>性能优化</tag>
+        <tag>查询</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>memory_profiler的安装</title>
+    <url>/2019/11/13/memory-profiler%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<p>参考：<a href="https://pypi.org/project/memory-profiler/" target="_blank" rel="noopener">https://pypi.org/project/memory-profiler/</a></p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pip install -U memory_profiler</span><br></pre></td></tr></table></figure>
+<p>和line_profiler一样，也需要给要监视的函数加上装饰器@profile，并且不用导入任何模块。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@profile</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">evolvet</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@profile</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">benchmark</span><span class="params">()</span>:</span></span><br><span class="line">    particles = [Particle(uniform(<span class="number">-1.0</span>, <span class="number">1.0</span>),</span><br><span class="line">                          uniform(<span class="number">-1.0</span>, <span class="number">1.0</span>),</span><br><span class="line">                          uniform(<span class="number">-1.0</span>, <span class="number">1.0</span>))</span><br><span class="line">                  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000</span>)]</span><br><span class="line"></span><br><span class="line">    simulator = ParticleSimulator(particles)</span><br><span class="line">    simulator.evolve(<span class="number">0.001</span>)</span><br></pre></td></tr></table></figure>
+<p>然后运行命令获得结果</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">python -m memory_profiler simul.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">Filename: simul.py</span><br><span class="line"></span><br><span class="line">Line <span class="comment">#    Mem usage    Increment   Line Contents</span></span><br><span class="line">================================================</span><br><span class="line">    36   85.391 MiB   85.391 MiB       @profile</span><br><span class="line">    37                                 def evolve(self, dt):</span><br><span class="line">    38   85.391 MiB    0.000 MiB           timestep = 0.00001</span><br><span class="line">    39   85.391 MiB    0.000 MiB           nsteps = int(dt/timestep)</span><br><span class="line">    40                             </span><br><span class="line">    41   85.391 MiB    0.000 MiB           <span class="keyword">for</span> i <span class="keyword">in</span> range(nsteps):</span><br><span class="line">    42   85.391 MiB    0.000 MiB               <span class="keyword">for</span> p <span class="keyword">in</span> self.particles:</span><br><span class="line">    43                             </span><br><span class="line">    44   85.391 MiB    0.000 MiB                   norm = (p.x**2 + p.y**2)**0.5</span><br><span class="line">    45   85.391 MiB    0.000 MiB                   v_x = (-p.y)/norm</span><br><span class="line">    46   85.391 MiB    0.000 MiB                   v_y = p.x/norm</span><br><span class="line">    47                             </span><br><span class="line">    48   85.391 MiB    0.000 MiB                   d_x = timestep * p.ang_speed * v_x</span><br><span class="line">    49   85.391 MiB    0.000 MiB                   d_y = timestep * p.ang_speed * v_y</span><br><span class="line">    50                             </span><br><span class="line">    51   85.391 MiB    0.000 MiB                   p.x += d_x</span><br><span class="line">    52   85.391 MiB    0.000 MiB                   p.y += d_y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Filename: simul.py</span><br><span class="line"></span><br><span class="line">Line <span class="comment">#    Mem usage    Increment   Line Contents</span></span><br><span class="line">================================================</span><br><span class="line">   122   85.211 MiB   85.211 MiB   @profile</span><br><span class="line">   123                             def benchmark():</span><br><span class="line">   124   85.391 MiB    0.004 MiB       particles = [Particle(uniform(-1.0, 1.0),</span><br><span class="line">   125                                                       uniform(-1.0, 1.0),</span><br><span class="line">   126                                                       uniform(-1.0, 1.0))</span><br><span class="line">   127   85.391 MiB    0.008 MiB                     <span class="keyword">for</span> i <span class="keyword">in</span> range(1000)]</span><br><span class="line">   128                             </span><br><span class="line">   129   85.391 MiB    0.000 MiB       simulator = ParticleSimulator(particles)</span><br><span class="line">   130   85.391 MiB   85.391 MiB       simulator.evolve(0.001)</span><br></pre></td></tr></table></figure>
+<p><strong>技巧</strong>，减小内存消耗，可以在类中使用</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">__slots__ = (, , )</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>效率工具</category>
+        <category>安装</category>
+      </categories>
+      <tags>
+        <tag>性能分析</tag>
+        <tag>memory_profiler</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>line_profiler的安装</title>
+    <url>/2019/11/13/line-profiler%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">sudo pip install Cpython</span><br></pre></td></tr></table></figure>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pip install Cython git+https://github.com/rkern/line_profiler.git</span><br></pre></td></tr></table></figure>
+<p>对要监视的函数应用装饰器@profile，文件名为simul.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@profile</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">evolvet</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>注意，无须从其他模块中导入函数profile</p>
+<p>然后运行命令获得结果</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">kernprof -l -v simul.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">Timer unit: 1e-06 s</span><br><span class="line"></span><br><span class="line">Total time: 61.127 s</span><br><span class="line">File: simul.py</span><br><span class="line">Function: evolve at line 36</span><br><span class="line"></span><br><span class="line">Line <span class="comment">#      Hits         Time  Per Hit   % Time  Line Contents</span></span><br><span class="line">==============================================================</span><br><span class="line">    36                                               @profile</span><br><span class="line">    37                                               def evolve(self, dt):</span><br><span class="line">    38         1          9.0      9.0      0.0          timestep = 0.00001</span><br><span class="line">    39         1          4.0      4.0      0.0          nsteps = int(dt/timestep)</span><br><span class="line">    40                                           </span><br><span class="line">    41     10001      10992.0      1.1      0.0          <span class="keyword">for</span> i <span class="keyword">in</span> range(nsteps):</span><br><span class="line">    42  10010000    5971695.0      0.6      9.8              <span class="keyword">for</span> p <span class="keyword">in</span> self.particles:</span><br><span class="line">    43                                           </span><br><span class="line">    44  10000000   11338242.0      1.1     18.5                  norm = (p.x**2 + p.y**2)**0.5</span><br><span class="line">    45  10000000    7196478.0      0.7     11.8                  v_x = (-p.y)/norm</span><br><span class="line">    46  10000000    6674450.0      0.7     10.9                  v_y = p.x/norm</span><br><span class="line">    47                                           </span><br><span class="line">    48  10000000    7354029.0      0.7     12.0                  d_x = timestep * p.ang_speed * v_x</span><br><span class="line">    49  10000000    7292302.0      0.7     11.9                  d_y = timestep * p.ang_speed * v_y</span><br><span class="line">    50                                           </span><br><span class="line">    51  10000000    7750014.0      0.8     12.7                  p.x += d_x</span><br><span class="line">    52  10000000    7538746.0      0.8     12.3                  p.y += d_y</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>效率工具</category>
+        <category>安装</category>
+      </categories>
+      <tags>
+        <tag>性能分析</tag>
+        <tag>line_profiler</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用cProfile和gprof2dot找出性能瓶颈</title>
+    <url>/2019/11/12/%E4%BD%BF%E7%94%A8cProfile%E5%92%8Cgprof2dot%E6%89%BE%E5%87%BA%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88/</url>
+    <content><![CDATA[<h1 id="使用cProfile找出性能瓶颈"><a href="#使用cProfile找出性能瓶颈" class="headerlink" title="使用cProfile找出性能瓶颈"></a>使用cProfile找出性能瓶颈</h1><p>cProfile 无需安装</p>
+<h1 id="用gprof2dot，和Graphviz可视化性能"><a href="#用gprof2dot，和Graphviz可视化性能" class="headerlink" title="用gprof2dot，和Graphviz可视化性能"></a>用gprof2dot，和Graphviz可视化性能</h1><h2 id="安装Graphviz"><a href="#安装Graphviz" class="headerlink" title="安装Graphviz"></a>安装Graphviz</h2><p>前提已经安装了Homebrew</p>
+<p>执行如下命名</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">brew install graphviz</span><br></pre></td></tr></table></figure>
+<h2 id="测试Graphviz"><a href="#测试Graphviz" class="headerlink" title="测试Graphviz"></a>测试Graphviz</h2><p>查看版本：</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">$ dot -V</span><br><span class="line">dot - graphviz version 2.43.0 (0)</span><br></pre></td></tr></table></figure>
+<p>用vim 创建并编辑一个文件，例如hello.dot</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">digraph pic &#123; </span><br><span class="line">  Hello -&gt; World</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同一目录下终端运行</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">dot hello.dot -T png -o hello.png</span><br></pre></td></tr></table></figure>
+<p>就生成了一个hello.png的图片，图片如下</p>
+<p><img src="/2019/11/12/使用cProfile和gprof2dot找出性能瓶颈/70.png" alt="hello.png"></p>
+<p>完成Graphviz的安装</p>
+<h2 id="安装gprof2dot"><a href="#安装gprof2dot" class="headerlink" title="安装gprof2dot"></a>安装gprof2dot</h2><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pip install gprof2dot</span><br></pre></td></tr></table></figure>
+<h2 id="运行命令获得性能可视化图片"><a href="#运行命令获得性能可视化图片" class="headerlink" title="运行命令获得性能可视化图片"></a>运行命令获得性能可视化图片</h2><p>假设有一个目标程序simul.py，希望看到它的性能瓶颈</p>
+<ol>
+<li>运行cProfile命令，并保存到输出文件中</li>
+</ol>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">python -m cProfile -o output.pstats simul.py</span><br></pre></td></tr></table></figure>
+<ol>
+<li>运行gprof2dot命令</li>
+</ol>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">gprof2dot -f pstats output.pstats | dot -Tpng -o output.png</span><br></pre></td></tr></table></figure>
+<p>output.pstats是输出的文件，文件名可以自己起</p>
+<p>然后在目录中有生成了一个output.png图片，该图片即为性能瓶颈的可视化文件。</p>
+]]></content>
+      <categories>
+        <category>效率工具</category>
+        <category>安装</category>
+      </categories>
+      <tags>
+        <tag>性能分析</tag>
+        <tag>cProfile</tag>
+        <tag>gprof2dot</tag>
+        <tag>Graphviz</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从一头雾水到入门状态机</title>
+    <url>/2019/11/09/%E4%BB%8E%E4%B8%80%E5%A4%B4%E9%9B%BE%E6%B0%B4%E5%88%B0%E5%85%A5%E9%97%A8%E7%8A%B6%E6%80%81%E6%9C%BA/</url>
+    <content><![CDATA[<h3 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h3><p>归纳法证明状态机特征，简化计算或程序设计</p>
+<h3 id="核心词汇"><a href="#核心词汇" class="headerlink" title="核心词汇"></a>核心词汇</h3><p>归纳法证明（保持不变性），状态转移，程序扩展</p>
+<p>今天学习了《计算机科学中的数学》一书中的状态机。为了解释状态机以及状态机怎么运用到编程中，我们先看两个游戏。</p>
+<p>第一个游戏来自《虎胆龙威3》，我们暂且叫这个游戏为虎胆龙威。游戏是这样的，有两个3L和5L的容器，如何通过这两个容器精确的获得4升的水。</p>
+<p>第二个游戏是沿对角线移动的机器人，机器人只能在一个棋盘上沿对角线的格子行走，问机器人能否走到目标位置呢？</p>
+<p><img src="/2019/11/09/从一头雾水到入门状态机/IMG_5813.jpg" alt="IMG_5813"></p>
+<p>在第一个游戏中我们可以看到经历的每一中状态，无外乎如下几种：</p>
+<pre><code>1. 装满小壶；2. 装满大壶；3. 清空小壶；4. 清空大壶； 5. 把小壶中的水倒入大壶；6. 把大壶中的水倒入小壶
+</code></pre><p>状态机就是对上面这种逐步过程的一种数学抽象，是从一种状态转移到另一种状态。这就是状态机，但从这一点看不出状态机有啥用处。实际的情况是我们转移状态，总是按照预设的某种规则来操作，那么在确定的规则下，一种状态转移到另一种状态，就会有可能表现出来一种模式，比如我们看第二个游戏，转移机器人状态的规则是延对角线运动，而他同时就具有了一种模式即机器人能到达的位置只有横纵坐标之和是偶数的位置，这就是在规则确定后表现出来的模式。那么这个模式是否真的成立呢？这就需要建立数学假设，并证明，在计算机领域，归纳法（使用证明某一特性对全体非负整数都为真的方法）最重要的应用之一就是证明一个或多个性质在整个过程的各个步骤一直成立。</p>
+<p>这种在状态机中表现出来的模式，如果被证明在整个过程中都是一直存的的即一直为真，我们就说状态机保持不变性。这是很重要的，因为通过数学证明的模式就可以被拿来简化程序的设计、扩展程序功能、或者测试程序设计的方案是否可行了。</p>
+<p>举例，我们来修改一下虎胆龙威游戏，我们把原来的两个3L，5L的容器换成3L，9L的容器，其他不变还是问能不能精确获得4L的水。我们来用归纳法先来证明3L，5L的容器是否能获得4L的水，然后再用同样的方法来证明一下3L，和9L的容器是能精确获得4L的水。</p>
+<ul>
+<li>3L，5L的容器，能否得到4L的水</li>
+</ul>
+<hr>
+<p>证明. 令5L大壶为b，3L小壶为s（b, s)表示状态，其中 ：</p>
+<script type="math/tex; mode=display">
+0 \leqslant b \leqslant 5, \quad 0 \leqslant s \leqslant 3</script><p>存在以下几种状态转移：</p>
+<ol>
+<li>装满小壶， 当前小壶s &lt; 3: (b, s)→(b, 3)</li>
+<li>装满大壶， 当前大壶b &lt; 5: (b, s)→(5, s)</li>
+<li>清空小壶， 当前小壶s &gt;0: (b, s)→(b, 0)</li>
+<li>把小壶中的水倒入到大壶，当前小壶s&gt;0: </li>
+</ol>
+<script type="math/tex; mode=display">
+(b, s) \rightarrow\left\{\begin{array}{ll}{(b+s, 0)} & 若{b+s \leqslant 5} \\ {(5, s-(5-b))} & {其他}\end{array}\right.</script><ol>
+<li>把大壶中的水倒入小壶， 当前大壶b&gt;0:</li>
+</ol>
+<script type="math/tex; mode=display">
+(b, s) \rightarrow\left\{\begin{array}{ll}{(0, b+s)} & {若 b+s \geqslant 3} \\ {(b-(3-s), 3)} &  {其他} \end{array}\right.</script><p><strong>假设</strong>：b=4成立</p>
+<p>当b = 4，s=0时 ，满足状态转移4中的(b+s, 0)的情况，故b=4成立</p>
+<p>当b=4, s=3时，满足状态转移5中的(b-(3-s), 3)的情况，故b=4成立</p>
+<p><strong>得出结论</strong>：5L的大壶可以精确得到4L的水成立</p>
+<p>​                                                                                                                                            █</p>
+<hr>
+<ul>
+<li>3L，9L的容器，能否精确得到4L的水</li>
+</ul>
+<hr>
+<p>证明. 令9L大壶为b，3L小壶为s（b, s)表示状态，其中 ：</p>
+<script type="math/tex; mode=display">
+0 \leqslant b \leqslant 9, \quad 0 \leqslant s \leqslant 3</script><p>b和s都是3的非负倍数，由3L，5L的容器的证明过程中我们得知，需要证明某一时刻的b(b+s,0)中的b+s=4，或者某一时刻的b(b-(3-s), 3)中的 b-(3-s)=4</p>
+<p>因为4不是3的非负倍数，所以两种情况都不成立。</p>
+<p><strong>得出结论</strong>：当容器是3L和9L时不能精确得到4L的水。</p>
+<p>​                                                                                                                                        █</p>
+<hr>
+<p>为了便于理解，我们把3L，5L的容器得到4L水的过程用图表示一下：</p>
+<p><img src="/2019/11/09/从一头雾水到入门状态机/IMG_1139.PNG" alt="IMG_1139"></p>
+<p>那么，我们现在来考虑一下状态机是如何用在程序开发中的。看过一些人的博客，他们总是在说把状态作为“字典”罗列完整，然后针对每种状态做出独立的代码片段就是状态机在编程中的应用。我认为这是对状态机不完整的使用。状态机被用在编程至少要包含两个部分的工作：</p>
+<p>1、列出所有的状态转移</p>
+<p>2、证明状态机的不变性（即那个表现出来的模式）</p>
+<p>当然还有第三步，就是利用不变性简化程序设计，扩展程序功能或者测试所有可到达状态。</p>
+<p>我们以第二个游戏沿对角线移动的机器人，来说明这一过程，游戏的规则是每次机器人状态转移只能沿对角线移动一格。假设我们的棋盘是无限大的，那么我们用集合的方式列出机器人所有的状态转移，如下，m，n分别代表机器人位置的横纵坐标</p>
+<script type="math/tex; mode=display">
+\{(m, n) \rightarrow(m \pm 1, n \pm 1) | m, n \in \mathbb{Z}\}</script><p>我们可以发现，机器人从(m, n)→(m±1, n±1)一次转移后坐标和的增量是 0，2或-2，每次转移实际都是偶数加上0，2或-2，结果还是偶数，那么这是否就是这个状态机的变形性呢？我们来证明</p>
+<hr>
+<p>证明. 使用归纳法证明， 归纳假设为</p>
+<p>P(n) ::= 若机器人在n次转移后到达状态q，则状态q的横纵坐标之和是偶数 </p>
+<p><strong>基本步骤</strong>：初始状态为(0, 0)， 0+0是偶数，故P(0)为真。</p>
+<p><strong>归纳步骤</strong>： 假设n在非负整数时P(n)为真，令r表示任意n+1次状态转移后的状态，需要证明r状态时横纵坐标之和为偶数成立。</p>
+<p>由于r是n+1次转以后的状态，则必然存在n次转移后的状态q满足 q蕴含r（q→r)， 已知归纳假设状态为q时，横纵坐标之和是偶数为真，同时r是在原有位置增加0，2或-2，其结果仍是偶数，也为真，所以P(n) IMPLIESP (n+1)，归纳步骤证明完毕。</p>
+<p><strong>得出结论</strong>：对于n为任意非负整数，状态机所能到达的位置一定是横纵坐标之和为偶数的位置。</p>
+<p>​                                                                                                                                                                                    █</p>
+<hr>
+<p>那么我们就可以在编程中使用上面的结论了，比如：</p>
+<ol>
+<li>我们想在这个游戏中放入敌人、装备、陷阱，那么如何让这些角色置入棋盘呢？我们当然可以随机分布，但是如果我们想给程序扩展一个功能，是当玩家第一次玩，我们不想让玩家一上来就面对敌人（毕竟玩家这时候生命值还比较弱），那我可以把敌人放在坐标之和为奇数的位置，画面上仍旧充满了各种敌人、装备、但是玩家并不清楚，这一局是我们设计好的，他只会碰到有用的装备，不会碰上可怕的敌人。</li>
+<li>通过上一步使我们的游戏可以按照我们设计意的图让玩家先积累装备，然后在与敌人抗衡，接下来我们又想扩展一下游戏，希望按照某种比重设置敌人的数量、装备的数量、陷阱的数量，你还想按照比例随机分布吗？显然不行，这样你的比例未必奏效，所以你可以把有效路径罗列出来，在有效路径上在按照比例部署，当然为了迷惑玩家，你也可以在无效路径上部署，让玩家自己感觉胜券在握，可又难以过关。</li>
+</ol>
+<p>上面这两点就描述了利用状态机和状态机呈现的不变性，如果设计程序并扩展程序。当然你还可以利用状态机和状态机的不变性对程序进行测试。</p>
+<p>比如我们作为测试工程师，拿到了沿对角线移动的机器人这款游戏，并需要你进行测试，如果你知道了这里状态机的不变性，你还会测试棋盘中每个格子吗，显然不用；你是不是也就知道如何测试出游戏的陷阱、敌人的布置是否按照预定的比例，预定的场景正确出现呢？</p>
+<p>以上就是我对状态机在程序中的应用的一点学习与感悟。</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+        <category>状态机</category>
+      </categories>
+      <tags>
+        <tag>归纳证明</tag>
+        <tag>状态机</tag>
+        <tag>保持不变性</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在威联通上部署Git服务</title>
+    <url>/2019/11/09/%E5%9C%A8%E5%A8%81%E8%81%94%E9%80%9A%E4%B8%8A%E9%83%A8%E7%BD%B2Git%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<h1 id="使用Docker容器安装gogs"><a href="#使用Docker容器安装gogs" class="headerlink" title="使用Docker容器安装gogs"></a>使用Docker容器安装gogs</h1><h2 id="一、安装gogs"><a href="#一、安装gogs" class="headerlink" title="一、安装gogs"></a>一、安装gogs</h2><p>假设你已经在威联通的QTS中已经安装了Container Station，如下图第二排最右边那个</p>
+<p><img src="/2019/11/09/在威联通上部署Git服务/image-20191014152647986.png" alt="image-20191014152647986"></p>
+<p>进入Container Station，在穿件中搜索gogs，如下图</p>
+<p><img src="/2019/11/09/在威联通上部署Git服务/image-20191014153212909.png" alt="image-20191014153212909"></p>
+<p>安装并创建。，打开自动启动，</p>
+<p><img src="/2019/11/09/在威联通上部署Git服务/image-20191105094200189.png" alt="image-20191105094200189"></p>
+<p>进入总览，可以看到已经安装的gogs，等待出现链接符号后，点击链接符号</p>
+<p><img src="/2019/11/09/在威联通上部署Git服务/image-20191014153741476.png" alt="image-20191014153741476"></p>
+<p>选择数据库类型为sqlite3，不用设置数据库，自己写一个应用名称。如下：</p>
+<p><img src="/2019/11/09/在威联通上部署Git服务/image-20191014153840310.png" alt="image-20191014153840310"></p>
+<p>修改域名，端口号和应用url地址，这一步很关键。</p>
+<p><img src="/2019/11/09/在威联通上部署Git服务/截屏2019-10-14下午3.40.40.png" alt="截屏2019-10-14下午3.40.40"></p>
+<p>设置管理员，并安装</p>
+<p><img src="/2019/11/09/在威联通上部署Git服务/image-20191014154530531.png" alt="image-20191014154530531"></p>
+<h2 id="二、在站点上创建仓库"><a href="#二、在站点上创建仓库" class="headerlink" title="二、在站点上创建仓库"></a>二、在站点上创建仓库</h2><p><img src="/2019/11/09/在威联通上部署Git服务/image-20191014154631610.png" alt="image-20191014154631610"></p>
+<p><img src="/2019/11/09/在威联通上部署Git服务/image-20191014154759432.png" alt="image-20191014154759432"></p>
+<h2 id><a href="#" class="headerlink" title=" "></a> </h2>]]></content>
+      <categories>
+        <category>效率工具</category>
+        <category>安装</category>
+      </categories>
+      <tags>
+        <tag>威联通</tag>
+        <tag>Git仓库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>量化平台的功能构成（L01)</title>
+    <url>/2019/11/09/%E9%87%8F%E5%8C%96%E5%B9%B3%E5%8F%B0%E7%9A%84%E5%8A%9F%E8%83%BD%E6%9E%84%E6%88%90%EF%BC%88L01/</url>
+    <content><![CDATA[<p>从整体了解一个量化平台功能模块的划分，并初步了解各模块之间的配合关系。</p>
+<h1 id="一个量化平台的主要功能"><a href="#一个量化平台的主要功能" class="headerlink" title="一个量化平台的主要功能"></a>一个量化平台的主要功能</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>创建或使用一个较好用的量化平台至少需要如下的功能模块，推荐<a href="https://github.com/bbfamily/abu" target="_blank" rel="noopener">阿布的 ABu 量化系统</a>，我也是在这个系统中学习以及使用，在此感谢阿布开源了这个系统。</p>
+<h2 id="交易数据获取"><a href="#交易数据获取" class="headerlink" title="交易数据获取"></a>交易数据获取</h2><p>这是量化系统最容易理解的部分，要获得交易市场的数据，但这一部分却又充满了挑战。因为对于个人用户国家不允许向个人提供数据接口，具体原因我不知道。</p>
+<p>我曾今通过在 windows 的股票软件里每天下载离线数据，然后将二进制的数据文件转成可用的数据，也使用过网上大量介绍过的新浪、雅虎数据。需要知道数据源的缺点，提前有心理准备，各数据源的情况如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">数据文件来源</th>
+<th style="text-align:left">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">新浪数据文件</td>
+<td style="text-align:left">只能在 windows 下，依赖股票软件，需要手工操作，要熟悉股票软件的二进制格式。</td>
+</tr>
+<tr>
+<td style="text-align:left">新浪数据</td>
+<td style="text-align:left">可用</td>
+</tr>
+<tr>
+<td style="text-align:left">雅虎数据</td>
+<td style="text-align:left">有空值，历史数据中有小数位数不统一的问题，有部分数据缺失的情况</td>
+</tr>
+<tr>
+<td style="text-align:left">百度数据</td>
+<td style="text-align:left">出现过一过节，就获取不到数据的问题，有历史数据缺失的问题</td>
+</tr>
+<tr>
+<td style="text-align:left">网易数据</td>
+<td style="text-align:left">可用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="事先了解一些坑"><a href="#事先了解一些坑" class="headerlink" title="事先了解一些坑"></a>事先了解一些坑</h3><p>知道会遇到哪些坑，才能不被坑，希望读者可以少走些弯路。但也不要被吓到，心想数据基础都存在这么多问题，那后续的量化岂不都是胡扯了，还好这些问题都有解。</p>
+<ol>
+<li><p>在不同的数据源处获得的股票代码的样式是不一样的，常见的有如下的形式</p>
+<p>SH.600031、 600031、600031.sh</p>
+</li>
+<li><p>不通数据源每日的更新数据的时间不同，甚至同一个数据源每日更新的时间也不稳定，问题比较突出的是百度的数据源，网易的数据源好很多。</p>
+</li>
+<li><p>不同的数据源，对某些股票的价格数据不一样（和股票软件的价格作对比），在雅虎中比较突出，并不是复权造成的。</p>
+</li>
+<li><p>阿布的系统中并没有提供方法直接获取交易市场所有股票的代码的方法，而是从一个固定的 csv 文件中读取，这就需要定期想办法获取最新的所有股票代码。</p>
+</li>
+</ol>
+<h3 id="数据获取模块构成（Market）"><a href="#数据获取模块构成（Market）" class="headerlink" title="数据获取模块构成（Market）"></a>数据获取模块构成（Market）</h3><p>了解了数据源和数据存在的问题，就能更好知道为什么数据获取的模块会有下面这些部分了。</p>
+<p>在量化系统中，这部分模块叫 Market，这部分主要的功能是扩展数据源、请求历史数据、解析历史数据、标准化数据、历史数据本地的存取、股票指标股的确定等。</p>
+<h4 id="1-Symbol-获取"><a href="#1-Symbol-获取" class="headerlink" title="1. Symbol 获取"></a>1. Symbol 获取</h4><p>从本地文件中读取所有 Symbol，目前在阿布的系统中是靠定读取本地文件的，需要改进能自动获取所有股票代码。</p>
+<h4 id="2-Symbol-标准化"><a href="#2-Symbol-标准化" class="headerlink" title="2. Symbol 标准化"></a>2. Symbol 标准化</h4><p>将一只股票的代码不论从哪个数据源获取，最后都转化成标准的 symbol 对象，工系统使用</p>
+<h4 id="3-网络请求"><a href="#3-网络请求" class="headerlink" title="3. 网络请求"></a>3. 网络请求</h4><p>提供 post 和 get 请求的方法</p>
+<h4 id="4-网络数据请求结果标准化解析"><a href="#4-网络数据请求结果标准化解析" class="headerlink" title="4. 网络数据请求结果标准化解析"></a>4. 网络数据请求结果标准化解析</h4><p>对不同数据源获得的某只股票历史数据进行标准化解析，对字段名进行统一，主要解析的字段有，close（收盘价），open（开盘价），high（最高价），low（最低价）等等</p>
+<h4 id="5-数据源接口处理"><a href="#5-数据源接口处理" class="headerlink" title="5. 数据源接口处理"></a>5. 数据源接口处理</h4><p>对不同数据源拼接不同的 url 请求，和请求参数，甚至模拟手机设备，软件版本等，一遍获得数据源的数据返回。</p>
+<h4 id="6-数据获取（含对系统的接口）"><a href="#6-数据获取（含对系统的接口）" class="headerlink" title="6. 数据获取（含对系统的接口）"></a>6. 数据获取（含对系统的接口）</h4><p>提供方法获得所有股票的指定时间段的历史数据，并保存到本地文件，供系统做回测，实盘操作使用。</p>
+<p>在此阶段，也可以直接计算数据的某些字段值，比如 ATR 和我自己的上中下轨的值计算等。</p>
+<h2 id="买入卖出因子"><a href="#买入卖出因子" class="headerlink" title="买入卖出因子"></a>买入卖出因子</h2><p>最初看到关于买入卖出因子时，会觉得很陌生，不知道因子是个什么东西。其实用久了就知道了，它就是买入卖出的条件判断，只不过他讲究的是因子要能被扩展实现不同的判断条件，也能组合各种各种因子，来形成更为复杂的条件判读。</p>
+<p>这里难点在于：</p>
+<ul>
+<li>扩展因子</li>
+<li>组合多种因子，</li>
+<li>买入卖出条件被触发需要依赖哪些数据，存储哪些数据</li>
+<li>买入卖出条件的参数最优化</li>
+</ul>
+<p>在使用 python 编程的过程中，这一部分使用了利用基类扩展因子，使用字典传递自定义买入卖出因子并实例化的技巧。这些技巧值得学习掌握。</p>
+<h2 id="仓位管理"><a href="#仓位管理" class="headerlink" title="仓位管理"></a>仓位管理</h2><p>当你的买入因子发出了买入信号，那么你手中的可用资金如何分配？要买多少股？</p>
+<h2 id="择时回测"><a href="#择时回测" class="headerlink" title="择时回测"></a>择时回测</h2><h2 id="实盘操作"><a href="#实盘操作" class="headerlink" title="实盘操作"></a>实盘操作</h2><h2 id="测量"><a href="#测量" class="headerlink" title="测量"></a>测量</h2><p>不同的资金对交易的策略是有影响的，所以测量中分为针对资金的测量，也有针对不受资金影响的orders进行测量，测量遇到的最大问题，在于使用哪些指标，有些指标貌似还是矛盾的。这就需要对指标的逻辑、使用范围、风险偏好等有清晰的认识。</p>
+<h2 id="机器学习相关"><a href="#机器学习相关" class="headerlink" title="机器学习相关"></a>机器学习相关</h2><h2 id="环境变量的设置管理"><a href="#环境变量的设置管理" class="headerlink" title="环境变量的设置管理"></a>环境变量的设置管理</h2>]]></content>
+      <categories>
+        <category>量化</category>
+        <category>平台建设</category>
+      </categories>
+      <tags>
+        <tag>量化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在Docker的Ubuntu容器中解决中文的问题</title>
+    <url>/2019/11/09/%E5%9C%A8Docker%E7%9A%84Ubuntu%E5%AE%B9%E5%99%A8%E4%B8%AD%E8%A7%A3%E5%86%B3%E4%B8%AD%E6%96%87%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>Docker 在刚装好Ubuntu后有中文乱码的问题，按如下步骤可解决</p>
+<p>(0).查看容器语言环境</p>
+<pre><code>     $ locale
+
+     LANG=
+     LANGUAGE=
+     LC_CTYPE=&quot;POSIX&quot;
+
+     ......
+
+ (1).查看容器支持的语言
+
+     $ locale -a
+
+      C
+      C.UTF-8
+      POSIX
+
+ (2).修改 /etc/profile
+
+     $ vi /etc/profile   
+
+     在最后添加 export  LANG=C.UTF-8
+
+ (3).重新加载环境变量
+
+     $ source /etc/profile
+
+ (4).再次查看
+
+     $ locale
+
+     LANG=C.UTF-8
+     LANGUAGE=
+     LC_CTYPE=&quot;C.UTF-8&quot;
+</code></pre><p><strong>如果是 docker 容器，重启会无效</strong>,所以执行以下代码</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"export LC_ALL=C.UTF-8"</span> &gt;&gt; /root/.bashrc</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>效率工具</category>
+        <category>Docker使用</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+        <tag>Ubuntu</tag>
+        <tag>中文显示</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用pyenv、virtualenv创建python虚拟环境</title>
+    <url>/2019/11/09/%E7%94%A8pyenv%E3%80%81virtualenv%E5%88%9B%E5%BB%BApython%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<h2 id="虚拟环境的作用"><a href="#虚拟环境的作用" class="headerlink" title="虚拟环境的作用"></a>虚拟环境的作用</h2><p>虚拟环境可以在本机电脑中隔离出不同的开发环境，即指定不同环境使用不同版本的软件，这对于在同一台电脑上开发不同项目非常方便。</p>
+<p>这里面有两个工具介绍，将其组合使用，实现虚拟环境的要求。</p>
+<ol>
+<li>pyenv：可以在同一台电脑上不同的目录里分别运行不同版本的Python， 并且互不影响</li>
+<li>pyenv-virtualenv插件：虚拟出同一版本的python但是不同依赖库版本的开发环境，python官方是有类似的工具的，但是在python3.3之前不好用，不适合Python2的项目</li>
+</ol>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ol>
+<li><p>安装Homebrew，参见我的另一篇博客《在Mac上安装Homebrew以及遇到的那些坑》</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装zlib</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">brew install zlib</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把zlib链接到库</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">brew link zlib --force</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装pyenv</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">brew install pyenv</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装pyenv-virtualenv</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">brew install pyenv-virtualenv</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改.bash_profile</p>
+</li>
+<li><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">echo</span> <span class="string">'eval "$(pyenv init -)"'</span> &gt;&gt; ~/.bash_profile</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改.zshrc</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ---pyenv---</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">"<span class="variable">$HOME</span>/.pyenv/versions/:<span class="variable">$PATH</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv init -)</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(pyenv virtualenv-init -)</span>"</span></span><br></pre></td></tr></table></figure>
+<p><em>如果zsh和bash切换着用，那么./zshrc和./bashrc都要改，不然会出现找不到命令的报错</em></p>
+</li>
+<li><p>重启shell</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>mkdir ~/.virtualenvs</p>
+<p>Bash_profile</p>
+<p>export PYENV_ROOT=/usr/local/var/pyenv</p>
+<p>if which pyenv &gt; /dev/null; then eval “$(pyenv init -)”; fi</p>
+<p>if which pyenv-virtualenv-init &gt; /dev/null; then eval “$(pyenv virtualenv-init -)”; fi</p>
+<h2 id="基础使用"><a href="#基础使用" class="headerlink" title="基础使用"></a>基础使用</h2><h3 id="安装并使用python版本"><a href="#安装并使用python版本" class="headerlink" title="安装并使用python版本"></a>安装并使用python版本</h3><ol>
+<li><p>查看可用的版本</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pyenv  install --list</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>选择安装一个python版本</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pyenv install  3.6.8</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看版本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">➜  ~ pyenv versions  #查看所有版本</span><br><span class="line">* system (set by /root/.pyenv/version)</span><br><span class="line">  2.7.13</span><br><span class="line">  3.6.2</span><br><span class="line">➜  ~ pyenv version  #查看当前版本</span><br><span class="line">system (set by /root/.pyenv/version)</span><br></pre></td></tr></table></figure>
+<p>system 代表当前系统的python 版本，*表示当前的python版本。</p>
+</li>
+<li><p>切换python默认版本（注意global和local的区别)</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">➜  ~ pyenv global 3.6.8 <span class="comment">#受到pyenv控制的窗口都受到了影响</span></span><br><span class="line">➜  ~ pyenv versions</span><br><span class="line">  system</span><br><span class="line">* 3.6.8 (<span class="built_in">set</span> by /usr/<span class="built_in">local</span>/var/pyenv/version)</span><br></pre></td></tr></table></figure>
+<ol>
+<li><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">➜  ~ pyenv <span class="built_in">local</span> 3.6.8 <span class="comment">#只影响当前文件夹</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>删除某个版本</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pyenv uninstall 3.6.8</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>创建一个基于python3.6.8的虚拟环境</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pyenv virtualenv 3.6.8 env368</span><br></pre></td></tr></table></figure>
+<p>这条命令在本机上创建了一个名为env362的python虚拟环境，这个环境的真实目录位于：/usr/local/var/pyenv/versions/</p>
+</li>
+<li><p>使用3.6.8的虚拟环境</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">➜  ~ pyenv activate env368</span><br><span class="line">pyenv-virtualenv: prompt changing will be removed from future release. configure `<span class="built_in">export</span> PYENV_VIRTUALENV_DISABLE_PROMPT=1<span class="string">' to simulate the behavior.</span></span><br><span class="line"><span class="string">(env368) ➜  ~</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>切换想要使用的虚拟环境（如果有多个虚拟环境）</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pyenv <span class="built_in">local</span> env368</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭3.6.8的虚拟环境</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pyenv deactivate <span class="comment">#退出目录后再输入关闭命令</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>卸载3.6.的虚拟环境</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pyenv uninstall env362</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列出目前的所有虚拟环境</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pyenv virtualenvs</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="创建项目，让项目使用干净的Python3-6-3的某个虚拟环境"><a href="#创建项目，让项目使用干净的Python3-6-3的某个虚拟环境" class="headerlink" title="创建项目，让项目使用干净的Python3.6.3的某个虚拟环境"></a>创建项目，让项目使用干净的Python3.6.3的某个虚拟环境</h3><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">mkdir myproject  <span class="comment">#创建工程目录</span></span><br><span class="line"><span class="built_in">cd</span> myproject/ <span class="comment">#进入工程目录</span></span><br><span class="line">pyenv <span class="built_in">local</span> env362 <span class="comment">#切换需要的虚拟环境</span></span><br><span class="line">(env368) ➜ <span class="built_in">cd</span> .. <span class="comment">##退出工程目录,退出当前的虚拟环境</span></span><br></pre></td></tr></table></figure>
+<p>当退出工程目录后，也就退出了虚拟环境。再次进入工程目录，又自动激活了虚拟环境（命令行前面有(env368)</p>
+]]></content>
+      <categories>
+        <category>效率工具</category>
+        <category>安装</category>
+      </categories>
+      <tags>
+        <tag>pyenv</tag>
+        <tag>virtualenv</tag>
+        <tag>虚拟环境</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在Mac上安装Homebrew以及遇到的那些坑</title>
+    <url>/2019/11/09/%E5%9C%A8Mac%E4%B8%8A%E5%AE%89%E8%A3%85Homebrew%E4%BB%A5%E5%8F%8A%E9%81%87%E5%88%B0%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/</url>
+    <content><![CDATA[<h2 id="安装Homebrew"><a href="#安装Homebrew" class="headerlink" title="安装Homebrew"></a>安装Homebrew</h2><p>运行如下命令</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+<p>如果报出如下错误，就进入下一步，如果没有错误，就是开始使用brew安装程序了</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">fatal: unable to access <span class="string">'https://github.com/Homebrew/brew/'</span>: Could not resolve host: github.com</span><br><span class="line">Failed during: git fetch origin master:refs/remotes/origin/master --tags --force</span><br></pre></td></tr></table></figure>
+<p>解决方法：</p>
+<ol>
+<li>在终端ping github.com 如果出现如下的超时，则看第2步</li>
+</ol>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">ping github.com </span><br><span class="line">  PING github.com (13.250.177.223): 56 data bytes</span><br><span class="line">  Request timeout <span class="keyword">for</span> icmp_seq 0</span><br><span class="line">  Request timeout <span class="keyword">for</span> icmp_seq 1</span><br><span class="line">  Request timeout <span class="keyword">for</span> icmp_seq 2</span><br><span class="line">  Request timeout <span class="keyword">for</span> icmp_seq 3</span><br></pre></td></tr></table></figure>
+<ol>
+<li>修改hosts配置，我使用vim编辑器。</li>
+</ol>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/hosts <span class="comment">#打开并编辑hosts文件</span></span><br></pre></td></tr></table></figure>
+<p>在文件的最下面添加</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">192.30.253.113 github.com</span><br></pre></td></tr></table></figure>
+<ol>
+<li>再次在终端ping github.com，如下所示就可以了</li>
+</ol>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">ping github.com</span><br><span class="line">PING github.com (192.30.253.113): 56 data bytes</span><br><span class="line">64 bytes from 192.30.253.113: icmp_seq=0 ttl=49 time=351.766 ms</span><br><span class="line">64 bytes from 192.30.253.113: icmp_seq=1 ttl=49 time=388.017 ms</span><br><span class="line">64 bytes from 192.30.253.113: icmp_seq=2 ttl=49 time=391.047 ms</span><br><span class="line">64 bytes from 192.30.253.113: icmp_seq=3 ttl=49 time=408.031 ms</span><br></pre></td></tr></table></figure>
+<ol>
+<li>运行卸载安装命令</li>
+</ol>
+<p>最简单粗暴方式：卸载现有版本brew，重新安装最新版本卸载现有版本，执行</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)</span>"</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>再次运行安装命令</li>
+</ol>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>效率工具</category>
+        <category>安装</category>
+      </categories>
+      <tags>
+        <tag>Homebrew</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Selenium在Mac下的安装</title>
+    <url>/2019/11/09/Selenium%E5%9C%A8Mac%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2 id="安装-Selenium"><a href="#安装-Selenium" class="headerlink" title="安装 Selenium"></a>安装 Selenium</h2><p>使用 <strong>sudo pip3 install -U selenium</strong> 安装即可</p>
+<p>书中一般会说 selenium 支持最好的是 Firefox 浏览器，但是在实际操作中，发现 selenium 从 3.x 开始，webdriver.py 的<strong>init</strong>中，exectable_path 变更了，Firefox47 以上版本，需要下载第三方 driver</p>
+<ol>
+<li>在github上下载mac的geckodriver最新版本 <a href="https://github.com/mozilla/geckodriver/releases" target="_blank" rel="noopener">https://github.com/mozilla/geckodriver/releases</a> 得到一个压缩文件，解压后是一个exe文件；然而无法运行这个exe文件，mac认为这是一个不安全的应用。需要进入‘系统偏好设置’，选择‘仍要打开’，然后才可以运行。</li>
+<li>找到firefox可执行文件的地址（/Applications/Firefox.app/Contents/MacOS/），将geckodriver的可执行文件和其放在同一个文件夹中</li>
+<li>尝试用 Selenium 打开指定的网站，如下代码：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"></span><br><span class="line">driver = webdriver.Firefox(executable_path=<span class="string">'/Applications/Firefox.app/Contents/MacOS/geckodriver'</span>)</span><br><span class="line"></span><br><span class="line">driver.implicitly_wait(<span class="number">30</span>)</span><br><span class="line"></span><br><span class="line">driver.maximize_window()</span><br><span class="line"></span><br><span class="line">driver.get(<span class="string">"http://www.baidu.com/"</span>)</span><br><span class="line"></span><br><span class="line">driver.quit()</span><br></pre></td></tr></table></figure>
+<p>运行上述代码，会自动运行一个 Firefox 浏览器，并打开百度网站，然后关闭退出。如果能完成这一些列动作，即表示 selenium 安装完成，并且 可以操作FireFox浏览器了。</p>
+]]></content>
+      <categories>
+        <category>效率工具</category>
+        <category>安装</category>
+      </categories>
+      <tags>
+        <tag>自动化测试</tag>
+        <tag>selenium</tag>
+      </tags>
+  </entry>
+</search>
