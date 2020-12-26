@@ -31,6 +31,36 @@
 <p>完成了新建项目的操作。</p>
 </li>
 </ol>
+<h2 id="Git-commit-模板方式"><a href="#Git-commit-模板方式" class="headerlink" title="Git commit 模板方式"></a>Git commit 模板方式</h2><h3 id="1-制作模板"><a href="#1-制作模板" class="headerlink" title="1. 制作模板"></a>1. 制作模板</h3><p>模板文件命名为 template.txt。 内容如下</p>
+<blockquote>
+<p><strong>type(必须)</strong> 用于说明git commit的类别，只允许使用下面的标识。</p>
+<p>feat：新功能（feature）</p>
+<p>fix/to：修复bug，可以是QA发现的BUG，也可以是研发自己发现的BUG。</p>
+<ul>
+<li>fix：产生diff并自动修复此问题。适合于一次提交直接修复问题</li>
+<li>to：只产生diff不自动修复此问题。适合于多次提交。最终修复问题提交时使用fix。</li>
+</ul>
+<p>docs：文档（documentation）</p>
+<p>style：格式（不影响代码运行的变动）。</p>
+<p>refactor：重构（即不是新增功能，也不是修改bug的代码变动）。</p>
+<p>perf：优化相关，比如提升性能、体验。</p>
+<p>test：增加测试。</p>
+<p>chore：构建过程或辅助工具的变动。</p>
+<p>revert：回滚到上一个版本。</p>
+<p>merge：代码合并。</p>
+<p>sync：同步主线或分支的Bug。</p>
+<p><strong>scope(可选)</strong><br>scope用于说明 commit 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不同。</p>
+<p><strong>subject(必须)</strong><br>subject是commit目的的简短描述，不超过50个字符。</p>
+<ul>
+<li>建议使用中文。</li>
+<li>结尾不加句号或其他标点符号。<br>根据以上规范git commit message将是如下的格式：</li>
+</ul>
+</blockquote>
+<h3 id="2-设置git-message默认编辑器"><a href="#2-设置git-message默认编辑器" class="headerlink" title="2.设置git message默认编辑器"></a>2.设置git message默认编辑器</h3><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">git config core.editor <span class="string">"vim"</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-使用模板"><a href="#3-使用模板" class="headerlink" title="3.使用模板"></a>3.使用模板</h3><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">git config commit.template   [模板文件名]    //这个命令只能设置当前分支的提交模板</span><br><span class="line"></span><br><span class="line">git config  --global commit.template ~/MyApp/study/template.txt //这个命令能设置全局的提交模板，注意global前面是两杠</span><br><span class="line"></span><br><span class="line">例如： git config commit.template   xxx_template</span><br><span class="line"></span><br><span class="line">git config –global commit.template   xxx_template</span><br></pre></td></tr></table></figure>
+<h3 id="4-提交"><a href="#4-提交" class="headerlink" title="4.提交"></a>4.提交</h3><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure>
+<p>然后自动打开vim编辑器，在里面输入提交的内容</p>
+<h3 id="5-查看"><a href="#5-查看" class="headerlink" title="5. 查看"></a>5. 查看</h3><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
 <h2 id="Git相关知识"><a href="#Git相关知识" class="headerlink" title="Git相关知识"></a>Git相关知识</h2><h3 id="标签-版本号"><a href="#标签-版本号" class="headerlink" title="标签(版本号)"></a>标签(版本号)</h3><p>[<a href="https://blog.csdn.net/lmj19851117/article/details/79670656" target="_blank" rel="noopener">https://blog.csdn.net/lmj19851117/article/details/79670656</a> ]:</p>
 <h3 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h3><p>[ <a href="https://www.jianshu.com/p/dd864fcee643" target="_blank" rel="noopener">https://www.jianshu.com/p/dd864fcee643</a> ]:git push origin与git push -u origin master的区别</p>
 <h3 id="SSH-Key"><a href="#SSH-Key" class="headerlink" title="SSH Key"></a><a id="SSH Key">SSH Key</a></h3><p>1、在Mac终端中输入</p>
