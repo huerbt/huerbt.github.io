@@ -1,6 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>用好SpaceVim</title>
+    <url>/2020/12/30/%E7%94%A8%E5%A5%BDSpaceVim/</url>
+    <content><![CDATA[<h1 id="一、准备vim、neovim"><a href="#一、准备vim、neovim" class="headerlink" title="一、准备vim、neovim"></a>一、准备vim、neovim</h1><h2 id="安装vim、neovim"><a href="#安装vim、neovim" class="headerlink" title="安装vim、neovim"></a>安装vim、neovim</h2><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">$ vim --version <span class="comment"># 检查Vim的版本，如果没有安装8.0以上执行如下步骤</span></span><br><span class="line"></span><br><span class="line">$ mkdir -p ~/.vim <span class="comment"># 检查一下本地根目录下有没有.vim文件，如果没有需要手工创建</span></span><br><span class="line"></span><br><span class="line">$ brew install vim <span class="comment"># 在mac上安装vim</span></span><br><span class="line"></span><br><span class="line">$ brew install neovim <span class="comment"># 在macOS上安装Neovim</span></span><br></pre></td></tr></table></figure>
+<h1 id="二、准备SpaceVim"><a href="#二、准备SpaceVim" class="headerlink" title="二、准备SpaceVim"></a>二、准备SpaceVim</h1><p>为什么使用SpaceVim呢，因为它提供快捷键的记忆辅助、可视化交互。并预装了不错的插件。</p>
+<ul>
+<li><strong>确保手指不离开主键盘区域：</strong> 使用空格键（<code>SPC</code>）作为前缀键，合理组织快捷键，确保手指不离开主键盘区域。</li>
+<li><strong>快捷键辅助系统：</strong> 所有快捷键无需记忆，当输入出现停顿，会实时提示可用按键及其功能。</li>
+</ul>
+<h2 id="安装spacevim"><a href="#安装spacevim" class="headerlink" title="安装spacevim"></a>安装spacevim</h2><figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">~ curl -sLf https://spacevim.org/cn/install.sh | bash</span><br></pre></td></tr></table></figure>
+<h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><p>SpaceVim 的配置文件有两种，一种是全局配置文件(<code>~/.SpaceVim.d/init.toml</code>)， 另外一种是项目专属配置文件，即为项目根目录的配置(<code>.SpaceVim.d/init.toml</code>)。比如对于 python 项目， 可以在项目专属配置文件里启用 <code>lang#python</code> 模块。这样操作的好处在于，当处理多个不同语言项目是，不需要频繁更新配置文件，也不用担心载入过多的冗余插件，和无关的语言模块。</p>
+<p>在配置文件<code>~/.SpaceVim.d/init.toml</code>中设置打开状态栏</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">enable_statusline_mode = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h3 id="插件的文档阅读"><a href="#插件的文档阅读" class="headerlink" title="插件的文档阅读"></a>插件的文档阅读</h3><h3 id="查看已安装插件"><a href="#查看已安装插件" class="headerlink" title="查看已安装插件"></a>查看已安装插件</h3><h2 id="SpaceVim的常用快捷键"><a href="#SpaceVim的常用快捷键" class="headerlink" title="SpaceVim的常用快捷键"></a>SpaceVim的常用快捷键</h2><p>感受空格键，按下空格键，1秒后下方会出现一个提示窗口。</p>
+<p>通过 <code>:h SpaceVim</code> 来访问 SpaceVim 帮助文档</p>
+<p>SPC f v d 打开配置文件</p>
+<p>SpaceVim 会在状态栏展示各个窗口的编号，可以使用快捷键 <code>SPC + 数字</code> 快速跳到对应的窗口，在顶部标签栏，会列出当前已经打开的文件或者标签裂变， 可以使用快捷键 <code>Leader + 数字</code> 快速跳到对应的文件。在这里默认的 Leader 是 <code>\</code> 键。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><code>SPC t 8</code></th>
+<th>高亮所有超过 80 列的字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPC Tab</td>
+<td>两个缓冲区来回切换</td>
+</tr>
+<tr>
+<td><code>s g</code></td>
+<td>垂直分屏编辑该文件</td>
+</tr>
+<tr>
+<td><code>Ctrl-f</code></td>
+<td>向下翻页 (<code>Ctrl-f</code> / <code>Ctrl-d</code>)</td>
+</tr>
+<tr>
+<td>进入命令模式后 Ctrl-a</td>
+<td>移动光标至行首</td>
+</tr>
+<tr>
+<td>进入命令模式后 Ctrl-w</td>
+<td>删除光标前词</td>
+</tr>
+<tr>
+<td>进入命令模式后 Ctrl-u</td>
+<td>移除光标前所有字符</td>
+</tr>
+<tr>
+<td>进入命令模式后 Ctrl-k</td>
+<td>移除光标后所有字符</td>
+</tr>
+<tr>
+<td><code>&lt;Leader&gt; y</code></td>
+<td>复制文本至系统剪切板</td>
+</tr>
+<tr>
+<td><code>SPC c L</code></td>
+<td>注释行</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><code>SPC c u</code></th>
+<th>反注释行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SPC c l</code></td>
+<td>注释/反注释当前行</td>
+</tr>
+<tr>
+<td><code>SPC ;</code></td>
+<td>进入注释操作模式比如 <code>SPC ; 4 j</code>，这个组合键会注释当前行以及下方的 4 行。</td>
+</tr>
+<tr>
+<td><code>F7</code></td>
+<td>当前文件的编辑历史</td>
+</tr>
+<tr>
+<td><code>SPC b h</code></td>
+<td>打开欢迎界面</td>
+</tr>
+<tr>
+<td><code>SPC f v d</code></td>
+<td>打开 SpaceVim 的用户配置文件</td>
+</tr>
+<tr>
+<td>SPC h l（小L）</td>
+<td>所有可用模块展示</td>
+</tr>
+<tr>
+<td><code>&lt;Leader&gt; f p</code></td>
+<td>列出所有已安装的插件</td>
+</tr>
+<tr>
+<td>SPC s e</td>
+<td>打开多光标模式</td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="三、场景实践"><a href="#三、场景实践" class="headerlink" title="三、场景实践"></a>三、场景实践</h1><h2 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h2><p>工程的定义： SpaceVim会从当前文件自动向上查找<code>.git</code>目录或者<code>.projections.json</code>文件的目录作为根目录。</p>
+<h3 id="python项目"><a href="#python项目" class="headerlink" title="python项目"></a>python项目</h3><p>SpaceVim 初次安装时默认并未启用相关语言模块。首先需要启用 <code>lang#python</code> 模块，通过快捷键 <code>SPC f v d</code> 打开配置文件，添加：</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">[[layers]]</span><br><span class="line">  name = <span class="string">"lang#python"</span></span><br></pre></td></tr></table></figure>
+<p>在打开 Python 文件是，就可以使用语言专属快捷键，这些快捷键都是以 <code>SPC l</code> 为前缀的</p>
+<h4 id="断点调试"><a href="#断点调试" class="headerlink" title="断点调试"></a>断点调试</h4><p>首先，需要载入 debug 模块：</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">[[layers]]</span><br><span class="line">   name = <span class="string">"debug"</span></span><br></pre></td></tr></table></figure>
+<p><strong>快捷键</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">快捷键</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>SPC d l</code></td>
+<td style="text-align:left">启动 debugger</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SPC d c</code></td>
+<td style="text-align:left">继续下一步</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SPC d b</code></td>
+<td style="text-align:left">添加/去除当前行断点</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SPC d B</code></td>
+<td style="text-align:left">清除所有断点</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SPC d o</code></td>
+<td style="text-align:left">单步执行</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SPC d i</code></td>
+<td style="text-align:left">跳至方法体</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SPC d O</code></td>
+<td style="text-align:left">运行至当前方法结束</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SPC d e s</code></td>
+<td style="text-align:left">打印并求值选中的文本</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SPC d e e</code></td>
+<td style="text-align:left">打印并求值光标所在变量</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SPC d e S</code></td>
+<td style="text-align:left">执行选中的文本</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SPC d k</code></td>
+<td style="text-align:left">关闭 debugger</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Debug 临时快捷键菜单</strong></p>
+<p>Debug 的快捷键太长了？可以使用 <code>SPC d .</code> 调出 Debug 临时快捷键菜单。</p>
+<h4 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h4><p>Python 代码格式化，主要依赖 <code>format</code> 模块(<code>format</code> 模块默认已经启用)，同时需要安装相关的后台命令 yapf：</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">[[layers]]</span><br><span class="line">  name = <span class="string">"format"</span></span><br></pre></td></tr></table></figure>
+<p>安装 yapf：</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">pip install --user yapf</span><br></pre></td></tr></table></figure>
+<p><strong><code>format_on_save</code></strong>: 这一模块选项是用于设置是否在保存文件时自动进行格式化，默认是禁用的， 如果需要启用该功能，可以在设置文件中加入以下内容：</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">[[layers]]</span><br><span class="line">  name = <span class="string">"format"</span></span><br><span class="line">  format_on_save = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><code>SPC b f</code></th>
+<th>格式化当前文件或者选中内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="自动语法检查"><a href="#自动语法检查" class="headerlink" title="自动语法检查"></a>自动语法检查</h4><p>可通过在配置文件内加入如下配置来启用该模块：</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">[[layers]]</span><br><span class="line">  name = <span class="string">"checkers"</span></span><br><span class="line">  lint_on_the_fly = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><code>lint_on_the_fly</code></th>
+<th>false</th>
+<th>启用实时语法检查</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><code>SPC e c</code></th>
+<th>清除错误列表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SPC e e</code></td>
+<td>解释光标处的语法错误</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="代码自动补全"><a href="#代码自动补全" class="headerlink" title="代码自动补全"></a>代码自动补全</h4><p>这一模块是默认启用的，当然为了稳妥，可以再配置文件里加入以下代码块：</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">[[layers]]</span><br><span class="line">  name = <span class="string">"autocomplete"</span></span><br></pre></td></tr></table></figure>
+<h4 id="工程文件跳转"><a href="#工程文件跳转" class="headerlink" title="工程文件跳转"></a>工程文件跳转</h4><p>SpaceVim 提供了一个内置的工程文件跳转插件，默认的命令为 <code>:A</code>， 该命令可接收参数，指定跳转类别：</p>
+<p>在使用这一特性之前，需要在工程根目录添加配置文件 <code>.project_alt.json</code>。例如：</p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"autoload/SpaceVim/layers/lang/*.vim"</span>: &#123;<span class="string">"doc"</span>: <span class="string">"docs/layers/lang/&#123;&#125;.md"</span>&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>加入以上配置文件后，当编辑 <code>autoload/SpaceVim/layers/lang/java.vim</code> 文件时， 可以通过 <code>:A doc</code> 跳转至 <code>docs/layers/lang/java.md</code> 文件。</p>
+<h2 id="制定TODO"><a href="#制定TODO" class="headerlink" title="制定TODO"></a>制定TODO</h2><p>SPC a o 打开TODO页面</p>
+<p>在文件中使用 @todo 或者@TODO，即可被自动找到</p>
+<h2 id="使用Git"><a href="#使用Git" class="headerlink" title="使用Git"></a>使用Git</h2><p>可向配置文件中加入 </p>
+<figure class="highlight zsh"><table><tr><td class="code"><pre><span class="line">[options]</span><br><span class="line">	enable_vimfiler_gitstatus = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h2 id="阅读源码"><a href="#阅读源码" class="headerlink" title="阅读源码"></a>阅读源码</h2><h2 id="TDD"><a href="#TDD" class="headerlink" title="TDD"></a>TDD</h2><h2 id="模糊查找"><a href="#模糊查找" class="headerlink" title="模糊查找"></a>模糊查找</h2><p>最常用的功能就是模糊查找了，<code>SPC p /</code>输入任意字符串后回车（还没写完）</p>
+<h2 id="Lint检查语法错误"><a href="#Lint检查语法错误" class="headerlink" title="Lint检查语法错误"></a>Lint检查语法错误</h2><h2 id="快速模糊打开文件"><a href="#快速模糊打开文件" class="headerlink" title="快速模糊打开文件"></a>快速模糊打开文件</h2><h2 id="多光标使用"><a href="#多光标使用" class="headerlink" title="多光标使用"></a>多光标使用</h2>]]></content>
+      <categories>
+        <category>效率工具</category>
+        <category>vim</category>
+      </categories>
+      <tags>
+        <tag>Vim</tag>
+        <tag>SpaceVim</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git使用</title>
     <url>/2020/12/25/Git%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="Git使用指引"><a href="#Git使用指引" class="headerlink" title="Git使用指引"></a>Git使用指引</h1><h2 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h2><ol>
